@@ -1,0 +1,14 @@
+import { CommonModule } from '@angular/common';
+import { MdbBreadcrumbComponent } from './mdb-breadcrumb.component';
+import { MdbBreadcrumbItemComponent } from './mdb-breadcrumb-item.component';
+import { NgModule } from '@angular/core';
+export class BreadcrumbModule {
+}
+BreadcrumbModule.decorators = [
+    { type: NgModule, args: [{
+                imports: [CommonModule],
+                declarations: [MdbBreadcrumbComponent, MdbBreadcrumbItemComponent],
+                exports: [MdbBreadcrumbComponent, MdbBreadcrumbItemComponent]
+            },] }
+];
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiYnJlYWRjcnVtYi5tb2R1bGUuanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyIuLi8uLi8uLi8uLi8uLi8uLi9wcm9qZWN0cy9uZy11aWtpdC1wcm8tc3RhbmRhcmQvc3JjL2xpYi9mcmVlL2JyZWFkY3J1bWJzL2JyZWFkY3J1bWIubW9kdWxlLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBLE9BQU8sRUFBRSxZQUFZLEVBQUUsTUFBTSxpQkFBaUIsQ0FBQztBQUMvQyxPQUFPLEVBQUUsc0JBQXNCLEVBQUUsTUFBTSw0QkFBNEIsQ0FBQztBQUNwRSxPQUFPLEVBQUUsMEJBQTBCLEVBQUUsTUFBTSxpQ0FBaUMsQ0FBQztBQUM3RSxPQUFPLEVBQUUsUUFBUSxFQUFFLE1BQU0sZUFBZSxDQUFDO0FBU3pDLE1BQU0sT0FBTyxnQkFBZ0I7OztZQU41QixRQUFRLFNBQUM7Z0JBQ04sT0FBTyxFQUFFLENBQUMsWUFBWSxDQUFDO2dCQUN2QixZQUFZLEVBQUUsQ0FBQyxzQkFBc0IsRUFBRSwwQkFBMEIsQ0FBQztnQkFDbEUsT0FBTyxFQUFFLENBQUMsc0JBQXNCLEVBQUUsMEJBQTBCLENBQUM7YUFDaEUiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyBDb21tb25Nb2R1bGUgfSBmcm9tICdAYW5ndWxhci9jb21tb24nO1xuaW1wb3J0IHsgTWRiQnJlYWRjcnVtYkNvbXBvbmVudCB9IGZyb20gJy4vbWRiLWJyZWFkY3J1bWIuY29tcG9uZW50JztcbmltcG9ydCB7IE1kYkJyZWFkY3J1bWJJdGVtQ29tcG9uZW50IH0gZnJvbSAnLi9tZGItYnJlYWRjcnVtYi1pdGVtLmNvbXBvbmVudCc7XG5pbXBvcnQgeyBOZ01vZHVsZSB9IGZyb20gJ0Bhbmd1bGFyL2NvcmUnO1xuXG5cbkBOZ01vZHVsZSh7XG4gICAgaW1wb3J0czogW0NvbW1vbk1vZHVsZV0sXG4gICAgZGVjbGFyYXRpb25zOiBbTWRiQnJlYWRjcnVtYkNvbXBvbmVudCwgTWRiQnJlYWRjcnVtYkl0ZW1Db21wb25lbnRdLFxuICAgIGV4cG9ydHM6IFtNZGJCcmVhZGNydW1iQ29tcG9uZW50LCBNZGJCcmVhZGNydW1iSXRlbUNvbXBvbmVudF1cbn0pXG5cbmV4cG9ydCBjbGFzcyBCcmVhZGNydW1iTW9kdWxlIHtcblxufVxuIl19

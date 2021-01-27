@@ -1,0 +1,17 @@
+import { Injectable } from '@angular/core';
+import { Subject } from 'rxjs';
+export class NavbarService {
+    constructor() {
+        this.navbarLinkClicks = new Subject();
+    }
+    getNavbarLinkClicks() {
+        return this.navbarLinkClicks.asObservable();
+    }
+    setNavbarLinkClicks() {
+        this.navbarLinkClicks.next();
+    }
+}
+NavbarService.decorators = [
+    { type: Injectable }
+];
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoibmF2YmFyLnNlcnZpY2UuanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyIuLi8uLi8uLi8uLi8uLi8uLi9wcm9qZWN0cy9uZy11aWtpdC1wcm8tc3RhbmRhcmQvc3JjL2xpYi9mcmVlL25hdmJhcnMvbmF2YmFyLnNlcnZpY2UudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUEsT0FBTyxFQUFFLFVBQVUsRUFBRSxNQUFNLGVBQWUsQ0FBQztBQUMzQyxPQUFPLEVBQUUsT0FBTyxFQUFjLE1BQU0sTUFBTSxDQUFDO0FBRzNDLE1BQU0sT0FBTyxhQUFhO0lBRDFCO1FBRVUscUJBQWdCLEdBQUcsSUFBSSxPQUFPLEVBQU8sQ0FBQztJQVNoRCxDQUFDO0lBUEMsbUJBQW1CO1FBQ2pCLE9BQU8sSUFBSSxDQUFDLGdCQUFnQixDQUFDLFlBQVksRUFBRSxDQUFDO0lBQzlDLENBQUM7SUFFRCxtQkFBbUI7UUFDakIsSUFBSSxDQUFDLGdCQUFnQixDQUFDLElBQUksRUFBRSxDQUFDO0lBQy9CLENBQUM7OztZQVZGLFVBQVUiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyBJbmplY3RhYmxlIH0gZnJvbSAnQGFuZ3VsYXIvY29yZSc7XG5pbXBvcnQgeyBTdWJqZWN0LCBPYnNlcnZhYmxlIH0gZnJvbSAncnhqcyc7XG5cbkBJbmplY3RhYmxlKClcbmV4cG9ydCBjbGFzcyBOYXZiYXJTZXJ2aWNlIHtcbiAgcHJpdmF0ZSBuYXZiYXJMaW5rQ2xpY2tzID0gbmV3IFN1YmplY3Q8YW55PigpO1xuXG4gIGdldE5hdmJhckxpbmtDbGlja3MoKTogT2JzZXJ2YWJsZTxhbnk+IHtcbiAgICByZXR1cm4gdGhpcy5uYXZiYXJMaW5rQ2xpY2tzLmFzT2JzZXJ2YWJsZSgpO1xuICB9XG5cbiAgc2V0TmF2YmFyTGlua0NsaWNrcygpIHtcbiAgICB0aGlzLm5hdmJhckxpbmtDbGlja3MubmV4dCgpO1xuICB9XG59XG4iXX0=

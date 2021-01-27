@@ -1,0 +1,1 @@
+cat ./db/backup.sql | docker exec -i mysql /usr/bin/mysql -u sampleuser --password=samplepassword sampledb

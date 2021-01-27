@@ -1,0 +1,15 @@
+import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { MdbStickyDirective } from './sticky-content.directive';
+export { MdbStickyDirective };
+export class StickyContentModule {
+}
+StickyContentModule.decorators = [
+    { type: NgModule, args: [{
+                imports: [CommonModule, FormsModule],
+                declarations: [MdbStickyDirective],
+                exports: [MdbStickyDirective]
+            },] }
+];
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoic3RpY2t5LWNvbnRlbnQubW9kdWxlLmpzIiwic291cmNlUm9vdCI6IiIsInNvdXJjZXMiOlsiLi4vLi4vLi4vLi4vLi4vLi4vcHJvamVjdHMvbmctdWlraXQtcHJvLXN0YW5kYXJkL3NyYy9saWIvcHJvL3N0aWNreS1jb250ZW50L3N0aWNreS1jb250ZW50Lm1vZHVsZS50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQSxPQUFPLEVBQUUsUUFBUSxFQUFFLE1BQU0sZUFBZSxDQUFDO0FBQ3pDLE9BQU8sRUFBRSxXQUFXLEVBQUUsTUFBTSxnQkFBZ0IsQ0FBQztBQUM3QyxPQUFPLEVBQUUsWUFBWSxFQUFHLE1BQU0saUJBQWlCLENBQUM7QUFFaEQsT0FBTyxFQUFFLGtCQUFrQixFQUFFLE1BQU0sNEJBQTRCLENBQUM7QUFFaEUsT0FBTyxFQUFFLGtCQUFrQixFQUFFLENBQUM7QUFROUIsTUFBTSxPQUFPLG1CQUFtQjs7O1lBTi9CLFFBQVEsU0FBQztnQkFDUixPQUFPLEVBQUUsQ0FBRSxZQUFZLEVBQUUsV0FBVyxDQUFFO2dCQUN0QyxZQUFZLEVBQUUsQ0FBQyxrQkFBa0IsQ0FBQztnQkFDbEMsT0FBTyxFQUFFLENBQUUsa0JBQWtCLENBQUU7YUFDaEMiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyBOZ01vZHVsZSB9IGZyb20gJ0Bhbmd1bGFyL2NvcmUnO1xuaW1wb3J0IHsgRm9ybXNNb2R1bGUgfSBmcm9tICdAYW5ndWxhci9mb3Jtcyc7XG5pbXBvcnQgeyBDb21tb25Nb2R1bGUgIH0gZnJvbSAnQGFuZ3VsYXIvY29tbW9uJztcblxuaW1wb3J0IHsgTWRiU3RpY2t5RGlyZWN0aXZlIH0gZnJvbSAnLi9zdGlja3ktY29udGVudC5kaXJlY3RpdmUnO1xuXG5leHBvcnQgeyBNZGJTdGlja3lEaXJlY3RpdmUgfTtcblxuQE5nTW9kdWxlKHtcbiAgaW1wb3J0czogWyBDb21tb25Nb2R1bGUsIEZvcm1zTW9kdWxlIF0sXG4gIGRlY2xhcmF0aW9uczogW01kYlN0aWNreURpcmVjdGl2ZV0sXG4gIGV4cG9ydHM6IFsgTWRiU3RpY2t5RGlyZWN0aXZlIF1cbn0pXG5cbmV4cG9ydCBjbGFzcyBTdGlja3lDb250ZW50TW9kdWxlIHt9XG4iXX0=

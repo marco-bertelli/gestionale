@@ -1,0 +1,14 @@
+import { trigger, state, style, transition, animate } from '@angular/animations';
+export const dropdownAnimation = trigger('dropdownAnimation', [
+    state('void', style({
+        transform: 'scaleY(0.8)',
+        opacity: 0,
+    })),
+    state('visible', style({
+        opacity: 1,
+        transform: 'scaleY(1)',
+    })),
+    transition('void => *', animate('200ms ease')),
+    transition('* => void', animate('200ms ease')),
+]);
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoic2VsZWN0LWFuaW1hdGlvbnMuanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyIuLi8uLi8uLi8uLi8uLi8uLi9wcm9qZWN0cy9uZy11aWtpdC1wcm8tc3RhbmRhcmQvc3JjL2xpYi9wcm8vc2VsZWN0L3NlbGVjdC1hbmltYXRpb25zLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBLE9BQU8sRUFBRSxPQUFPLEVBQUUsS0FBSyxFQUFFLEtBQUssRUFBRSxVQUFVLEVBQUUsT0FBTyxFQUFFLE1BQU0scUJBQXFCLENBQUM7QUFFakYsTUFBTSxDQUFDLE1BQU0saUJBQWlCLEdBQUcsT0FBTyxDQUFDLG1CQUFtQixFQUFFO0lBQzVELEtBQUssQ0FDSCxNQUFNLEVBQ04sS0FBSyxDQUFDO1FBQ0osU0FBUyxFQUFFLGFBQWE7UUFDeEIsT0FBTyxFQUFFLENBQUM7S0FDWCxDQUFDLENBQ0g7SUFDRCxLQUFLLENBQ0gsU0FBUyxFQUNULEtBQUssQ0FBQztRQUNKLE9BQU8sRUFBRSxDQUFDO1FBQ1YsU0FBUyxFQUFFLFdBQVc7S0FDdkIsQ0FBQyxDQUNIO0lBQ0QsVUFBVSxDQUFDLFdBQVcsRUFBRSxPQUFPLENBQUMsWUFBWSxDQUFDLENBQUM7SUFDOUMsVUFBVSxDQUFDLFdBQVcsRUFBRSxPQUFPLENBQUMsWUFBWSxDQUFDLENBQUM7Q0FDL0MsQ0FBQyxDQUFDIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHsgdHJpZ2dlciwgc3RhdGUsIHN0eWxlLCB0cmFuc2l0aW9uLCBhbmltYXRlIH0gZnJvbSAnQGFuZ3VsYXIvYW5pbWF0aW9ucyc7XG5cbmV4cG9ydCBjb25zdCBkcm9wZG93bkFuaW1hdGlvbiA9IHRyaWdnZXIoJ2Ryb3Bkb3duQW5pbWF0aW9uJywgW1xuICBzdGF0ZShcbiAgICAndm9pZCcsXG4gICAgc3R5bGUoe1xuICAgICAgdHJhbnNmb3JtOiAnc2NhbGVZKDAuOCknLFxuICAgICAgb3BhY2l0eTogMCxcbiAgICB9KVxuICApLFxuICBzdGF0ZShcbiAgICAndmlzaWJsZScsXG4gICAgc3R5bGUoe1xuICAgICAgb3BhY2l0eTogMSxcbiAgICAgIHRyYW5zZm9ybTogJ3NjYWxlWSgxKScsXG4gICAgfSlcbiAgKSxcbiAgdHJhbnNpdGlvbigndm9pZCA9PiAqJywgYW5pbWF0ZSgnMjAwbXMgZWFzZScpKSxcbiAgdHJhbnNpdGlvbignKiA9PiB2b2lkJywgYW5pbWF0ZSgnMjAwbXMgZWFzZScpKSxcbl0pO1xuIl19

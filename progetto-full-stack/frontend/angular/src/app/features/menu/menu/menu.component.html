@@ -1,0 +1,113 @@
+<!--Double navigation-->
+<header>
+
+    <!-- Sidebar navigation -->
+    <mdb-side-nav #sidenav class="sn-bg-5" [fixed]="false">
+  
+      <mdb-navbar-brand>
+        <!--logo da metterne in caso-->
+        <!--/. Logo -->
+      </mdb-navbar-brand>
+  
+      <links>
+        
+        <!--Search Form-->
+        <li>
+          <form class="search-form" role="search">
+            <div class="form-group md-form mt-0 pt-1 waves-light" mdbWavesEffect>
+              <input type="text" class="form-control" placeholder="Search">
+            </div>
+          </form>
+        </li>
+        <!--/.Search Form-->
+        <!-- Side navigation links -->
+        <li>
+          <ul class="collapsible collapsible-accordion">
+            <mdb-accordion [multiple]="false" aria-multiselectable="false">
+  
+              <!-- Simple link -->
+              <mdb-accordion-item class="no-collase">
+                <mdb-accordion-item-head mdbWavesEffect>
+                  <a routerLink="/home"><mdb-icon far icon="hand-pointer"></mdb-icon> Dashboard</a>
+                </mdb-accordion-item-head>
+                <mdb-accordion-item-body></mdb-accordion-item-body>
+              </mdb-accordion-item>
+  
+              <!-- Simple link -->
+              <mdb-accordion-item class="no-collase">
+                <mdb-accordion-item-head mdbWavesEffect>
+                    <a routerLink="/articoli"><mdb-icon  fas icon="database"></mdb-icon> Articoli</a>
+                </mdb-accordion-item-head>
+                <mdb-accordion-item-body></mdb-accordion-item-body>
+              </mdb-accordion-item>
+  
+            </mdb-accordion>
+          </ul>
+        </li>
+        <!--/. Side navigation links -->
+      </links>
+      <div class="sidenav-bg mask-strong"></div>
+    </mdb-side-nav>
+    <!--/. Sidebar navigation -->
+  
+    <!-- Navbar -->
+    <mdb-navbar SideClass="navbar fixed-top navbar-toggleable-md navbar-expand-lg scrolling-navbar double-nav"
+                [containerInside]="false">
+  
+      <navlinks class="navbar-container">
+        <!-- SideNav slide-out button -->
+        <div>
+          <a (click)="sidenav.show()" class="button-collapse hidden-nav-button-collapse mx-0">
+            <mdb-icon fas icon="bars"></mdb-icon>
+          </a>
+        </div>
+        <!--/. SideNav slide-out button -->
+      </navlinks>
+  
+      <mdb-navbar-brand>
+        <!-- Breadcrumb-->
+        <div class="breadcrumbs breadcrumbs-hidden-nav breadcrumb-dn mr-auto">
+
+        </div>
+        <!--/. Breadcrumb-->
+      </mdb-navbar-brand>
+  
+      <navlinks>
+        <ul class="nav navbar-nav nav-flex-icons ml-auto ie-double-nav ie-hidden-double-nav">
+          <li class="nav-item">
+            <a class="nav-link waves-light" mdbWavesEffect>
+              <mdb-icon fas icon="envelope"></mdb-icon>
+              <span class="clearfix d-none d-sm-inline-block">Contact</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link waves-light" mdbWavesEffect>
+              <mdb-icon far icon="comments"></mdb-icon>
+              <span class="clearfix d-none d-sm-inline-block">Support</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link waves-light" mdbWavesEffect>
+              <mdb-icon fas icon="user"></mdb-icon>
+              <span class="clearfix d-none d-sm-inline-block">Account</span>
+            </a>
+          </li>
+          <li class="nav-item dropdown btn-group" dropdown>
+            <a dropdownToggle type="button" class="nav-link dropdown-toggle waves-light" mdbWavesEffect>
+              Dropdown
+            </a>
+            <div class="dropdown-menu dropdown-primary dropdown-menu-right" role="menu">
+              <a class="dropdown-item" href="#">Action</a>
+              <a class="dropdown-item" href="#">Another action</a>
+              <a class="dropdown-item" href="#">Something else here</a>
+            </div>
+          </li>
+        </ul>
+      </navlinks>
+    </mdb-navbar>
+    <!--/. Navbar -->
+  
+  </header>
+  <!--/.Double navigation-->
+  
+  

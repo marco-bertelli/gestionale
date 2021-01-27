@@ -1,0 +1,14 @@
+import { Directive, ElementRef } from '@angular/core';
+export class MdbAutoCompleterOptionDirective {
+    constructor(_el) {
+        this._el = _el;
+        this.value = this._el.nativeElement.textContent;
+    }
+}
+MdbAutoCompleterOptionDirective.decorators = [
+    { type: Directive, args: [{ selector: '[mdbAutoCompleterOption]' },] }
+];
+MdbAutoCompleterOptionDirective.ctorParameters = () => [
+    { type: ElementRef }
+];
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoibWRiLWF1dG8tY29tcGxldGVyLW9wdGlvbi5kaXJlY3RpdmUuanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyIuLi8uLi8uLi8uLi8uLi8uLi8uLi9wcm9qZWN0cy9uZy11aWtpdC1wcm8tc3RhbmRhcmQvc3JjL2xpYi9wcm8vYXV0by1jb21wbGV0ZXIvZGlyZWN0aXZlcy9tZGItYXV0by1jb21wbGV0ZXItb3B0aW9uLmRpcmVjdGl2ZS50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQSxPQUFPLEVBQUMsU0FBUyxFQUFFLFVBQVUsRUFBQyxNQUFNLGVBQWUsQ0FBQztBQUdwRCxNQUFNLE9BQU8sK0JBQStCO0lBRTFDLFlBQW9CLEdBQWU7UUFBZixRQUFHLEdBQUgsR0FBRyxDQUFZO1FBQ2pDLElBQUksQ0FBQyxLQUFLLEdBQUcsSUFBSSxDQUFDLEdBQUcsQ0FBQyxhQUFhLENBQUMsV0FBVyxDQUFDO0lBQ2xELENBQUM7OztZQUxGLFNBQVMsU0FBQyxFQUFDLFFBQVEsRUFBRSwwQkFBMEIsRUFBQzs7O1lBRjlCLFVBQVUiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQge0RpcmVjdGl2ZSwgRWxlbWVudFJlZn0gZnJvbSAnQGFuZ3VsYXIvY29yZSc7XG5cbkBEaXJlY3RpdmUoe3NlbGVjdG9yOiAnW21kYkF1dG9Db21wbGV0ZXJPcHRpb25dJ30pXG5leHBvcnQgY2xhc3MgTWRiQXV0b0NvbXBsZXRlck9wdGlvbkRpcmVjdGl2ZSB7XG4gIHZhbHVlOiBzdHJpbmc7XG4gIGNvbnN0cnVjdG9yKHByaXZhdGUgX2VsOiBFbGVtZW50UmVmKSB7XG4gICAgdGhpcy52YWx1ZSA9IHRoaXMuX2VsLm5hdGl2ZUVsZW1lbnQudGV4dENvbnRlbnQ7XG4gIH1cbn1cbiJdfQ==

@@ -1,0 +1,16 @@
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { OptionComponent } from './option.component';
+import { OptionGroupComponent } from './option-group.component';
+import { CheckboxModule } from './../../free/checkbox/checkbox.module';
+import { SelectAllOptionComponent } from './select-all-option';
+export class MdbOptionModule {
+}
+MdbOptionModule.decorators = [
+    { type: NgModule, args: [{
+                imports: [CommonModule, CheckboxModule],
+                declarations: [OptionComponent, SelectAllOptionComponent, OptionGroupComponent],
+                exports: [OptionComponent, OptionGroupComponent, SelectAllOptionComponent],
+            },] }
+];
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoib3B0aW9uLm1vZHVsZS5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbIi4uLy4uLy4uLy4uLy4uLy4uL3Byb2plY3RzL25nLXVpa2l0LXByby1zdGFuZGFyZC9zcmMvbGliL3Byby9vcHRpb24vb3B0aW9uLm1vZHVsZS50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQSxPQUFPLEVBQUUsUUFBUSxFQUFFLE1BQU0sZUFBZSxDQUFDO0FBQ3pDLE9BQU8sRUFBRSxZQUFZLEVBQUUsTUFBTSxpQkFBaUIsQ0FBQztBQUMvQyxPQUFPLEVBQUUsZUFBZSxFQUFFLE1BQU0sb0JBQW9CLENBQUM7QUFDckQsT0FBTyxFQUFFLG9CQUFvQixFQUFFLE1BQU0sMEJBQTBCLENBQUM7QUFDaEUsT0FBTyxFQUFFLGNBQWMsRUFBRSxNQUFNLHVDQUF1QyxDQUFDO0FBQ3ZFLE9BQU8sRUFBRSx3QkFBd0IsRUFBRSxNQUFNLHFCQUFxQixDQUFDO0FBTy9ELE1BQU0sT0FBTyxlQUFlOzs7WUFMM0IsUUFBUSxTQUFDO2dCQUNSLE9BQU8sRUFBRSxDQUFDLFlBQVksRUFBRSxjQUFjLENBQUM7Z0JBQ3ZDLFlBQVksRUFBRSxDQUFDLGVBQWUsRUFBRSx3QkFBd0IsRUFBRSxvQkFBb0IsQ0FBQztnQkFDL0UsT0FBTyxFQUFFLENBQUMsZUFBZSxFQUFFLG9CQUFvQixFQUFFLHdCQUF3QixDQUFDO2FBQzNFIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHsgTmdNb2R1bGUgfSBmcm9tICdAYW5ndWxhci9jb3JlJztcbmltcG9ydCB7IENvbW1vbk1vZHVsZSB9IGZyb20gJ0Bhbmd1bGFyL2NvbW1vbic7XG5pbXBvcnQgeyBPcHRpb25Db21wb25lbnQgfSBmcm9tICcuL29wdGlvbi5jb21wb25lbnQnO1xuaW1wb3J0IHsgT3B0aW9uR3JvdXBDb21wb25lbnQgfSBmcm9tICcuL29wdGlvbi1ncm91cC5jb21wb25lbnQnO1xuaW1wb3J0IHsgQ2hlY2tib3hNb2R1bGUgfSBmcm9tICcuLy4uLy4uL2ZyZWUvY2hlY2tib3gvY2hlY2tib3gubW9kdWxlJztcbmltcG9ydCB7IFNlbGVjdEFsbE9wdGlvbkNvbXBvbmVudCB9IGZyb20gJy4vc2VsZWN0LWFsbC1vcHRpb24nO1xuXG5ATmdNb2R1bGUoe1xuICBpbXBvcnRzOiBbQ29tbW9uTW9kdWxlLCBDaGVja2JveE1vZHVsZV0sXG4gIGRlY2xhcmF0aW9uczogW09wdGlvbkNvbXBvbmVudCwgU2VsZWN0QWxsT3B0aW9uQ29tcG9uZW50LCBPcHRpb25Hcm91cENvbXBvbmVudF0sXG4gIGV4cG9ydHM6IFtPcHRpb25Db21wb25lbnQsIE9wdGlvbkdyb3VwQ29tcG9uZW50LCBTZWxlY3RBbGxPcHRpb25Db21wb25lbnRdLFxufSlcbmV4cG9ydCBjbGFzcyBNZGJPcHRpb25Nb2R1bGUge31cbiJdfQ==
