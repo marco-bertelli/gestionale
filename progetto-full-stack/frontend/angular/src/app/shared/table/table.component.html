@@ -1,12 +1,22 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 mx-auto">
+      <form class="form-inline md-form mr-auto mb-4">
+        <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+        <button mdbBtn size="sm" gradient="aqua" [rounded]="true" class="my-0 waves-light" mdbWavesEffect type="submit">Search</button>
+      </form>
+    </div>
+  </div>
 <table mdbTable #tableEl="mdbTable" class="z-depth-1">
     <thead>
     <tr>
         <th *ngFor="let head of headElements; let i = index" aria-controls="tableSortExample" scope="col" [mdbTableSort]="elements" [sortBy]="headElements[i]">{{head | titlecase}}
-            <mdb-icon fas icon="sort"></mdb-icon>
+            <mdb-icon fas icon="sort"></mdb-icon> </th>
+       
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let el of elements; let i = index">
+    <tr class="w-100" *ngFor="let el of elements; let i = index">
       <ng-container *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex"
           scope="row" ><td (click)="sendCategory(el[attr])" *ngFor="let attr of headElements">{{el[attr]}}</td></ng-container>
     </tr>
@@ -19,3 +29,4 @@
     </tr>
     </tfoot>
   </table>
+</div>

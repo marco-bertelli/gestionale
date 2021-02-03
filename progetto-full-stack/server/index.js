@@ -79,8 +79,9 @@ app.get('/search', (req, res) => {
 
   let table = req.query.table;
 
-  let string= req.query.table;
+  let string= req.query.string;
 
+  
   pool.query("SELECT * FROM "+table+" WHERE MATCH(descrizione) AGAINST('"+string+"');", (err, results) => {
     if (err) {
       return res.send(err);
