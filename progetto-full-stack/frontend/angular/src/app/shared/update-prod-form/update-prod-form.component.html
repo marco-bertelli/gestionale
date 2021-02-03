@@ -48,7 +48,7 @@
                 <h4 class="modal-title w-100" id="myModalLabel">Categorie</h4>
             </div>
             <div class="modal-body">
-              <app-table *ngIf="category" [elements]="category"  [headElements]="['id','descrizione']"></app-table>
+              <app-table (categoryEvent)="changeCategory($event)" *ngIf="category" [elements]="category"  [headElements]="['id','descrizione']"></app-table>
             </div>
             <div class="modal-footer justify-content-center">
                 <button type="button" mdbBtn color="secondary" class="waves-light" aria-label="Close" (click)="basicModal.hide()" mdbWavesEffect>Close</button>

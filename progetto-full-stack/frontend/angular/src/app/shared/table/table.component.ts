@@ -17,9 +17,10 @@ export class TableComponent implements OnInit {
   mdbTable!: MdbTableDirective;
 
   @Output()
-  changeEvent: EventEmitter<any> = new EventEmitter();
+  categoryEvent: EventEmitter<any> = new EventEmitter();
 
-  validatingForm!: FormGroup;
+  @Output()
+  submitEvent: EventEmitter<any> = new EventEmitter();
 
   @Input()
   elements: any = [];
@@ -31,19 +32,13 @@ export class TableComponent implements OnInit {
   @Input()
   headElements:any = [];
 
-  form = new FormGroup({
-    "firstName": new FormControl("", Validators.required),
-    "password": new FormControl("", Validators.required),
-});
+ 
 
   constructor(private cdRef: ChangeDetectorRef,private call:CallService,private toast: ToastService) { 
    
   }
 
   ngOnInit() {
-    console.log(this.elements)
-   
-
     this.mdbTable.setDataSource(this.elements);
     this.elements = this.mdbTable.getDataSource();
     this.previous = this.mdbTable.getDataSource();
@@ -66,14 +61,16 @@ export class TableComponent implements OnInit {
       console.log(res)
       if(res.affectedRows==1)  this.toast.success('prodotto modificato');
       else this.toast.error('errore interno '+ res);
-     
-      this.changeEvent.emit();
     });
     
   }
   changeP(el:string){
     this.prodToChange=el;
     
+  }
+
+  sendCategory(id:number){
+    this.categoryEvent.emit(id);
   }
 
 }

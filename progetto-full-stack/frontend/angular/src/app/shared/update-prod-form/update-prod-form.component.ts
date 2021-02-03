@@ -61,6 +61,17 @@ loadProd(){
 
 }
 
+changeCategory(id:number){
+  this.form = new FormGroup({
+    "id": new FormControl(this.prodotto.id, Validators.required),
+    "codice": new FormControl(this.prodotto.codice, Validators.required),
+    "nome": new FormControl(this.prodotto.nome, Validators.required),
+    "descrizione": new FormControl(this.prodotto.descrizione, Validators.required),
+    "categoria": new FormControl(id, Validators.required),
+    "prezzo": new FormControl(this.prodotto.prezzo, Validators.required),
+});
+}
+
 
 
 }
