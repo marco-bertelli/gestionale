@@ -20,6 +20,7 @@ app.listen(process.env.ANGULAR_APP_SERVER_PORT, () => {
   console.log(`App server now listening on port ${process.env.REACT_APP_SERVER_PORT}`);
 });
 
+
 app.get('/getProdotti', (req, res) => {
 
   pool.query(`select * from prodotti`, (err, results) => {
@@ -72,6 +73,21 @@ app.put('/changeProdotti', (req, res) => {
   });
 
   
+});
+
+app.get('/search', (req, res) => {
+
+  let table = req.query.table;
+
+  let string= req.query.table;
+
+  pool.query("SELECT * FROM "+table+" WHERE MATCH(descrizione) AGAINST('"+string+"');", (err, results) => {
+    if (err) {
+      return res.send(err);
+    } else {
+      return res.send(results);
+    }
+  });
 });
 
 
