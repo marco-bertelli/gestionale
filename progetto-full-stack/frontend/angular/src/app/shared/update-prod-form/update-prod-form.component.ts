@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output, SimpleChanges } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { CallService } from 'src/app/core/calls/call.service';
 
 @Component({
   selector: 'app-update-prod-form',
@@ -14,6 +15,8 @@ export class UpdateProdFormComponent implements OnInit {
   @Output()
   submitEvent: EventEmitter<any> = new EventEmitter();
 
+  category:any;
+
 
   form = new FormGroup({
     "id": new FormControl("", Validators.required),
@@ -25,9 +28,13 @@ export class UpdateProdFormComponent implements OnInit {
     
 });
 
-  constructor() { }
+  constructor(private http:CallService) { }
 
   ngOnInit(): void {
+
+    this.http.getTable("categorie").subscribe(res=>{
+      this.category=res;
+    })
     
   }
 
@@ -48,6 +55,10 @@ export class UpdateProdFormComponent implements OnInit {
 }
 change(){
   this.submitEvent.emit(this.form.value)
+}
+
+loadProd(){
+
 }
 
 

@@ -31,6 +31,19 @@ app.get('/getProdotti', (req, res) => {
   });
 });
 
+app.get('/getTable', (req, res) => {
+
+  let table = req.query.table;
+
+  pool.query("select * from "+table, (err, results) => {
+    if (err) {
+      return res.send(err);
+    } else {
+      return res.send(results);
+    }
+  });
+});
+
 app.post('/insertProdotti', (req, res) => {
 
   pool.query("INSERT INTO prodotti (nome,descrizione,categoria,prezzo) VALUES ('"+req.body.nome+"','"+req.body.descrizione+"','"+req.body.categoria+"','"+req.body.prezzo+"')", (err, results) => {
