@@ -42,4 +42,23 @@ app.post('/insertProdotti', (req, res) => {
   });
 });
 
+app.put('/changeProdotti', (req, res) => {
+  
+  pool.query("SELECT * FROM prodotti where codice='"+req.body.codice+"'", (err, results) => {
+    if (results.length==0) { 
+      res.send("attenzione non è possibile cambiare il codice prodotto");
+    } else {
+      pool.query("UPDATE prodotti SET nome = '"+req.body.nome+"', codice='"+req.body.codice+"',descrizione='"+req.body.descrizione+"',categoria='"+req.body.categoria+"',prezzo='"+req.body.prezzo+"' WHERE id = '"+req.body.id+"'", (err, results) => {
+        if (err) {
+          return res.send(err);
+        } else {
+          return res.send(results);
+        }
+      });
+    }
+  });
+
+  
+});
+
 

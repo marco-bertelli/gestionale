@@ -7,6 +7,7 @@ import { CoreModule } from './core/core.module';
 import { MenuModule } from './features/menu/menu.module';
 import { HomeModule } from './features/home/home.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastModule } from 'ng-uikit-pro-standard';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     AppRoutingModule,
     BrowserAnimationsModule,
     CoreModule,
-    MenuModule
+    MenuModule,
+    ToastModule.forRoot(),
+  ],
+  exports:[
+    ToastModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -13,9 +13,13 @@ export class ArticoliComponent implements OnInit {
   article:any;
 
   ngOnInit(): void {
+    this.loadProd();
+  }
+  loadProd(){
     this.http.getCall("/getProdotti").subscribe(res=>{
       this.article=res;
     })
+   
   }
 
 }

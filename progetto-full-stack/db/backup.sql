@@ -120,13 +120,14 @@ DROP TABLE IF EXISTS `prodotti`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `prodotti` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `codice` varchar(32) NOT NULL,
   `nome` varchar(32) NOT NULL,
   `descrizione` varchar(128) NOT NULL,
   `categoria` varchar(32) NOT NULL,
-  `prezzo` int(11) NOT NULL,
-  `codice` int(11) NOT NULL AUTO_INCREMENT,
-  PRIMARY KEY (`codice`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+  `prezzo` double NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -135,7 +136,7 @@ CREATE TABLE `prodotti` (
 
 LOCK TABLES `prodotti` WRITE;
 /*!40000 ALTER TABLE `prodotti` DISABLE KEYS */;
-INSERT INTO `prodotti` VALUES ('prova','asd','5',10,3),('grano','alimento ....','3',2,4),('asd','asd','2',4,5),('adasdas','sadasdas','8',4,6);
+INSERT INTO `prodotti` VALUES (1,'EA230','cambiatoasdasd','sis','3',22.7),(2,'EA239','prod2','prodotto secondario','1',20);
 /*!40000 ALTER TABLE `prodotti` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -148,4 +149,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-01-27 11:08:51
+-- Dump completed on 2021-02-03 10:19:03

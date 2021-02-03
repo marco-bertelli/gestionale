@@ -1,5 +1,7 @@
-import { AfterViewInit, ChangeDetectorRef, Component, Input, OnInit, ViewChild } from '@angular/core';
-import { MdbTableDirective, MdbTablePaginationComponent } from 'ng-uikit-pro-standard';
+import { AfterViewInit, ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { MdbTableDirective, MdbTablePaginationComponent, ToastService } from 'ng-uikit-pro-standard';
+import { CallService } from 'src/app/core/calls/call.service';
 
 
 @Component({
@@ -14,13 +16,29 @@ export class TableSortComponent implements OnInit,AfterViewInit{
   @ViewChild(MdbTableDirective, { static: true })
   mdbTable!: MdbTableDirective;
 
+  @Output()
+  changeEvent: EventEmitter<any> = new EventEmitter();
+
+  validatingForm!: FormGroup;
+
   @Input()
   elements: any = [];
 
-  previous: any = [];
-  headElements = ['codice', 'nome', 'descrizione', 'categoria', 'prezzo'];
+  prodToChange="";
 
-  constructor(private cdRef: ChangeDetectorRef) { }
+  previous: any = [];
+
+  @Input()
+  headElements:any = [];
+
+  form = new FormGroup({
+    "firstName": new FormControl("", Validators.required),
+    "password": new FormControl("", Validators.required),
+});
+
+  constructor(private cdRef: ChangeDetectorRef,private call:CallService,private toast: ToastService) { 
+   
+  }
 
   ngOnInit() {
     console.log(this.elements)
@@ -29,6 +47,7 @@ export class TableSortComponent implements OnInit,AfterViewInit{
     this.mdbTable.setDataSource(this.elements);
     this.elements = this.mdbTable.getDataSource();
     this.previous = this.mdbTable.getDataSource();
+
   }
 
   ngAfterViewInit() {
@@ -38,4 +57,24 @@ export class TableSortComponent implements OnInit,AfterViewInit{
     this.mdbTablePagination.calculateLastItemIndex();
     this.cdRef.detectChanges();
   }
+  delete(el:string){
+    console.log(el);
+  }
+  change(element:string){
+    this.call.updateProd(element).subscribe(res=>{
+      //mettere gestione di notifica
+      console.log(res)
+      if(res.affectedRows==1)  this.toast.success('prodotto modificato');
+      else this.toast.error('errore interno '+ res);
+     
+      this.changeEvent.emit();
+    });
+    
+  }
+  changeP(el:string){
+    this.prodToChange=el;
+    
+  }
+
+ 
 }

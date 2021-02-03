@@ -1,26 +1,32 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MDBBootstrapModulesPro } from 'ng-uikit-pro-standard';
-import { MDBSpinningPreloader } from 'ng-uikit-pro-standard';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 
 import { RouterModule } from '@angular/router';
-import { BrowserModule } from '@angular/platform-browser';
+
 import { TableSortComponent } from './table-sort/table-sort.component';
 
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { UpdateProdFormComponent } from './update-prod-form/update-prod-form.component';
 @NgModule({
-  declarations: [TableSortComponent],
+  declarations: [TableSortComponent, UpdateProdFormComponent],
   imports: [
     CommonModule,
     MDBBootstrapModulesPro.forRoot(),
-    RouterModule
+    RouterModule,
+    FormsModule,
+    ReactiveFormsModule,
+    
     
   ],
   exports:[
     MDBBootstrapModulesPro,
     RouterModule,
     CommonModule,
-    TableSortComponent
+    TableSortComponent,
+    FormsModule,
+    ReactiveFormsModule
     
   ]
 })
