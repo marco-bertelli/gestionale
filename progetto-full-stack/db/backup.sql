@@ -174,9 +174,6 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
-<<<<<<< HEAD
--- Dump completed on 2021-02-03 17:02:22
-=======
 -- Dump completed on 2021-02-03 15:55:00
 
 
@@ -205,4 +202,3 @@ LOCK TABLES `clienti` WRITE;
 INSERT INTO `clienti` VALUES (1,'azienda1','Vilminore di Scalve','BG'),(2,'azienda2','Darfo Boario', 'BS');
 /*!40000 ALTER TABLE `clienti` ENABLE KEYS */;
 UNLOCK TABLES;
->>>>>>> origin/Carizzoni
