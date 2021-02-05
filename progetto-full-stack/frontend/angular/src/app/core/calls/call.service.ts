@@ -18,4 +18,8 @@ export class CallService {
   search(option:string,value:string){
     return this.http.getCall("/search"+option+'&string="'+value+'"');
   }
+  insertCall(body:any,table:string){
+    return this.http.postCall("/insertCat?table="+table,body)
+
+  }
 }

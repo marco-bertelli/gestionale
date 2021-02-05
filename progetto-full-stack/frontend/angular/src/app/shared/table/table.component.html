@@ -17,7 +17,7 @@
     </thead>
     <tbody>
     <tr class="w-100" *ngFor="let el of elements; let i = index">
-      <ng-container *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex"
+      <ng-container *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i <= mdbTablePagination.lastItemIndex"
           scope="row" ><td (click)="sendCategory(el[attr])" *ngFor="let attr of headElements">{{el[attr]}}</td></ng-container>
     </tr>
     </tbody>
@@ -27,6 +27,26 @@
         <mdb-table-pagination [tableEl]="tableEl" [searchDataSource]="elements"></mdb-table-pagination>
       </td>
     </tr>
+    <a mdbBtn (click)="basicModal.show()" [floating]="true" size="sm" gradient="blue" mdbWavesEffect>
+      <mdb-icon fas icon="search"></mdb-icon>
+    </a>
     </tfoot>
   </table>
 </div>
+
+<div mdbModal #basicModal="mdbModal" class="modal right" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel"
+ [config]='{backdrop: false, ignoreBackdropClick: true}' aria-hidden="true">
+    <div class="modal-dialog modal-md" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close pull-right" aria-label="Close" (click)="basicModal.hide()">
+                    <span aria-hidden="true">×</span>
+                </button>
+                <h4 class="modal-title w-100" id="myModalLabel">Inserisci</h4>
+            </div>
+            <div class="modal-body">
+              <app-insert-form [tname]="tname" (submitEvent)="change($event)"></app-insert-form>
+            </div>
+        </div>
+    </div >
+</div >
