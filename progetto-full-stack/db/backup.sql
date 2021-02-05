@@ -202,3 +202,25 @@ LOCK TABLES `clienti` WRITE;
 INSERT INTO `clienti` VALUES (1,'azienda1','Vilminore di Scalve','BG'),(2,'azienda2','Darfo Boario', 'BS');
 /*!40000 ALTER TABLE `clienti` ENABLE KEYS */;
 UNLOCK TABLES;
+
+
+DROP TABLE IF EXISTS `ordini`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `ordini` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `ordine` varchar(32) NOT NULL,
+  `data` date NOT NULL,
+  `cliente` int(11) NOT NULL,
+  `totale` double NOT NULL,
+  PRIMARY KEY (`id`)
+  /*ADD CONSTRAINT `ordini_clienti_id_foreign` FOREIGN KEY (`cliente`) REFERENCES clienti(`id`) ON DELETE CASCADE;*/
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+LOCK TABLES `ordini` WRITE;
+/*!40000 ALTER TABLE `ordini` DISABLE KEYS */;
+INSERT INTO `ordini` VALUES (1,'AB123','2020-02-04',2,167.4),(2,'AC123','2020-02-01',1,114.7);
+/*!40000 ALTER TABLE `ordini` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
