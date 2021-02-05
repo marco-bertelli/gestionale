@@ -9,8 +9,8 @@ import { CallService } from 'src/app/core/calls/call.service';
 })
 export class InsertFormComponent implements OnInit {
 
-  
-  campi:any=['id','descrizione'];
+  @Input()
+  campi:any=[];
 
   @Output()
   submitEvent: EventEmitter<any> = new EventEmitter();
