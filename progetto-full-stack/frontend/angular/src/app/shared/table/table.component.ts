@@ -47,7 +47,7 @@ export class TableComponent implements OnInit {
   }
 
   ngAfterViewInit() {
-    this.mdbTablePagination.setMaxVisibleItemsNumberTo(5);
+    this.mdbTablePagination.setMaxVisibleItemsNumberTo(4);
     this.mdbTablePagination.calculateFirstItemIndex();
     this.mdbTablePagination.calculateLastItemIndex();
     this.cdRef.detectChanges();
@@ -71,6 +71,7 @@ export class TableComponent implements OnInit {
 
   search(value:string){
     this.call.search(this.searchOption,value).subscribe(res=>{
+      console.log(res)
       this.elements=res;
 
     })
