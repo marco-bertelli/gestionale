@@ -5,11 +5,11 @@ import { CallService } from 'src/app/core/calls/call.service';
 
 
 @Component({
-  selector: 'app-table-sort',
-  templateUrl: './table-sort.component.html',
-  styleUrls: ['./table-sort.component.scss']
+  selector: 'app-table-sort-ordini',
+  templateUrl: './table-sort-ordini.component.html',
+  styleUrls: ['./table-sort-ordini.component.scss']
 })
-export class TableSortComponent implements OnInit,AfterViewInit{
+export class TableSortOrdiniComponent implements OnInit,AfterViewInit{
   
   @ViewChild(MdbTablePaginationComponent, { static: true })
   mdbTablePagination!: MdbTablePaginationComponent;
@@ -42,9 +42,12 @@ export class TableSortComponent implements OnInit,AfterViewInit{
 
   ngOnInit() {
     console.log(this.elements)
+   
+
     this.mdbTable.setDataSource(this.elements);
     this.elements = this.mdbTable.getDataSource();
     this.previous = this.mdbTable.getDataSource();
+
   }
 
   ngAfterViewInit() {
@@ -55,7 +58,7 @@ export class TableSortComponent implements OnInit,AfterViewInit{
     this.cdRef.detectChanges();
   }
   delete(el:string){
-    console.log(el+"ciao");
+    console.log(el);
   }
   change(element:string){
     this.call.updateProd(element).subscribe(res=>{
