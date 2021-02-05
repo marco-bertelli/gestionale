@@ -15,4 +15,7 @@ export class CallService {
   getTable(tname:string){
     return this.http.getCall("/getTable?table="+tname);
   }
+  search(option:string,value:string){
+    return this.http.getCall("/search"+option+'&string="'+value+'"');
+  }
 }

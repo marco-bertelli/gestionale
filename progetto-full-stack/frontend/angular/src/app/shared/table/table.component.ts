@@ -32,11 +32,10 @@ export class TableComponent implements OnInit {
   @Input()
   headElements:any = [];
 
- 
+  @Input()
+  searchOption:any;
 
-  constructor(private cdRef: ChangeDetectorRef,private call:CallService,private toast: ToastService) { 
-   
-  }
+  constructor(private cdRef: ChangeDetectorRef,private call:CallService,private toast: ToastService) { }
 
   ngOnInit() {
     this.mdbTable.setDataSource(this.elements);
@@ -47,7 +46,6 @@ export class TableComponent implements OnInit {
 
   ngAfterViewInit() {
     this.mdbTablePagination.setMaxVisibleItemsNumberTo(5);
-
     this.mdbTablePagination.calculateFirstItemIndex();
     this.mdbTablePagination.calculateLastItemIndex();
     this.cdRef.detectChanges();
@@ -71,6 +69,12 @@ export class TableComponent implements OnInit {
 
   sendCategory(id:number){
     this.categoryEvent.emit(id);
+  }
+
+  search(value:string){
+    this.call.search(this.searchOption,value).subscribe(res=>{
+      this.elements=res;
+    })
   }
 
 }
