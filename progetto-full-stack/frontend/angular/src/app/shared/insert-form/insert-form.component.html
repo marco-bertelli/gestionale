@@ -1,0 +1,13 @@
+<form [formGroup]="form" (ngSubmit)="change()">
+    <div class="md-form" *ngFor="let param of campi">
+          <input type="text" class="form-control" id="basicExample" [formControlName]="param" mdbInput>
+          <label for="basicExample">{{param}}:</label>
+    </div>
+
+    <p>
+        <button mdbBtn type="sumbit" color="primary" [disabled]="!form.valid" mdbWavesEffect>
+          <mdb-icon fas icon="magic" class="mr-1"></mdb-icon>Inserisci
+        </button>
+    </p>
+    
+  </form>

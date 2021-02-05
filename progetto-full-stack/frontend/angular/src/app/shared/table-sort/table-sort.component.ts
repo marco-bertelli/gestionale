@@ -24,6 +24,9 @@ export class TableSortComponent implements OnInit,AfterViewInit{
   @Input()
   elements: any = [];
 
+  @Input()
+  tname:string="";
+
   prodToChange="";
 
   previous: any = [];
@@ -71,6 +74,10 @@ export class TableSortComponent implements OnInit,AfterViewInit{
   changeP(el:string){
     this.prodToChange=el;
     
+  }
+
+  update(){
+    this.changeEvent.emit()
   }
 
  

@@ -42,6 +42,14 @@ export class HttpcomminicationsService {
     )
   }
 
+  postCall(endpoint:string,body:any){
+    return this.http.post<any>(this.apiURL + endpoint,body)
+    .pipe(
+      retry(1),
+      catchError(this.handleError)
+    )
+  }
+
   // HttpClient API get() method => Fetch employee
   getDetail(id:string,endpoint:string): Observable<any> {
     return this.http.get<any>(this.apiURL + endpoint+ '/' + id)

@@ -45,9 +45,11 @@ app.get('/getTable', (req, res) => {
   });
 });
 
-app.post('/insertProdotti', (req, res) => {
+app.post('/insertCat', (req, res) => {
 
-  pool.query("INSERT INTO prodotti (nome,descrizione,categoria,prezzo) VALUES ('"+req.body.nome+"','"+req.body.descrizione+"','"+req.body.categoria+"','"+req.body.prezzo+"')", (err, results) => {
+  let table = req.query.table;
+
+  pool.query("INSERT INTO "+table+" (id,descrizione) VALUES ('"+req.body.id+"','"+req.body.descrizione+"')", (err, results) => {
     if (err) {
       return res.send(err);
     } else {
@@ -80,9 +82,11 @@ app.get('/search', (req, res) => {
   let table = req.query.table;
 
   let string= req.query.string;
+  //non solo fulltext ma anche su un campo aggiuntivo *da migliorare con un array di campi*
+  let addCamp = req.query.addCamp;
 
   
-  pool.query("SELECT * FROM "+table+" WHERE MATCH(descrizione) AGAINST('"+string+"');", (err, results) => {
+  pool.query("SELECT * FROM "+table+" WHERE MATCH(descrizione) AGAINST('"+string+"') || "+addCamp+" = "+string+";", (err, results) => {
     if (err) {
       return res.send(err);
     } else {

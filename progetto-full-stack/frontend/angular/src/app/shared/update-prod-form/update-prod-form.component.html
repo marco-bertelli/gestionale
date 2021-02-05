@@ -48,7 +48,7 @@
                 <h4 class="modal-title w-100" id="myModalLabel">Categorie</h4>
             </div>
             <div class="modal-body">
-              <app-table (categoryEvent)="changeCategory($event)" *ngIf="category" [elements]="category"  [headElements]="['id','descrizione']"></app-table>
+              <app-table (categoryEvent)="changeCategory($event)" (updateEvent)="Update()" tname="categorie" *ngIf="category" [elements]="category" [searchOption]="'?table=categorie&addCamp=id'" [headElements]="['id','descrizione']"></app-table>
             </div>
         </div>
     </div >

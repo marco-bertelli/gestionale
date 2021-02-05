@@ -57,8 +57,10 @@ change(){
   this.submitEvent.emit(this.form.value)
 }
 
-loadProd(){
-
+Update(){
+  this.http.getTable("categorie").subscribe(res=>{
+    this.category=res;
+  })
 }
 
 changeCategory(id:number){
