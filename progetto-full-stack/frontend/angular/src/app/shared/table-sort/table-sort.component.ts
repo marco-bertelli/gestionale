@@ -39,9 +39,7 @@ export class TableSortComponent implements OnInit,AfterViewInit{
     "password": new FormControl("", Validators.required),
 });
 
-  constructor(private cdRef: ChangeDetectorRef,private call:CallService,private toast: ToastService) { 
-   
-  }
+  constructor(private cdRef: ChangeDetectorRef,private call:CallService,private toast: ToastService) {  }
 
   ngOnInit() {
     console.log(this.elements)
@@ -61,7 +59,12 @@ export class TableSortComponent implements OnInit,AfterViewInit{
     this.cdRef.detectChanges();
   }
   delete(el:string){
-    console.log(el);
+ 
+    this.call.deleteCall(el,this.tname).subscribe(res=>{
+     
+      this.update();
+    });
+    
   }
   change(element:string){
     this.call.updateProd(element).subscribe(res=>{
@@ -76,11 +79,17 @@ export class TableSortComponent implements OnInit,AfterViewInit{
   }
   changeP(el:string){
     this.prodToChange=el;
-    
   }
 
   update(){
     this.changeEvent.emit()
+  }
+
+  insert(event:string){
+    this.call.insertCall(event,this.tname).subscribe(res=>{
+      console.log(res)
+      this.update();
+    });
   }
 
  

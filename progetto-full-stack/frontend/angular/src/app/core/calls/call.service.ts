@@ -19,7 +19,9 @@ export class CallService {
     return this.http.getCall("/search"+option+'&string="'+value+'"');
   }
   insertCall(body:any,table:string){
-    return this.http.postCall("/insertCat?table="+table,body)
-
+    return this.http.postCall("/insert?table="+table,body);
+  }
+  deleteCall(body:any,table:string){
+    return this.http.postCall("/delete?table="+table,body);
   }
 }

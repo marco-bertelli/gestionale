@@ -45,11 +45,31 @@ app.get('/getTable', (req, res) => {
   });
 });
 
-app.post('/insertCat', (req, res) => {
+app.post('/insert', (req, res) => {
 
   let table = req.query.table;
 
-  pool.query("INSERT INTO "+table+" (id,descrizione) VALUES ('"+req.body.id+"','"+req.body.descrizione+"')", (err, results) => {
+  let campi="";
+
+  for(var key in req.body) {
+    if(req.body.hasOwnProperty(key)){
+      campi+=key+",";
+    }
+  }
+
+  campi=campi.slice(0, -1);
+
+  let valori ="";
+
+  for(var key in req.body) {
+    if(req.body.hasOwnProperty(key)){
+      valori+="'"+req.body[key]+"',";
+    }
+  }
+
+  valori=valori.slice(0, -1);
+
+  pool.query("INSERT INTO "+table+" ("+campi+") VALUES ("+valori+")", (err, results) => {
     if (err) {
       return res.send(err);
     } else {
@@ -57,6 +77,21 @@ app.post('/insertCat', (req, res) => {
     }
   });
 });
+
+app.post('/delete', (req, res) => {
+
+  let table = req.query.table;
+
+  pool.query("DELETE FROM "+table+" WHERE id="+req.body.id, (err, results) => {
+    if (err) {
+      return res.send(err);
+    } else {
+      return res.send(results);
+    }
+  });
+});
+
+
 
 app.put('/changeProdotti', (req, res) => {
   
