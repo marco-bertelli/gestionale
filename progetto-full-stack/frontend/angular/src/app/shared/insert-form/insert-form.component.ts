@@ -41,12 +41,7 @@ export class InsertFormComponent implements OnInit {
 ngOnChanges(changes: SimpleChanges) {}
 
 change(){
-  this.http.insertCall(this.form.value,this.tname).subscribe(res=>{
-    console.log(res)
     this.submitEvent.emit(this.form.value)
-  })
-  console.log(this.form.value)
-  
 }
 
 loadProd(){

@@ -68,14 +68,47 @@ app.post('/insert', (req, res) => {
   }
 
   valori=valori.slice(0, -1);
-
-  pool.query("INSERT INTO "+table+" ("+campi+") VALUES ("+valori+")", (err, results) => {
-    if (err) {
-      return res.send(err);
-    } else {
-      return res.send(results);
+  //riconosce se c'è il codice o meno 
+  
+  if(req.body.hasOwnProperty("codice") ){
+  pool.query("SELECT * FROM "+table+" where codice='"+req.body.codice+"'", (err, results) => {
+    if (results.length==0) { 
+      pool.query("INSERT INTO "+table+" ("+campi+") VALUES ("+valori+")", (err, results) => {
+        if (err) {
+          return res.send(err);
+        } else {
+          return res.send(results);
+        }
+      });
+    } 
+    else {
+      res.send("attenzione non è possibile inserire due codici prodotto uguali");
     }
   });
+}
+//in caso non ci sia controlla l'id 
+else{
+  if(req.body.hasOwnProperty("id")){
+    pool.query("SELECT * FROM "+table+" where id='"+req.body.id+"'", (err, results) => {
+      if (results.length==0) { 
+        pool.query("INSERT INTO "+table+" ("+campi+") VALUES ("+valori+")", (err, results) => {
+          if (err) {
+            return res.send(err);
+          } else {
+            return res.send(results);
+          }
+        });
+      } 
+      else {
+        res.send("attenzione non è possibile inserire due codici prodotto uguali");
+      }
+    });
+  }
+  else{
+    //da aggiungere in caso non abbia controlli
+  }
+  
+}
 });
 
 app.post('/delete', (req, res) => {
