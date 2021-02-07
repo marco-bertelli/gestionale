@@ -1,6 +1,6 @@
 
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { AfterViewInit, ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MdbTableDirective, MdbTablePaginationComponent, ToastService } from 'ng-uikit-pro-standard';
 import { CallService } from 'src/app/core/calls/call.service';
 
@@ -20,7 +20,7 @@ export class TableComponent implements OnInit {
   categoryEvent: EventEmitter<any> = new EventEmitter();
 
   @Output()
-  submitEvent: EventEmitter<any> = new EventEmitter();
+  updateEvent: EventEmitter<any> = new EventEmitter();
 
   @Input()
   elements: any = [];
@@ -32,22 +32,21 @@ export class TableComponent implements OnInit {
   @Input()
   headElements:any = [];
 
- 
+  @Input()
+  searchOption:any;
 
-  constructor(private cdRef: ChangeDetectorRef,private call:CallService,private toast: ToastService) { 
-   
-  }
+  @Input()
+  tname:string="";
+
+  constructor(private cdRef: ChangeDetectorRef,private call:CallService,private toast: ToastService) { }
 
   ngOnInit() {
-    this.mdbTable.setDataSource(this.elements);
-    this.elements = this.mdbTable.getDataSource();
-    this.previous = this.mdbTable.getDataSource();
 
+   this.initIndex();
   }
 
   ngAfterViewInit() {
-    this.mdbTablePagination.setMaxVisibleItemsNumberTo(5);
-
+    this.mdbTablePagination.setMaxVisibleItemsNumberTo(4);
     this.mdbTablePagination.calculateFirstItemIndex();
     this.mdbTablePagination.calculateLastItemIndex();
     this.cdRef.detectChanges();
@@ -55,22 +54,36 @@ export class TableComponent implements OnInit {
   delete(el:string){
     console.log(el);
   }
-  change(element:string){
-    this.call.updateProd(element).subscribe(res=>{
-      //mettere gestione di notifica
+  change(element:any){
+    this.call.insertCall(element,this.tname).subscribe(res=>{
       console.log(res)
-      if(res.affectedRows==1)  this.toast.success('prodotto modificato');
-      else this.toast.error('errore interno '+ res);
+      this.updateEvent.emit();
     });
-    
+
+
   }
   changeP(el:string){
     this.prodToChange=el;
-    
   }
 
   sendCategory(id:number){
     this.categoryEvent.emit(id);
+    this.toast.success("categoria selezionata")
+  }
+
+  search(value:string){
+    this.call.search(this.searchOption,value).subscribe(res=>{
+      console.log(res)
+      this.elements=res;
+      this.initIndex();
+
+    })
+  }
+
+  initIndex(){
+    this.mdbTable.setDataSource(this.elements);
+    this.elements = this.mdbTable.getDataSource();
+    this.previous = this.mdbTable.getDataSource();
   }
 
 }
