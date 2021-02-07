@@ -7,16 +7,11 @@
     </thead>
     <tbody>
     <tr *ngFor="let el of elements; let i = index">
-      <th *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex"
-          scope="row">{{el.codice}}</th>
-      <td *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex">{{el.nome}}</td>
-      <td *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex">{{el.descrizione}}</td>
-      <td *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex">{{el.categoria}}</td>
-      <td *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex">{{el.prezzo}}</td>
-      <td *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex">
-        <button mdbBtn type="button" color="warning" [rounded]="true" size="sm" (click)="frame.show()" (click)="changeP(el)" mdbWavesEffect>Modifica</button>
-        <button mdbBtn type="button" color="danger" [rounded]="true" size="sm" (click)="delete(el)" mdbWavesEffect>Elimina</button>
-      </td>
+        <ng-container *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex"scope="row" >
+          <td *ngFor="let attr of headElements"> {{el[attr]}} </td>
+        </ng-container>
+          <button mdbBtn type="button" color="warning" [rounded]="true" size="sm" (click)="frame.show()" (click)="changeP(el)" mdbWavesEffect>Modifica</button>
+          <button mdbBtn type="button" color="danger" [rounded]="true" size="sm" (click)="delete(el)" mdbWavesEffect>Elimina</button>
     </tr>
     </tbody>
     <tfoot class="grey lighten-5 w-100">
@@ -28,7 +23,7 @@
     </tfoot>
   </table>
 
-    
+
   <div mdbModal #frame="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
@@ -36,12 +31,21 @@
           <button type="button" class="close pull-right" aria-label="Close" (click)="frame.hide()">
             <span aria-hidden="true">×</span>
           </button>
-          <h4 class="modal-title w-100" id="myModalLabel">Modifica Articolo</h4>
+          <!-- Si potrebbe fare che il cocide è diverso per le varie tabelle. Uno inizia con la P e uno con la C -->
+          <!-- Oppure utilizzare un metodo nel ts che ritorni uns tringa in base alla pagina -->
+          <h4 class="modal-title w-100" id="myModalLabel">Modifica</h4>
         </div>
         <div class="modal-body">
+          <!-- PRODUCT OR CLIENT -- DA MIGLIORARE CONTTROLLO -->
           <section class="sample-app-content">
-            <app-update-prod-form [prodotto]="prodToChange" (submitEvent)="change($event)"></app-update-prod-form>
-        </section>
+            <ng-container *ngIf="headElements.length>4">
+              <app-update-prod-form [prodotto]="prodToChange" (submitEvent)="change($event)"></app-update-prod-form>
+            </ng-container>
+            <ng-container>
+              <app-update-client-form [cliente]="clientToChange" (submitEvent)="change($event)"></app-update-client-form>
+            </ng-container>
+
+          </section>
         </div>
       </div>
     </div>

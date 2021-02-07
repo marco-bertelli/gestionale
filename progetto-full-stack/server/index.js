@@ -71,7 +71,44 @@ app.put('/changeProdotti', (req, res) => {
     }
   });
 
+  //clienti
+  app.get('/getClienti', (req, res) => {
+
+    pool.query(`select * from clienti`, (err, results) => {
+      if (err) {
+        return res.send(err);
+      } else {
+        return res.send(results);
+      }
+    });
+  });
+
+  // app.put('/changeClienti', (req, res) => {
+  
+  //   pool.query("SELECT * FROM clienti where id='"+req.body.id+"'", (err, results) => {
+  //     if (results.length==0) { 
+  //       res.send("attenzione non è possibile cambiare l'id cliente");
+  //     } else {
+  //       pool.query("UPDATE clienti SET ragione_sociale = '"+req.body.ragione_sociale+"',indirizzo='"+req.body.indirizzo+"',citta='"+req.body.citta+"' WHERE id = '"+req.body.id+"'", (err, results) => {
+  //         if (err) {
+  //           return res.send(err);
+  //         } else {
+  //           return res.send(results);
+  //         }
+  //       });
+  //     }
+  //   });
+  // }
+  
+  // app.post('/insertClienti', (req, res) => {
+
+  //   pool.query("INSERT INTO clienti (id,ragione_sociale,indirizzo,citta) VALUES ('"+req.body.id+"','"+req.body.ragione_sociale+"','"+req.body.indirizzo+"','"+req.body.citta+"')", (err, results) => {
+  //     if (err) {
+  //       return res.send(err);
+  //     } else {
+  //       return res.send(results);
+  //     }
+  //   });
+  // });
   
 });
-
-

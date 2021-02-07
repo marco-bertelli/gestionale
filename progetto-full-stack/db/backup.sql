@@ -185,6 +185,7 @@ DROP TABLE IF EXISTS `clienti`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `clienti` (
   `id` int(11) NOT NULL,
+  `codice` varchar(32) NOT NULL,
   `ragione_sociale` varchar(50) NOT NULL,
   `indirizzo` varchar(50) NOT NULL,
   `citta` varchar(50) NOT NULL,
@@ -198,6 +199,6 @@ CREATE TABLE `clienti` (
 
 LOCK TABLES `clienti` WRITE;
 /*!40000 ALTER TABLE `clienti` DISABLE KEYS */;
-INSERT INTO `clienti` VALUES (1,'azienda1','Vilminore di Scalve','BG'),(2,'azienda2','Darfo Boario', 'BS');
+INSERT INTO `clienti` VALUES (1,'AA1','azienda1','Vilminore di Scalve','BG'),(2,'BB2','azienda2','Darfo Boario', 'BS');
 /*!40000 ALTER TABLE `clienti` ENABLE KEYS */;
 UNLOCK TABLES;

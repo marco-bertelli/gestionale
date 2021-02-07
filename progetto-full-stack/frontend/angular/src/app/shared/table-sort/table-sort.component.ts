@@ -10,7 +10,7 @@ import { CallService } from 'src/app/core/calls/call.service';
   styleUrls: ['./table-sort.component.scss']
 })
 export class TableSortComponent implements OnInit,AfterViewInit{
-  
+
   @ViewChild(MdbTablePaginationComponent, { static: true })
   mdbTablePagination!: MdbTablePaginationComponent;
   @ViewChild(MdbTableDirective, { static: true })
@@ -24,25 +24,32 @@ export class TableSortComponent implements OnInit,AfterViewInit{
   @Input()
   elements: any = [];
 
+  @Input()
+  headElements:any = [];
+
+  @Input()
+  tName:any = [];
+
+
+
   prodToChange="";
+  clientToChange="";
 
   previous: any = [];
 
-  @Input()
-  headElements:any = [];
 
   form = new FormGroup({
     "firstName": new FormControl("", Validators.required),
     "password": new FormControl("", Validators.required),
 });
 
-  constructor(private cdRef: ChangeDetectorRef,private call:CallService,private toast: ToastService) { 
-   
+  constructor(private cdRef: ChangeDetectorRef,private call:CallService,private toast: ToastService) {
+
   }
 
   ngOnInit() {
     console.log(this.elements)
-   
+    console.log(this.tName);
 
     this.mdbTable.setDataSource(this.elements);
     this.elements = this.mdbTable.getDataSource();
@@ -60,21 +67,23 @@ export class TableSortComponent implements OnInit,AfterViewInit{
   delete(el:string){
     console.log(el);
   }
+
+  //UPDATE IN BASE ALLA TABELLA -- aggiungere per il cliente
   change(element:string){
     this.call.updateProd(element).subscribe(res=>{
       //mettere gestione di notifica
       console.log(res)
       if(res.affectedRows==1)  this.toast.success('prodotto modificato');
       else this.toast.error('errore interno '+ res);
-     
+
       this.changeEvent.emit();
     });
-    
+
   }
   changeP(el:string){
     this.prodToChange=el;
-    
+
   }
 
- 
+
 }

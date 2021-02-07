@@ -10,8 +10,9 @@ import { TableSortComponent } from './table-sort/table-sort.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { UpdateProdFormComponent } from './update-prod-form/update-prod-form.component';
 import { TableComponent } from './table/table.component';
+import { UpdateClientFormComponent } from './update-client-form/update-client-form.component';
 @NgModule({
-  declarations: [TableSortComponent, UpdateProdFormComponent, TableComponent],
+  declarations: [TableSortComponent, UpdateProdFormComponent, TableComponent, UpdateClientFormComponent],
   imports: [
     CommonModule,
     MDBBootstrapModulesPro.forRoot(),
