@@ -132,7 +132,7 @@ app.put('/changeProdotti', (req, res) => {
     if (results.length==0) { 
       res.send("attenzione non è possibile cambiare il codice prodotto");
     } else {
-      pool.query("UPDATE prodotti SET nome = '"+req.body.nome+"', codice='"+req.body.codice+"',descrizione='"+req.body.descrizione+"',categoria='"+req.body.categoria+"',prezzo='"+req.body.prezzo+"' WHERE id = '"+req.body.id+"'", (err, results) => {
+      pool.query("UPDATE prodotti SET nome = '"+req.body.nome+"', codice='"+req.body.codice+"',descrizione='"+req.body.descrizione+"',categoria='"+req.body.categoria+"',prezzo='"+req.body.prezzo+"' WHERE codice = '"+req.body.codice+"'", (err, results) => {
         if (err) {
           return res.send(err);
         } else {

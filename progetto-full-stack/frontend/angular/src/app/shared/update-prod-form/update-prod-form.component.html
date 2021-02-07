@@ -1,9 +1,13 @@
 <form [formGroup]="form" (ngSubmit)="change()">
 
   <div class="md-form" *ngFor="let param of campi">
+    <ng-container *ngIf="param=='categoria'"><p>Categoria: <a mdbBtn (click)="basicModal.show()" [floating]="true" size="sm" gradient="blue" mdbWavesEffect>
+      <mdb-icon fas icon="search"></mdb-icon>
+    </a></p></ng-container>
     <input type="text" class="form-control" id="basicExample" [formControlName]="param" mdbInput>
-    <label for="basicExample">{{param}}:</label>
-  </div>
+    <label *ngIf="param!='categoria'" for="basicExample">{{param}}:</label>
+    
+ </div>
 
       <p>
           <button mdbBtn type="sumbit" color="primary" [disabled]="!form.valid" mdbWavesEffect>
@@ -11,6 +15,8 @@
           </button>
       </p>
   </form>
+
+  
 
 
 <div mdbModal #basicModal="mdbModal" class="modal right" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel"

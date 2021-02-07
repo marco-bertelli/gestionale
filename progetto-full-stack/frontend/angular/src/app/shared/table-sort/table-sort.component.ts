@@ -67,6 +67,7 @@ export class TableSortComponent implements OnInit,AfterViewInit{
     
   }
   change(element:string){
+    console.log(element)
     this.call.updateProd(element).subscribe(res=>{
       //mettere gestione di notifica
       console.log(res)
