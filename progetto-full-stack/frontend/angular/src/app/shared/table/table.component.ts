@@ -41,10 +41,8 @@ export class TableComponent implements OnInit {
   constructor(private cdRef: ChangeDetectorRef,private call:CallService,private toast: ToastService) { }
 
   ngOnInit() {
-    this.mdbTable.setDataSource(this.elements);
-    this.elements = this.mdbTable.getDataSource();
-    this.previous = this.mdbTable.getDataSource();
-
+    
+   this.initIndex();
   }
 
   ngAfterViewInit() {
@@ -77,8 +75,15 @@ export class TableComponent implements OnInit {
     this.call.search(this.searchOption,value).subscribe(res=>{
       console.log(res)
       this.elements=res;
+      this.initIndex();
 
     })
+  }
+
+  initIndex(){
+    this.mdbTable.setDataSource(this.elements);
+    this.elements = this.mdbTable.getDataSource();
+    this.previous = this.mdbTable.getDataSource();
   }
 
 }

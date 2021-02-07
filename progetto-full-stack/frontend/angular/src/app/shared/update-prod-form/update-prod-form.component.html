@@ -1,33 +1,9 @@
 <form [formGroup]="form" (ngSubmit)="change()">
-    <div class="md-form">
-          <input type="text" class="form-control" id="basicExample" formControlName="codice" mdbInput>
-          <label for="basicExample">Codice:</label>
-    </div>
-    <div class="md-form">
-      <input type="text" class="form-control" id="basicExample" formControlName="nome" mdbInput>
-      <label>Nome Prodotto:</label>
-    </div>
-    <div class="md-form">
-      <input type="text" class="form-control" id="basicExample" formControlName="descrizione" mdbInput>
-      <label>Descrizione:</label>
-    </div>
-    <div class="md-form">
-      <div class="container">
-      <div class="row">
-        <p>Categoria: <a mdbBtn (click)="basicModal.show()" [floating]="true" size="sm" gradient="blue" mdbWavesEffect>
-          <mdb-icon fas icon="search"></mdb-icon>
-        </a></p>
-      </div>
-      <div class="row">
-          <input type="text" class="form-control" id="basic" formControlName="categoria" mdbInput>
-      </div>
-      </div>
-       
-    </div>
-    <div class="md-form">
-        <input type="text" class="form-control" id="basicExample" formControlName="prezzo" mdbInput>
-        <label>Prezzo:</label>
-    </div>
+
+  <div class="md-form" *ngFor="let param of campi">
+    <input type="text" class="form-control" id="basicExample" [formControlName]="param" mdbInput>
+    <label for="basicExample">{{param}}:</label>
+  </div>
 
       <p>
           <button mdbBtn type="sumbit" color="primary" [disabled]="!form.valid" mdbWavesEffect>
