@@ -10,12 +10,10 @@
     </thead>
     <tbody>
     <tr *ngFor="let el of elements; let i = index">
-      <th *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i <=mdbTablePagination.lastItemIndex"
-          scope="row">{{el.codice}}</th>
-      <td *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i <=mdbTablePagination.lastItemIndex">{{el.nome}}</td>
-      <td *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i <=mdbTablePagination.lastItemIndex">{{el.descrizione}}</td>
-      <td *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i <=mdbTablePagination.lastItemIndex">{{el.categoria}}</td>
-      <td *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i <=mdbTablePagination.lastItemIndex">{{el.prezzo}}</td>
+      
+        <ng-container *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i <= mdbTablePagination.lastItemIndex"
+            scope="row" ><td *ngFor="let attr of headElements">{{el[attr]}}</td></ng-container>
+      
       <td *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i <=mdbTablePagination.lastItemIndex">
         <button mdbBtn type="button" color="warning" [rounded]="true" size="sm" (click)="frame.show()" (click)="changeP(el)" mdbWavesEffect>Modifica</button>
         <button mdbBtn type="button" color="danger" [rounded]="true" size="sm" (click)="delete(el)" mdbWavesEffect>Elimina</button>
