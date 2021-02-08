@@ -20,7 +20,6 @@ export class InsertFormComponent implements OnInit {
   @Input()
   tname:any;
 
-
   form = new FormGroup({});
 
   constructor(private http:CallService) { }
@@ -33,10 +32,10 @@ export class InsertFormComponent implements OnInit {
         new FormControl()
       );
     });
-    
+
   }
 
-  
+
 
 ngOnChanges(changes: SimpleChanges) {}
 

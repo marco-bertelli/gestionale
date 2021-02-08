@@ -12,33 +12,41 @@ export class UpdateClientFormComponent implements OnInit {
   @Input()
   cliente: any;
 
+  @Input()
+  campi:any=[];
+
+
   @Output()
   submitEvent: EventEmitter<any> = new EventEmitter();
 
   form = new FormGroup({
-    "id" : new FormControl("", Validators.required),
-    "codice" : new FormControl("",Validators.required),
-    "ragione_sociale" : new FormControl("",Validators.required),
-    "indirizzo" : new FormControl("", Validators.required),
-    "citta" : new FormControl("",Validators.required)
-  })
+
+  });
 
   constructor(private http: CallService) { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.campi.forEach((res:string) => {
+      this.form.addControl(
+        res,
+        new FormControl()
+      );
+    });
+  }
 
-  ngOnChanges(changes: SimpleChanges){
-    this.form = new FormGroup({
-      "id" : new FormControl(this.cliente.id, Validators.required),
-      "codice" : new FormControl(this.cliente.codice, Validators.required),
-      "ragione_sociale" : new FormControl(this.cliente.ragione_sociale, Validators.required),
-      "indirizzo" : new FormControl(this.cliente.indirizzo, Validators.required),
-      "citta" : new FormControl(this.cliente.citta, Validators.required),
-    })
+  ngOnChanges(changes:SimpleChanges){
+    this.campi.forEach((res:string) => {
+      console.log(this.campi)
+      this.form.setControl(
+        res,
+        new FormControl(this.cliente[res], Validators.required)
+      )
+    });
   }
 
   change(){
-    this.submitEvent.emit(this.form.value) //fa evento con i valori presenti nel form
+    console.log(this.form.value)
+    this.submitEvent.emit(this.form.value)
   }
 
 

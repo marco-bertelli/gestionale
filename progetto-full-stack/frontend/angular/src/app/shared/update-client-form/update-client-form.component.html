@@ -1,7 +1,7 @@
 <form [formGroup]="form" (ngSubmit)="change()">
   <div class="md-form">
-        <input type="text" class="form-control" id="basicExample" formControlName="codice" mdbInput>
-        <label for="basicExample">Codice:</label>
+    <input type="text" class="form-control" id="basicExample" formControlName="codice" mdbInput>
+    <label for="basicExample">Codice:</label>
   </div>
   <div class="md-form">
     <input type="text" class="form-control" id="basicExample" formControlName="ragione_sociale" mdbInput>
@@ -9,17 +9,17 @@
   </div>
   <div class="md-form">
     <input type="text" class="form-control" id="basicExample" formControlName="indirizzo" mdbInput>
-    <label> Indirizzo </label>
+    <label>Indirizzo:</label>
   </div>
-
   <div class="md-form">
-      <input type="text" class="form-control" id="basicExample" formControlName="citta" mdbInput>
-      <label>Citta:</label>
+    <input type="text" class="form-control" id="basicExample" formControlName="citta" mdbInput>
+    <label>Citta:</label>
   </div>
+  <!-- MIGLIORIA: città tabella esterna collegata a clienti -->
 
     <p>
         <button mdbBtn type="sumbit" color="primary" [disabled]="!form.valid" mdbWavesEffect>
-          <mdb-icon fas icon="magic" class="mr-1"></mdb-icon>Modifica
+          <mdb-icon fas icon="magic" class="mr-1"></mdb-icon> Modifica
         </button>
     </p>
 </form>
@@ -45,4 +45,3 @@
       </div>
   </div >
 </div > -->
-

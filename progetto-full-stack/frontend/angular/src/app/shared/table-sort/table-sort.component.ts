@@ -28,6 +28,7 @@ export class TableSortComponent implements OnInit,AfterViewInit{
   tname:string="";
 
   prodToChange="";
+  clientToChange="";
 
   previous: any = [];
 
@@ -42,8 +43,8 @@ export class TableSortComponent implements OnInit,AfterViewInit{
   constructor(private cdRef: ChangeDetectorRef,private call:CallService,private toast: ToastService) {  }
 
   ngOnInit() {
-    console.log(this.elements)
-
+    // console.log(this.elements);
+    // console.log(this.tname);
 
     this.mdbTable.setDataSource(this.elements);
     this.elements = this.mdbTable.getDataSource();
@@ -53,33 +54,51 @@ export class TableSortComponent implements OnInit,AfterViewInit{
 
   ngAfterViewInit() {
     this.mdbTablePagination.setMaxVisibleItemsNumberTo(5);
-
     this.mdbTablePagination.calculateFirstItemIndex();
     this.mdbTablePagination.calculateLastItemIndex();
     this.cdRef.detectChanges();
   }
+
   delete(el:string){
-
     this.call.deleteCall(el,this.tname).subscribe(res=>{
-
       this.update();
     });
-
   }
+
   change(element:string){
-    console.log(element)
-    this.call.updateProd(element).subscribe(res=>{
-      //mettere gestione di notifica
-      console.log(res)
-      if(res.affectedRows==1)  this.toast.success('prodotto modificato');
-      else this.toast.error('errore interno '+ res);
+    if(this.tname == 'prodotti'){
+      this.call.updateProd(element).subscribe(res=>{
+        //mettere gestione di notifica
+        console.log(res)
+        if(res.affectedRows==1)  this.toast.success('prodotto modificato');
+        else this.toast.error('errore interno '+ res);
 
-      this.changeEvent.emit();
-    });
+        this.changeEvent.emit();
+      });
+    }
 
+    if(this.tname == 'clienti'){
+      console.log("CHANGE CLIENTE")
+      console.log(element)
+      this.call.updateClient(element).subscribe(res=>{
+        //mettere gestione di notifica
+        console.log(res)
+        if(res.affectedRows==1)  this.toast.success('cliente modificato');
+        else this.toast.error('errore interno '+ res);
+
+        this.changeEvent.emit();
+      });
+    }
+
+    this.update();
   }
+
   changeP(el:string){
-    this.prodToChange=el;
+    console.log("TABLE SORT CHANGEP" + this.tname);
+    if(this.tname == 'prodotti')
+      this.prodToChange=el;
+    if(this.tname == 'clienti')
+      this.clientToChange=el
   }
 
   update(){

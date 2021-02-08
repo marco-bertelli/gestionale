@@ -1,71 +1,77 @@
 <table mdbTable #tableEl="mdbTable" class="z-depth-1">
-    <thead>
-    <tr>
-        <th *ngFor="let head of headElements; let i = index" aria-controls="tableSortExample" scope="col" [mdbTableSort]="elements" [sortBy]="headElements[i]">{{head | titlecase}}
-            <mdb-icon fas icon="sort"></mdb-icon>
-        <th><a mdbBtn (click)="basicModal.show()" [floating]="true" size="sm" gradient="blue" mdbWavesEffect>
-          <mdb-icon fas icon="plus-circle"></mdb-icon>
-        </a></th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr *ngFor="let el of elements; let i = index">
+  <thead>
+  <tr>
+      <th *ngFor="let head of headElements; let i = index" aria-controls="tableSortExample" scope="col" [mdbTableSort]="elements" [sortBy]="headElements[i]">{{head | titlecase}}
+          <mdb-icon fas icon="sort"></mdb-icon>
+      <th><a mdbBtn (click)="basicModal.show()" [floating]="true" size="sm" gradient="blue" mdbWavesEffect>
+        <mdb-icon fas icon="plus-circle"></mdb-icon>
+      </a></th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let el of elements; let i = index">
 
-        <ng-container *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i <= mdbTablePagination.lastItemIndex"
-            scope="row" ><td *ngFor="let attr of headElements">{{el[attr]}}</td></ng-container>
+      <ng-container *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i <= mdbTablePagination.lastItemIndex"
+          scope="row" ><td *ngFor="let attr of headElements">{{el[attr]}}</td></ng-container>
 
-      <td *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i <=mdbTablePagination.lastItemIndex">
-        <button mdbBtn type="button" color="warning" [rounded]="true" size="sm" (click)="frame.show()" (click)="changeP(el)" mdbWavesEffect>Modifica</button>
-        <button mdbBtn type="button" color="danger" [rounded]="true" size="sm" (click)="delete(el)" mdbWavesEffect>Elimina</button>
-      </td>
-    </tr>
-    </tbody>
-    <tfoot class="grey lighten-5 w-100">
-    <tr>
-      <td colspan="7">
-        <mdb-table-pagination [tableEl]="tableEl" [searchDataSource]="elements"></mdb-table-pagination>
-      </td>
-    </tr>
-    </tfoot>
-
-
-  </table>
+    <td *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i <=mdbTablePagination.lastItemIndex">
+      <button mdbBtn type="button" color="warning" [rounded]="true" size="sm" (click)="frame.show()" (click)="changeP(el)" mdbWavesEffect>Modifica</button>
+      <button mdbBtn type="button" color="danger" [rounded]="true" size="sm" (click)="delete(el)" mdbWavesEffect>Elimina</button>
+    </td>
+  </tr>
+  </tbody>
+  <tfoot class="grey lighten-5 w-100">
+  <tr>
+    <td colspan="7">
+      <mdb-table-pagination [tableEl]="tableEl" [searchDataSource]="elements"></mdb-table-pagination>
+    </td>
+  </tr>
+  </tfoot>
 
 
-  <div mdbModal #frame="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close pull-right" aria-label="Close" (click)="frame.hide()">
-            <span aria-hidden="true">×</span>
-          </button>
-          <!-- Si potrebbe fare che il cocide è diverso per le varie tabelle. Uno inizia con la P e uno con la C -->
-          <!-- Oppure utilizzare un metodo nel ts che ritorni uns tringa in base alla pagina -->
-          <h4 class="modal-title w-100" id="myModalLabel">Modifica</h4>
-        </div>
-        <div class="modal-body">
-          <!-- PRODUCT OR CLIENT -- DA MIGLIORARE CONTTROLLO -->
+</table>
+
+
+<div mdbModal #frame="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close pull-right" aria-label="Close" (click)="frame.hide()">
+          <span aria-hidden="true">×</span>
+        </button>
+        <h4 *ngIf="tname=='prodotti'" class="modal-title w-100" id="myModalLabel">Modifica articolo </h4>
+        <h4 *ngIf="tname=='clienti'" class="modal-title w-100" id="myModalLabel"> Modifica cliente </h4>
+      </div>
+      <div class="modal-body">
+        <!-- DA RENDERE DINAMICO SENZA IF -->
+        <ng-container *ngIf="tname=='prodotti'">
           <section class="sample-app-content">
             <app-update-prod-form [campi]="headElements" [prodotto]="prodToChange" (submitEvent)="change($event)"></app-update-prod-form>
-        </section>
-        </div>
+          </section>
+        </ng-container>
+        <ng-container *ngIf="tname=='clienti'">
+          <section class="sample-app-content">
+            <app-update-client-form [campi]="headElements" [cliente]="clientToChange" (submitEvent)="change($event)"></app-update-client-form>
+          </section>
+        </ng-container>
       </div>
     </div>
   </div>
+</div>
 
 <div mdbModal #basicModal="mdbModal" class="modal right" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel"
- [config]='{backdrop: false, ignoreBackdropClick: true}' aria-hidden="true">
-    <div class="modal-dialog modal-md" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close pull-right" aria-label="Close" (click)="basicModal.hide()">
-                    <span aria-hidden="true">×</span>
-                </button>
-                <h4 class="modal-title w-100" id="myModalLabel">Inserisci</h4>
-            </div>
-            <div class="modal-body">
-              <app-insert-form [campi]="headElements" [tname]="tname" (submitEvent)="insert($event)"></app-insert-form>
-            </div>
-        </div>
-    </div >
+[config]='{backdrop: false, ignoreBackdropClick: true}' aria-hidden="true">
+  <div class="modal-dialog modal-md" role="document">
+      <div class="modal-content">
+          <div class="modal-header">
+              <button type="button" class="close pull-right" aria-label="Close" (click)="basicModal.hide()">
+                  <span aria-hidden="true">×</span>
+              </button>
+              <h4 class="modal-title w-100" id="myModalLabel">Inserisci</h4>
+          </div>
+          <div class="modal-body">
+            <app-insert-form [campi]="headElements" [tname]="tname" (submitEvent)="insert($event)"></app-insert-form>
+          </div>
+      </div>
+  </div >
 </div >

@@ -11,8 +11,9 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { UpdateProdFormComponent } from './update-prod-form/update-prod-form.component';
 import { TableComponent } from './table/table.component';
 import { InsertFormComponent } from './insert-form/insert-form.component';
+import { UpdateClientFormComponent } from './update-client-form/update-client-form.component';
 @NgModule({
-  declarations: [TableSortComponent, UpdateProdFormComponent, TableComponent, InsertFormComponent],
+  declarations: [TableSortComponent, UpdateProdFormComponent, TableComponent, InsertFormComponent, UpdateClientFormComponent],
   imports: [
     CommonModule,
     MDBBootstrapModulesPro.forRoot(),
