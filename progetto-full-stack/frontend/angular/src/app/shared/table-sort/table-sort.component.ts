@@ -1,5 +1,6 @@
 import { AfterViewInit, ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { MdbTableDirective, MdbTablePaginationComponent, ToastService } from 'ng-uikit-pro-standard';
 import { CallService } from 'src/app/core/calls/call.service';
 
@@ -40,7 +41,7 @@ export class TableSortComponent implements OnInit,AfterViewInit{
     "password": new FormControl("", Validators.required),
 });
 
-  constructor(private cdRef: ChangeDetectorRef,private call:CallService,private toast: ToastService) {  }
+  constructor(private cdRef: ChangeDetectorRef,private call:CallService,private toast: ToastService, private router:Router) {  }
 
   ngOnInit() {
     // console.log(this.elements);
@@ -78,7 +79,6 @@ export class TableSortComponent implements OnInit,AfterViewInit{
     }
 
     if(this.tname == 'clienti'){
-      console.log("CHANGE CLIENTE")
       console.log(element)
       this.call.updateClient(element).subscribe(res=>{
         //mettere gestione di notifica
@@ -94,7 +94,6 @@ export class TableSortComponent implements OnInit,AfterViewInit{
   }
 
   changeP(el:string){
-    console.log("TABLE SORT CHANGEP" + this.tname);
     if(this.tname == 'prodotti')
       this.prodToChange=el;
     if(this.tname == 'clienti')
@@ -111,6 +110,7 @@ export class TableSortComponent implements OnInit,AfterViewInit{
       console.log(res)
       this.update();
     });
+
   }
 
 
