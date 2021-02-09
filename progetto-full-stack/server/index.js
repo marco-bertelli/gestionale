@@ -174,13 +174,3 @@ app.get('/search', (req, res) => {
         }
     });
 });
-
-
-
-pool.query("SELECT * FROM " + table + " WHERE MATCH(descrizione) AGAINST('" + string + "') || " + addCamp + " = " + string + ";", (err, results) => {
-    if (err) {
-        return res.send(err);
-    } else {
-        return res.send(results);
-    }
-});

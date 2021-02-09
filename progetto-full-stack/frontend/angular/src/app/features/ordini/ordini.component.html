@@ -1,5 +1,5 @@
 <main>
     <div class="container" *ngIf="ordine">
-        <app-table-sort-ordini [elements]="ordine" [headElements]="['id','ordine', 'data', 'cliente', 'prezzo']" (changeEvent)="loadOrdine()"></app-table-sort-ordini>
+        <app-table-sort [elements]="ordine" tname="ordini" [headElements]="['id','ordine', 'data', 'cliente', 'prezzo']" (changeEvent)="loadOrdine()"></app-table-sort-ordini>
     </div>
 </main>
