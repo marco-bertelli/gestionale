@@ -1,5 +1,7 @@
 <form [formGroup]="form" (ngSubmit)="change()">
     <div class="md-form" *ngFor="let param of campi">
+        <!-- Permettere solo numeri se tipo di dato è duoble/int -->
+        <!-- Quando c'è categoria si puà fare una cosa simile della modifica -->
           <input type="text" class="form-control" id="basicExample" [formControlName]="param" mdbInput>
           <label for="basicExample">{{param | titlecase}}:</label>
     </div>

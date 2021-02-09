@@ -163,13 +163,12 @@ app.put('/changeClienti', (req, res) => {
 app.get('/search', (req, res) => {
 
   let table = req.query.table;
-
   let string= req.query.string;
   //non solo fulltext ma anche su un campo aggiuntivo *da migliorare con un array di campi*
   let addCamp = req.query.addCamp;
 
   
-  pool.query("SELECT * FROM "+table+" WHERE MATCH(descrizione) AGAINST('"+string+"') || "+addCamp+" = "+string+";", (err, results) => {
+  pool.query( "SELECT * FROM "+table+" WHERE id LIKE '%'"+string+"'%' or descrizione LIKE '%'"+string+"'%'", (err, results) => {
     if (err) {
       return res.send(err);
     } else {
@@ -177,3 +176,7 @@ app.get('/search', (req, res) => {
     }
   });
 });
+
+
+// alter table per fare il full text - non credo si possa sull'id (PROVO CON IL LIKE)
+// EASY QUERY CON IL LIKE E SOLO UN PARAMETRO--> SELECT * FROM categorie WHERE id LIKE '%1%' or descrizione LIKE '%1%'

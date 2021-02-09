@@ -22,7 +22,7 @@ export class UpdateProdFormComponent implements OnInit {
 
 
   form = new FormGroup({
-    
+
 });
 
   constructor(private http:CallService) { }
@@ -39,7 +39,7 @@ export class UpdateProdFormComponent implements OnInit {
         new FormControl()
       );
     });
-    
+
   }
 
 ngOnChanges(changes: SimpleChanges) {
@@ -51,7 +51,7 @@ ngOnChanges(changes: SimpleChanges) {
       new FormControl(this.prodotto[res], Validators.required)
     );
   });
-    
+
 }
 change(){console.log(this.form.value)
   this.submitEvent.emit(this.form.value)
@@ -64,12 +64,12 @@ Update(){
 }
 
 changeCategory(id:number){
- 
+
     this.form.setControl(
       "categoria",
       new FormControl(id,Validators.required)
     );
-  
+
 }
 
 

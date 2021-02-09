@@ -202,3 +202,29 @@ LOCK TABLES `clienti` WRITE;
 INSERT INTO `clienti` VALUES (1,'AA1','azienda1','Vilminore di Scalve','BG'),(2,'BB2','azienda2','Darfo Boario', 'BS');
 /*!40000 ALTER TABLE `clienti` ENABLE KEYS */;
 UNLOCK TABLES;
+
+
+--
+-- Table structure for table `citta`
+--
+
+DROP TABLE IF EXISTS `citta`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `citta` (
+  `id` int(11) NOT NULL,
+  `descrizione` varchar(64) NOT NULL,
+  `sigla` varchar(2) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `citta`
+--
+
+LOCK TABLES `citta` WRITE;
+/*!40000 ALTER TABLE `citta` DISABLE KEYS */;
+INSERT INTO `citta` VALUES (1,'Bergamo','BG'),(2,'Brescia','BS'),(3,'Sondrio','SO');
+/*!40000 ALTER TABLE `citta` ENABLE KEYS */;
+UNLOCK TABLES;
