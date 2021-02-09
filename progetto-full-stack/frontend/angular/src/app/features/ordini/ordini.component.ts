@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CallService } from 'src/app/core/calls/call.service';
 import { HttpcomminicationsService } from 'src/app/core/http-communication/httpcomminications.service';
 
 @Component({
@@ -8,7 +9,7 @@ import { HttpcomminicationsService } from 'src/app/core/http-communication/httpc
 })
 export class OrdiniComponent implements OnInit {
 
-  constructor(private http:HttpcomminicationsService) { }
+  constructor(private http:CallService) { }
 
   ordine:any;
 
@@ -16,7 +17,7 @@ export class OrdiniComponent implements OnInit {
     this.loadOrdine();
   }
   loadOrdine(){
-    this.http.getCall("/getTable?table=ordini").subscribe(res=>{
+    this.http.getTable("ordini").subscribe(res=>{
       this.ordine=res;
     })
    

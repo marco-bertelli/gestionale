@@ -157,6 +157,23 @@ app.put('/changeClienti', (req, res) => {
     });
 });
 
+app.put('/changeOrdini', (req, res) => {
+
+    pool.query("SELECT * FROM ordini where codice='" + req.body.codice + "'", (err, results) => {
+        if (results.length == 0) {
+            res.send("attenzione non è possibile cambiare il codice prodotto");
+        } else {
+            pool.query("UPDATE ordini SET codice = '" + req.body.codice + "', data='" + req.body.data + "',cliente='" + req.body.cliente + "',totale='" + req.body.totale + "'", (err, results) => {
+                if (err) {
+                    return res.send(err);
+                } else {
+                    return res.send(results);
+                }
+            });
+        }
+    });
+});
+
 app.get('/search', (req, res) => {
 
     let table = req.query.table;
