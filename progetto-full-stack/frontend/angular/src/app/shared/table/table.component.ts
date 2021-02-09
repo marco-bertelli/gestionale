@@ -1,4 +1,5 @@
 
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { AfterViewInit, ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { MdbTableDirective, MdbTablePaginationComponent, ToastService } from 'ng-uikit-pro-standard';
 import { CallService } from 'src/app/core/calls/call.service';
@@ -40,10 +41,8 @@ export class TableComponent implements OnInit {
   constructor(private cdRef: ChangeDetectorRef,private call:CallService,private toast: ToastService) { }
 
   ngOnInit() {
-    this.mdbTable.setDataSource(this.elements);
-    this.elements = this.mdbTable.getDataSource();
-    this.previous = this.mdbTable.getDataSource();
 
+   this.initIndex();
   }
 
   ngAfterViewInit() {
@@ -56,9 +55,12 @@ export class TableComponent implements OnInit {
     console.log(el);
   }
   change(element:any){
-    console.log("dentro");
-    this.updateEvent.emit();
-    
+    this.call.insertCall(element,this.tname).subscribe(res=>{
+      console.log(res)
+      this.updateEvent.emit();
+    });
+
+
   }
   changeP(el:string){
     this.prodToChange=el;
@@ -73,8 +75,15 @@ export class TableComponent implements OnInit {
     this.call.search(this.searchOption,value).subscribe(res=>{
       console.log(res)
       this.elements=res;
+      this.initIndex();
 
     })
+  }
+
+  initIndex(){
+    this.mdbTable.setDataSource(this.elements);
+    this.elements = this.mdbTable.getDataSource();
+    this.previous = this.mdbTable.getDataSource();
   }
 
 }

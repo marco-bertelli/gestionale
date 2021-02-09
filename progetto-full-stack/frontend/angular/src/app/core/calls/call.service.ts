@@ -12,6 +12,10 @@ export class CallService {
     return this.http.putCall("/changeProdotti",prod);
   }
 
+  public updateClient(client:string){
+    return this.http.putCall("/changeClienti",client);
+  }
+
   getTable(tname:string){
     return this.http.getCall("/getTable?table="+tname);
   }
@@ -21,5 +25,9 @@ export class CallService {
   insertCall(body:any,table:string){
     return this.http.postCall("/insertCat?table="+table,body)
 
+    return this.http.postCall("/insert?table="+table,body);
+  }
+  deleteCall(body:any,table:string){
+    return this.http.postCall("/delete?table="+table,body);
   }
 }

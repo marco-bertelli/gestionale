@@ -6,19 +6,18 @@ import { TableSortComponent } from './table-sort/table-sort.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { UpdateProdFormComponent } from './update-prod-form/update-prod-form.component';
 import { TableComponent } from './table/table.component';
-import { TableSortOrdiniComponent } from './table-sort-ordini/table-sort-ordini.component';
 import { InsertFormComponent } from './insert-form/insert-form.component';
-
+import { UpdateClientFormComponent } from './update-client-form/update-client-form.component';
 @NgModule({
-  declarations: [TableSortComponent, UpdateProdFormComponent, TableComponent, InsertFormComponent, TableSortOrdiniComponent],
+  declarations: [TableSortComponent, UpdateProdFormComponent, TableComponent, InsertFormComponent, UpdateClientFormComponent],
   imports: [
     CommonModule,
     MDBBootstrapModulesPro.forRoot(),
     RouterModule,
     FormsModule,
     ReactiveFormsModule,
-    
-    
+
+
   ],
   exports:[
     MDBBootstrapModulesPro,
@@ -28,9 +27,8 @@ import { InsertFormComponent } from './insert-form/insert-form.component';
     FormsModule,
     ReactiveFormsModule,
     TableComponent,
-    TableSortOrdiniComponent,
     InsertFormComponent
-    
+
   ]
 })
 export class SharedModule { }

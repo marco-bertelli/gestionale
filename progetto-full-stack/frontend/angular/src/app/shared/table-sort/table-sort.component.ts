@@ -1,5 +1,6 @@
 import { AfterViewInit, ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { MdbTableDirective, MdbTablePaginationComponent, ToastService } from 'ng-uikit-pro-standard';
 import { CallService } from 'src/app/core/calls/call.service';
 
@@ -10,7 +11,7 @@ import { CallService } from 'src/app/core/calls/call.service';
   styleUrls: ['./table-sort.component.scss']
 })
 export class TableSortComponent implements OnInit,AfterViewInit{
-  
+
   @ViewChild(MdbTablePaginationComponent, { static: true })
   mdbTablePagination!: MdbTablePaginationComponent;
   @ViewChild(MdbTableDirective, { static: true })
@@ -28,6 +29,7 @@ export class TableSortComponent implements OnInit,AfterViewInit{
   tname:string="";
 
   prodToChange="";
+  clientToChange="";
 
   previous: any = [];
 
@@ -39,12 +41,12 @@ export class TableSortComponent implements OnInit,AfterViewInit{
     "password": new FormControl("", Validators.required),
 });
 
-  constructor(private cdRef: ChangeDetectorRef,private call:CallService,private toast: ToastService) { 
-   
-  }
+  constructor(private cdRef: ChangeDetectorRef,private call:CallService,private toast: ToastService, private router:Router) {  }
 
   ngOnInit() {
-    console.log(this.elements)
+    // console.log(this.elements);
+    // console.log(this.tname);
+
     this.mdbTable.setDataSource(this.elements);
     this.elements = this.mdbTable.getDataSource();
     this.previous = this.mdbTable.getDataSource();
@@ -52,33 +54,63 @@ export class TableSortComponent implements OnInit,AfterViewInit{
 
   ngAfterViewInit() {
     this.mdbTablePagination.setMaxVisibleItemsNumberTo(5);
-
     this.mdbTablePagination.calculateFirstItemIndex();
     this.mdbTablePagination.calculateLastItemIndex();
     this.cdRef.detectChanges();
   }
+
   delete(el:string){
-    console.log(el+"ciao");
-  }
-  change(element:string){
-    this.call.updateProd(element).subscribe(res=>{
-      //mettere gestione di notifica
-      console.log(res)
-      if(res.affectedRows==1)  this.toast.success('prodotto modificato');
-      else this.toast.error('errore interno '+ res);
-     
-      this.changeEvent.emit();
+    this.call.deleteCall(el,this.tname).subscribe(res=>{
+      this.update();
     });
-    
   }
+
+  change(element:string){
+    if(this.tname == 'prodotti'){
+      this.call.updateProd(element).subscribe(res=>{
+        //mettere gestione di notifica
+        console.log(res)
+        if(res.affectedRows==1)  this.toast.success('prodotto modificato');
+        else this.toast.error('errore interno '+ res);
+
+        this.changeEvent.emit();
+      });
+    }
+
+    if(this.tname == 'clienti'){
+      console.log(element)
+      this.call.updateClient(element).subscribe(res=>{
+        //mettere gestione di notifica
+        console.log(res)
+        if(res.affectedRows==1)  this.toast.success('cliente modificato');
+        else this.toast.error('errore interno '+ res);
+
+        this.changeEvent.emit();
+      });
+    }
+
+    this.update();
+  }
+
   changeP(el:string){
-    this.prodToChange=el;
-    
+    if(this.tname == 'prodotti')
+      this.prodToChange=el;
+    if(this.tname == 'clienti')
+      this.clientToChange=el
   }
 
   update(){
     this.changeEvent.emit()
   }
 
- 
+  insert(event:string){
+    console.log("eseguo insert")
+    this.call.insertCall(event,this.tname).subscribe(res=>{
+      console.log(res)
+      this.update();
+    });
+
+  }
+
+
 }

@@ -15,16 +15,13 @@ export class UpdateProdFormComponent implements OnInit {
   @Output()
   submitEvent: EventEmitter<any> = new EventEmitter();
 
+  @Input()
+  campi:any=[];
+
   category:any;
 
 
   form = new FormGroup({
-    "id": new FormControl("", Validators.required),
-    "codice": new FormControl("", Validators.required),
-    "nome": new FormControl("", Validators.required),
-    "descrizione": new FormControl("", Validators.required),
-    "categoria": new FormControl("", Validators.required),
-    "prezzo": new FormControl("", Validators.required),
     
 });
 
@@ -34,26 +31,29 @@ export class UpdateProdFormComponent implements OnInit {
 
     this.http.getTable("categorie").subscribe(res=>{
       this.category=res;
-    })
+    });
+
+    this.campi.forEach((res: string)=> {
+      this.form.addControl(
+        res,
+        new FormControl()
+      );
+    });
     
   }
 
-  
+ngOnChanges(changes: SimpleChanges) {
 
-  ngOnChanges(changes: SimpleChanges) {
-
-    this.form = new FormGroup({
-      "id": new FormControl(this.prodotto.id, Validators.required),
-      "codice": new FormControl(this.prodotto.codice, Validators.required),
-      "nome": new FormControl(this.prodotto.nome, Validators.required),
-      "descrizione": new FormControl(this.prodotto.descrizione, Validators.required),
-      "categoria": new FormControl(this.prodotto.categoria, Validators.required),
-      "prezzo": new FormControl(this.prodotto.prezzo, Validators.required),
-      
+  this.campi.forEach((res: string)=> {
+    //console.log(this.prodotto[res])
+    this.form.setControl(
+      res,
+      new FormControl(this.prodotto[res], Validators.required)
+    );
   });
     
 }
-change(){
+change(){console.log(this.form.value)
   this.submitEvent.emit(this.form.value)
 }
 
@@ -64,14 +64,12 @@ Update(){
 }
 
 changeCategory(id:number){
-  this.form = new FormGroup({
-    "id": new FormControl(this.prodotto.id, Validators.required),
-    "codice": new FormControl(this.prodotto.codice, Validators.required),
-    "nome": new FormControl(this.prodotto.nome, Validators.required),
-    "descrizione": new FormControl(this.prodotto.descrizione, Validators.required),
-    "categoria": new FormControl(id, Validators.required),
-    "prezzo": new FormControl(this.prodotto.prezzo, Validators.required),
-});
+ 
+    this.form.setControl(
+      "categoria",
+      new FormControl(id,Validators.required)
+    );
+  
 }
 
 

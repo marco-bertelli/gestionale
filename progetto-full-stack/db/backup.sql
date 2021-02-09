@@ -185,12 +185,13 @@ DROP TABLE IF EXISTS `clienti`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `clienti` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `codice` varchar(32) NOT NULL,
   `ragione_sociale` varchar(50) NOT NULL,
   `indirizzo` varchar(50) NOT NULL,
   `citta` varchar(50) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -199,7 +200,7 @@ CREATE TABLE `clienti` (
 
 LOCK TABLES `clienti` WRITE;
 /*!40000 ALTER TABLE `clienti` DISABLE KEYS */;
-INSERT INTO `clienti` VALUES (1,'azienda1','Vilminore di Scalve','BG'),(2,'azienda2','Darfo Boario', 'BS');
+INSERT INTO `clienti` VALUES (1,'AA1','azienda1','Vilminore di Scalve','BG'),(2,'BB2','azienda2','Darfo Boario', 'BS');
 /*!40000 ALTER TABLE `clienti` ENABLE KEYS */;
 UNLOCK TABLES;
 
