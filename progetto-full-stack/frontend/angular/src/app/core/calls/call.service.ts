@@ -15,7 +15,10 @@ export class CallService {
   public updateClient(client:string){
     return this.http.putCall("/changeClienti",client);
   }
-
+  
+  public updateOrdine(ordine:string){
+    return this.http.putCall("/changeOrdini",ordine);
+  }
   getTable(tname:string){
     return this.http.getCall("/getTable?table="+tname);
   }
