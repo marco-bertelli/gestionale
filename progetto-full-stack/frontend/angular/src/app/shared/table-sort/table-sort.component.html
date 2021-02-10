@@ -44,6 +44,7 @@
         </button>
                 <h4 *ngIf="tname=='prodotti'" class="modal-title w-100" id="myModalLabel">Modifica articolo </h4>
                 <h4 *ngIf="tname=='clienti'" class="modal-title w-100" id="myModalLabel"> Modifica cliente </h4>
+                <h4 *ngIf="tname=='ordini'" class="modal-title w-100" id="myModalLabel"> Modifica cliente </h4>
             </div>
             <div class="modal-body">
                 <!-- DA RENDERE DINAMICO SENZA IF -->
@@ -55,6 +56,11 @@
                 <ng-container *ngIf="tname=='clienti'">
                     <section class="sample-app-content">
                         <app-update-client-form [campi]="headElements" [cliente]="clientToChange" (submitEvent)="change($event)"></app-update-client-form>
+                    </section>
+                </ng-container>
+                <ng-container *ngIf="tname=='ordini'">
+                    <section class="sample-app-content">
+                        <app-update-client-form [campi]="headElements" [cliente]="ordToChange" (submitEvent)="change($event)"></app-update-client-form>
                     </section>
                 </ng-container>
             </div>
