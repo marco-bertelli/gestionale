@@ -106,12 +106,13 @@ export class TableSortComponent implements OnInit,AfterViewInit{
   }
 
   changeP(el:string){
+    console.log("sono in table sort" + el);
     if(this.tname == 'prodotti')
       this.prodToChange=el;
     if(this.tname == 'clienti')
       this.clientToChange=el;
     if(this.tname == 'ordini')
-      this.clientToChange=el
+      this.ordToChange=el
   }
 
   update(){

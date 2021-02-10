@@ -234,7 +234,7 @@ DROP TABLE IF EXISTS `ordini`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `ordini` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `ordine` varchar(32) NOT NULL,
+  `codice` varchar(32) NOT NULL,
   `data` date NOT NULL,
   `cliente` int(11) NOT NULL,
   `totale` double NOT NULL,

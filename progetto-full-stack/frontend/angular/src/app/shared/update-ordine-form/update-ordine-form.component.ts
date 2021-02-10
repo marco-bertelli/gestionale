@@ -10,46 +10,71 @@ import { CallService } from 'src/app/core/calls/call.service';
 export class UpdateOrdineFormComponent implements OnInit {
 
   @Input()
-  ordine: any;
-
-  @Input()
-  campi:any=[];
-
+  ordine:any;
 
   @Output()
   submitEvent: EventEmitter<any> = new EventEmitter();
 
+  @Input()
+  campi:any=[];
+
+  clienti:any;
+
+
   form = new FormGroup({
 
-  });
+});
 
-  constructor(private http: CallService) { }
+  constructor(private http:CallService) { }
 
   ngOnInit(): void {
-    this.campi.forEach((res:string) => {
+
+    this.http.getTable("clienti").subscribe(res=>{
+      console.log(res);
+      this.clienti=res;
+    });
+
+    this.campi.forEach((res: string)=> {
+      console.log(res);
       this.form.addControl(
         res,
         new FormControl()
+       
       );
     });
+    
+
   }
 
-  ngOnChanges(changes:SimpleChanges){
-    this.campi.forEach((res:string) => {
-      console.log(this.campi)
-      this.form.setControl(
-        res,
-        new FormControl(this.ordine[res], Validators.required)
-      )
-    });
-  }
+ngOnChanges(changes: SimpleChanges) {
 
-  change(){
-    console.log(this.form.value)
-    this.submitEvent.emit(this.form.value)
-  }
+  this.campi.forEach((res: string)=> {
+    //console.log(this.prodotto[res])
+    this.form.setControl(
+      res,
+      new FormControl(this.ordine[res], Validators.required)
+    );
+  });
 
+}
+change(){console.log(this.form.value)
+  this.submitEvent.emit(this.form.value)
+}
 
+Update(){
+  this.http.getTable("clienti").subscribe(res=>{
+    this.clienti=res;
+  })
+}
+
+changeCliente(id:number){
+
+  this.form.setControl(
+    "clienti",
+    new FormControl(id,Validators.required)
+  );
+
+}
 
 
 }

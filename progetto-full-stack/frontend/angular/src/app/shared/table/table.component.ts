@@ -18,6 +18,8 @@ export class TableComponent implements OnInit {
 
   @Output()
   categoryEvent: EventEmitter<any> = new EventEmitter();
+  @Output()
+  clienteEvent: EventEmitter<any> = new EventEmitter();
 
   @Output()
   updateEvent: EventEmitter<any> = new EventEmitter();
@@ -26,6 +28,7 @@ export class TableComponent implements OnInit {
   elements: any = [];
 
   prodToChange="";
+  ordToChange="";
 
   previous: any = [];
 
@@ -41,8 +44,8 @@ export class TableComponent implements OnInit {
   constructor(private cdRef: ChangeDetectorRef,private call:CallService,private toast: ToastService) { }
 
   ngOnInit() {
-
-   this.initIndex();
+    console.log(this.tname);
+    this.initIndex();
   }
 
   ngAfterViewInit() {
@@ -64,11 +67,21 @@ export class TableComponent implements OnInit {
   }
   changeP(el:string){
     this.prodToChange=el;
+    this.ordToChange=el;
   }
 
   sendCategory(id:number){
-    this.categoryEvent.emit(id);
-    this.toast.success("categoria selezionata")
+  
+    if(this.tname == 'categorie'){
+      this.categoryEvent.emit(id);
+      this.toast.success("categoria selezionata")
+    }
+  
+    if(this.tname == 'clienti'){
+      this.clienteEvent.emit(id);
+      this.toast.success("cliente selezionato")
+    }
+   
   }
 
   search(value:string){

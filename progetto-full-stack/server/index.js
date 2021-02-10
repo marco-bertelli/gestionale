@@ -161,9 +161,9 @@ app.put('/changeOrdini', (req, res) => {
 
     pool.query("SELECT * FROM ordini where codice='" + req.body.codice + "'", (err, results) => {
         if (results.length == 0) {
-            res.send("attenzione non è possibile cambiare il codice prodotto");
+            res.send("attenzione non è possibile cambiare il codice cliente");
         } else {
-            pool.query("UPDATE ordini SET codice = '" + req.body.codice + "', data='" + req.body.data + "',cliente='" + req.body.cliente + "',totale='" + req.body.totale + "'", (err, results) => {
+            pool.query("UPDATE ordini SET codice = '" + req.body.codice + "', data='" + req.body.data + "',cliente='" + req.body.cliente + "',totale='" + req.body.totale + "' WHERE codice = '" + req.body.codice + "'", (err, results) => {
                 if (err) {
                     return res.send(err);
                 } else {
@@ -176,19 +176,19 @@ app.put('/changeOrdini', (req, res) => {
 
 app.get('/search', (req, res) => {
 
-  let table = req.query.table;
-  let string= req.query.string;
-  //non solo fulltext ma anche su un campo aggiuntivo *da migliorare con un array di campi*
-  let addCamp = req.query.addCamp;
+    let table = req.query.table;
+    let string = req.query.string;
+    //non solo fulltext ma anche su un campo aggiuntivo *da migliorare con un array di campi*
+    let addCamp = req.query.addCamp;
 
-  
-  pool.query( "SELECT * FROM "+table+" WHERE id LIKE '%'"+string+"'%' or descrizione LIKE '%'"+string+"'%'", (err, results) => {
-    if (err) {
-      return res.send(err);
-    } else {
-      return res.send(results);
-    }
-  });
+
+    pool.query("SELECT * FROM " + table + " WHERE id LIKE '%'" + string + "'%' or descrizione LIKE '%'" + string + "'%'", (err, results) => {
+        if (err) {
+            return res.send(err);
+        } else {
+            return res.send(results);
+        }
+    });
 });
 
 
