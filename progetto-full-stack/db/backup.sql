@@ -152,7 +152,7 @@ CREATE TABLE `clienti` (
   `indirizzo` varchar(50) NOT NULL,
   `citta` varchar(50) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -161,7 +161,7 @@ CREATE TABLE `clienti` (
 
 LOCK TABLES `clienti` WRITE;
 /*!40000 ALTER TABLE `clienti` DISABLE KEYS */;
-INSERT INTO `clienti` VALUES (1,'AA1','azienda1','Vilminore di Scalve','BG'),(2,'BB2','azienda2','Darfo Boari','BS');
+INSERT INTO `clienti` VALUES (1,'AA1','ses','cazzo','brescia'),(2,'BB2','azienda1','Darfo Boari','BS'),(3,'AA3','siiis','asddas','BS');
 /*!40000 ALTER TABLE `clienti` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -229,4 +229,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-02-10  7:46:01
+-- Dump completed on 2021-02-10 11:10:19
