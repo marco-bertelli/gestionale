@@ -12,11 +12,17 @@ export class UpdateProdFormComponent implements OnInit {
   @Input()
   prodotto:any;
 
+  @Input()
+  search_param:any;
+
   @Output()
   submitEvent: EventEmitter<any> = new EventEmitter();
 
   @Input()
   campi:any=[];
+
+  @Input()
+  search_table:string="";
 
   category:any;
 
@@ -29,9 +35,11 @@ export class UpdateProdFormComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.http.getTable("categorie").subscribe(res=>{
+    this.http.getTable(this.search_table).subscribe(res=>{
       this.category=res;
     });
+    
+    console.log(this.search_param)
 
     this.campi.forEach((res: string)=> {
       this.form.addControl(
@@ -58,7 +66,7 @@ change(){console.log(this.form.value)
 }
 
 Update(){
-  this.http.getTable("categorie").subscribe(res=>{
+  this.http.getTable(this.search_table).subscribe(res=>{
     this.category=res;
   })
 }
@@ -66,7 +74,7 @@ Update(){
 changeCategory(id:number){
  
     this.form.setControl(
-      "categoria",
+      this.search_param,
       new FormControl(id,Validators.required)
     );
   

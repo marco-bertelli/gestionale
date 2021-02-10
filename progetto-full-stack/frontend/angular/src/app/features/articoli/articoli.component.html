@@ -1,6 +1,6 @@
 <main>
     <div class="container" *ngIf="article">
-        <app-table-sort [elements]="article" tname="prodotti" [headElements]="['codice', 'nome', 'descrizione', 'categoria', 'prezzo']" (changeEvent)="loadProd()"></app-table-sort>
+        <app-table-sort [elements]="article" search_table="categorie" search_param="categoria" tname="prodotti" [headElements]="['codice', 'nome', 'descrizione', 'categoria', 'prezzo']" (changeEvent)="loadProd()"></app-table-sort>
     </div>
 </main>
 

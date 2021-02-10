@@ -27,6 +27,12 @@ export class TableSortComponent implements OnInit,AfterViewInit{
   @Input()
   tname:string="";
 
+  @Input()
+  search_param:string="";
+
+  @Input()
+  search_table:string="";
+
   prodToChange="";
 
   previous: any = [];
