@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CallService } from 'src/app/core/calls/call.service';
 import { HttpcomminicationsService } from 'src/app/core/http-communication/httpcomminications.service';
 
 @Component({
@@ -8,18 +9,16 @@ import { HttpcomminicationsService } from 'src/app/core/http-communication/httpc
 })
 export class ArticoliComponent implements OnInit {
 
-  constructor(private http:HttpcomminicationsService) { }
+  constructor(private http:CallService) { }
 
   article:any;
 
-  ngOnInit(): void {
-    this.loadProd();
-  }
+  ngOnInit(): void { this.loadProd(); }
+
   loadProd(){
-    this.http.getCall("/getProdotti").subscribe(res=>{
-      this.article=res;
+    this.http.getTable("prodotti").subscribe(res=>{
+      this.article = res
     })
-   
   }
 
 }
