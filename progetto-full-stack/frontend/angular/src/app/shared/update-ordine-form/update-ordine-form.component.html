@@ -1,0 +1,24 @@
+<form [formGroup]="form" (ngSubmit)="change()">
+  <div class="md-form">
+    <input type="text" class="form-control" id="basicExample" formControlName="ordine" mdbInput>
+    <label for="basicExample">Ordine:</label>
+  </div>
+  <div class="md-form">
+    <input type="text" class="form-control" id="basicExample" formControlName="data" mdbInput>
+    <label>Data:</label>
+  </div>
+  <div class="md-form">
+    <input type="text" class="form-control" id="basicExample" formControlName="cliente" mdbInput>
+    <label>Cliente:</label>
+  </div>
+  <div class="md-form">
+    <input type="text" class="form-control" id="basicExample" formControlName="totale" mdbInput>
+    <label>Totale:</label>
+  </div>
+
+    <p>
+        <button mdbBtn type="sumbit" color="primary" [disabled]="!form.valid" mdbWavesEffect>
+          <mdb-icon fas icon="magic" class="mr-1"></mdb-icon> Modifica
+        </button>
+    </p>
+</form>

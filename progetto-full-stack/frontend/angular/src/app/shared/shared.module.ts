@@ -8,8 +8,9 @@ import { UpdateProdFormComponent } from './update-prod-form/update-prod-form.com
 import { TableComponent } from './table/table.component';
 import { InsertFormComponent } from './insert-form/insert-form.component';
 import { UpdateClientFormComponent } from './update-client-form/update-client-form.component';
+import { UpdateOrdineFormComponent } from './update-ordine-form/update-ordine-form.component';
 @NgModule({
-  declarations: [TableSortComponent, UpdateProdFormComponent, TableComponent, InsertFormComponent, UpdateClientFormComponent],
+  declarations: [TableSortComponent, UpdateProdFormComponent, TableComponent, InsertFormComponent, UpdateClientFormComponent, UpdateOrdineFormComponent],
   imports: [
     CommonModule,
     MDBBootstrapModulesPro.forRoot(),

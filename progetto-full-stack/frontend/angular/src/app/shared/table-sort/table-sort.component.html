@@ -60,7 +60,7 @@
                 </ng-container>
                 <ng-container *ngIf="tname=='ordini'">
                     <section class="sample-app-content">
-                        <app-update-client-form [campi]="headElements" [cliente]="ordToChange" (submitEvent)="change($event)"></app-update-client-form>
+                        <app-update-ordine-form [campi]="headElements" [ordine]="ordToChange" (submitEvent)="change($event)"></app-update-ordine-form>
                     </section>
                 </ng-container>
             </div>
