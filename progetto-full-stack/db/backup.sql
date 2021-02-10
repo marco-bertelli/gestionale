@@ -122,7 +122,9 @@ DROP TABLE IF EXISTS `categorie`;
 CREATE TABLE `categorie` (
   `id` int(11) NOT NULL,
   `descrizione` varchar(64) NOT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  KEY `test` (`descrizione`),
+  FULLTEXT KEY `descrizione` (`descrizione`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -132,8 +134,87 @@ CREATE TABLE `categorie` (
 
 LOCK TABLES `categorie` WRITE;
 /*!40000 ALTER TABLE `categorie` DISABLE KEYS */;
-INSERT INTO `categorie` VALUES (1,'cat1'),(3,'cat3');
+INSERT INTO `categorie` VALUES (1,'cat1'),(3,'cat3'),(2,'prova'),(4,'prova con altra parola');
 /*!40000 ALTER TABLE `categorie` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `citta`
+--
+
+DROP TABLE IF EXISTS `citta`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `citta` (
+  `id` int(11) NOT NULL,
+  `descrizione` varchar(32) NOT NULL,
+  PRIMARY KEY (`id`),
+  FULLTEXT KEY `descrizione` (`descrizione`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `citta`
+--
+
+LOCK TABLES `citta` WRITE;
+/*!40000 ALTER TABLE `citta` DISABLE KEYS */;
+INSERT INTO `citta` VALUES (1,'prova'),(2,'brescia');
+/*!40000 ALTER TABLE `citta` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `clienti`
+--
+
+DROP TABLE IF EXISTS `clienti`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `clienti` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `codice` varchar(32) NOT NULL,
+  `ragione_sociale` varchar(50) NOT NULL,
+  `indirizzo` varchar(50) NOT NULL,
+  `citta` varchar(50) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `clienti`
+--
+
+LOCK TABLES `clienti` WRITE;
+/*!40000 ALTER TABLE `clienti` DISABLE KEYS */;
+INSERT INTO `clienti` VALUES (1,'AA1','ses','cazzo','brescia'),(2,'BB2','azienda1','Darfo Boari','BS'),(3,'AA3','siiis','asddas','BS');
+/*!40000 ALTER TABLE `clienti` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `ordini`
+--
+
+DROP TABLE IF EXISTS `ordini`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `ordini` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `ordine` varchar(32) NOT NULL,
+  `data` date NOT NULL,
+  `cliente` int(11) NOT NULL,
+  `totale` double NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `ordini`
+--
+
+LOCK TABLES `ordini` WRITE;
+/*!40000 ALTER TABLE `ordini` DISABLE KEYS */;
+INSERT INTO `ordini` VALUES (1,'AB123','2020-02-04',12,167.4),(2,'AC123','2020-02-01',1,114.7);
+/*!40000 ALTER TABLE `ordini` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -160,7 +241,7 @@ CREATE TABLE `prodotti` (
 
 LOCK TABLES `prodotti` WRITE;
 /*!40000 ALTER TABLE `prodotti` DISABLE KEYS */;
-INSERT INTO `prodotti` VALUES (1,'EA230','cambiatoasdasd','sis','3',22.7),(2,'EA239','prod2','prodotto secondario','1',20);
+INSERT INTO `prodotti` VALUES (1,'EA230','cambiatoasdasd','sis','1',22.7),(2,'EA239','prod2','prodotto secondario','1',20);
 /*!40000 ALTER TABLE `prodotti` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;

@@ -111,6 +111,81 @@ else{
 }
 });
 
+app.put('/change', (req, res) => {
+
+  let table = req.query.table;
+
+  let campi=[];
+
+  for(var key in req.body) {
+    if(req.body.hasOwnProperty(key)){
+      campi.push(key);
+    }
+  }
+
+  let valori =[];
+
+  for(var key in req.body) {
+    if(req.body.hasOwnProperty(key)){
+      valori.push(req.body[key]);
+    }
+  }
+
+  let str = '';
+
+  for (let i = 0; i < campi.length; i++) {
+    if(i==(campi.length-1)){
+      str = str + campi[i]+" ='"+valori[i]+"' ";
+    }
+    else str = str + campi[i]+" ='"+valori[i]+"', ";
+  }
+
+  //riconosce se c'è il codice o meno 
+  
+  if(req.body.hasOwnProperty("codice") ){
+  pool.query("SELECT * FROM "+table+" where codice='"+req.body.codice+"'", (err, results) => {
+    if (results.length==0) { 
+      res.send("attenzione non è possibile cambiare il codice");
+    } 
+    else {
+      pool.query("UPDATE "+table+" SET "+str+" WHERE codice = '"+req.body.codice+"'", (err, results) => {
+        if (err) {
+          return res.send(err);
+        } else {
+          return res.send(results);
+        }
+      });
+      
+    }
+  });
+}
+//in caso non ci sia controlla l'id 
+else{
+  if(req.body.hasOwnProperty("id")){
+    pool.query("SELECT * FROM "+table+" where id='"+req.body.id+"'", (err, results) => {
+      if (results.length==0) { 
+        res.send("attenzione non è possibile inserire due codici prodotto uguali");
+      } 
+      else {
+        pool.query("UPDATE "+table+" SET "+str+" WHERE id = "+req.body.id+"", (err, results) => {
+          if (err) {
+            return res.send(err);
+          } else {
+            return res.send(results);
+          }
+        });
+       
+      }
+    });
+  }
+  else{
+    //da aggiungere in caso non abbia controlli
+  }
+  
+}
+
+});
+
 app.post('/delete', (req, res) => {
 
   let table = req.query.table;
@@ -126,49 +201,17 @@ app.post('/delete', (req, res) => {
 
 
 
-app.put('/changeProdotti', (req, res) => {
-  
-  pool.query("SELECT * FROM prodotti where codice='"+req.body.codice+"'", (err, results) => {
-    if (results.length==0) { 
-      res.send("attenzione non è possibile cambiare il codice prodotto");
-    } else {
-      pool.query("UPDATE prodotti SET nome = '"+req.body.nome+"', codice='"+req.body.codice+"',descrizione='"+req.body.descrizione+"',categoria='"+req.body.categoria+"',prezzo='"+req.body.prezzo+"' WHERE codice = '"+req.body.codice+"'", (err, results) => {
-        if (err) {
-          return res.send(err);
-        } else {
-          return res.send(results);
-        }
-      });
-    }
-  });
-});
-
-app.put('/changeClienti', (req, res) => {
-  
-  pool.query("SELECT * FROM clienti where codice='"+req.body.codice+"'", (err, results) => {
-    if (results.length==0) { 
-      res.send("attenzione non è possibile cambiare il codice prodotto");
-    } else {
-      pool.query("UPDATE clienti SET codice = '"+req.body.codice+"',ragione_sociale = '"+req.body.ragione_sociale+"',indirizzo='"+req.body.indirizzo+"',citta='"+req.body.citta+"' WHERE codice = '"+req.body.codice+"'", (err, results) => {
-        if (err) {
-          return res.send(err);
-        } else {
-          return res.send(results);
-        }
-      });
-    }
-  });
-});
 
 app.get('/search', (req, res) => {
 
   let table = req.query.table;
+
   let string= req.query.string;
   //non solo fulltext ma anche su un campo aggiuntivo *da migliorare con un array di campi*
   let addCamp = req.query.addCamp;
 
   
-  pool.query( "SELECT * FROM "+table+" WHERE id LIKE '%'"+string+"'%' or descrizione LIKE '%'"+string+"'%'", (err, results) => {
+  pool.query("SELECT * FROM "+table+" WHERE id LIKE '%'"+string+"'%' or descrizione LIKE '%'"+string+"'%'", (err, results) => {
     if (err) {
       return res.send(err);
     } else {

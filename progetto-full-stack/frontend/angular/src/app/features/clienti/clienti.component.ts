@@ -11,16 +11,16 @@ export class ClientiComponent implements OnInit {
 
   constructor(private http:CallService) { }
 
-  client:any;
+  clienti:any;
 
   ngOnInit(): void {
-    this.loadClient()
+    this.loadProd();
   }
-
-  loadClient(){
+  loadProd(){
     this.http.getTable("clienti").subscribe(res=>{
-      this.client = res
+      this.clienti=res;
     })
+
   }
 
 }

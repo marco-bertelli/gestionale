@@ -1,6 +1,5 @@
 import { AfterViewInit, ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
 import { MdbTableDirective, MdbTablePaginationComponent, ToastService } from 'ng-uikit-pro-standard';
 import { CallService } from 'src/app/core/calls/call.service';
 
@@ -28,8 +27,13 @@ export class TableSortComponent implements OnInit,AfterViewInit{
   @Input()
   tname:string="";
 
+  @Input()
+  search_param:string="";
+
+  @Input()
+  search_table:string="";
+
   prodToChange="";
-  clientToChange="";
 
   previous: any = [];
 
@@ -41,11 +45,11 @@ export class TableSortComponent implements OnInit,AfterViewInit{
     "password": new FormControl("", Validators.required),
 });
 
-  constructor(private cdRef: ChangeDetectorRef,private call:CallService,private toast: ToastService, private router:Router) {  }
+  constructor(private cdRef: ChangeDetectorRef,private call:CallService,private toast: ToastService) {  }
 
   ngOnInit() {
-    // console.log(this.elements);
-    // console.log(this.tname);
+    console.log(this.elements)
+
 
     this.mdbTable.setDataSource(this.elements);
     this.elements = this.mdbTable.getDataSource();
@@ -55,49 +59,33 @@ export class TableSortComponent implements OnInit,AfterViewInit{
 
   ngAfterViewInit() {
     this.mdbTablePagination.setMaxVisibleItemsNumberTo(5);
+
     this.mdbTablePagination.calculateFirstItemIndex();
     this.mdbTablePagination.calculateLastItemIndex();
     this.cdRef.detectChanges();
   }
-
   delete(el:string){
+
     this.call.deleteCall(el,this.tname).subscribe(res=>{
+
       this.update();
     });
-  }
 
+  }
   change(element:string){
-    if(this.tname == 'prodotti'){
-      this.call.updateProd(element).subscribe(res=>{
-        //mettere gestione di notifica
-        console.log(res)
-        if(res.affectedRows==1)  this.toast.success('prodotto modificato');
-        else this.toast.error('errore interno '+ res);
+    console.log(element)
+    this.call.updateProd(element,this.tname).subscribe(res=>{
+      //mettere gestione di notifica
+      console.log(res)
+      if(res.affectedRows==1)  this.toast.success('Modifica avvenuta con successo!');
+      else this.toast.error('errore interno '+ res);
 
-        this.changeEvent.emit();
-      });
-    }
+      this.changeEvent.emit();
+    });
 
-    if(this.tname == 'clienti'){
-      console.log(element)
-      this.call.updateClient(element).subscribe(res=>{
-        //mettere gestione di notifica
-        console.log(res)
-        if(res.affectedRows==1)  this.toast.success('cliente modificato');
-        else this.toast.error('errore interno '+ res);
-
-        this.changeEvent.emit();
-      });
-    }
-
-    this.update();
   }
-
   changeP(el:string){
-    if(this.tname == 'prodotti')
-      this.prodToChange=el;
-    if(this.tname == 'clienti')
-      this.clientToChange=el
+    this.prodToChange=el;
   }
 
   update(){
@@ -110,7 +98,6 @@ export class TableSortComponent implements OnInit,AfterViewInit{
       console.log(res)
       this.update();
     });
-
   }
 
 

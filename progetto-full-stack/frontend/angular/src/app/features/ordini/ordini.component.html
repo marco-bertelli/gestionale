@@ -1,0 +1,5 @@
+<main>
+    <div class="container" *ngIf="ordini">
+        <app-table-sort [elements]="ordini" search_table="clienti" search_param="cliente" tname="ordini" [headElements]="['id', 'ordine', 'data', 'cliente', 'totale']" (changeEvent)="loadProd()"></app-table-sort>
+    </div>
+</main>

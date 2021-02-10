@@ -8,18 +8,13 @@ export class CallService {
 
   constructor(private http: HttpcomminicationsService) { }
 
-  public updateProd(prod:string){
-    return this.http.putCall("/changeProdotti",prod);
-  }
-
-  public updateClient(client:string){
-    return this.http.putCall("/changeClienti",client);
+  public updateProd(prod:string,tname:string){
+    return this.http.putCall("/change?table="+tname,prod);
   }
 
   getTable(tname:string){
     return this.http.getCall("/getTable?table="+tname);
   }
-
   search(option:string,value:string){
     return this.http.getCall("/search"+option+'&string="'+value+'"');
   }
