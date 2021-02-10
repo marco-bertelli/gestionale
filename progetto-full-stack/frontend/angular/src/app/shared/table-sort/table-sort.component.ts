@@ -30,6 +30,7 @@ export class TableSortComponent implements OnInit,AfterViewInit{
 
   prodToChange="";
   clientToChange="";
+  ordToChange="";
 
   previous: any = [];
 
@@ -50,7 +51,6 @@ export class TableSortComponent implements OnInit,AfterViewInit{
     this.mdbTable.setDataSource(this.elements);
     this.elements = this.mdbTable.getDataSource();
     this.previous = this.mdbTable.getDataSource();
-
   }
 
   ngAfterViewInit() {
@@ -90,6 +90,18 @@ export class TableSortComponent implements OnInit,AfterViewInit{
       });
     }
 
+    if(this.tname == 'ordini'){
+      console.log(element)
+      this.call.updateOrdine(element).subscribe(res=>{
+        //mettere gestione di notifica
+        console.log(res)
+        if(res.affectedRows==1)  this.toast.success('ordine modificato');
+        else this.toast.error('errore interno '+ res);
+
+        this.changeEvent.emit();
+      });
+    }
+
     this.update();
   }
 
@@ -97,6 +109,8 @@ export class TableSortComponent implements OnInit,AfterViewInit{
     if(this.tname == 'prodotti')
       this.prodToChange=el;
     if(this.tname == 'clienti')
+      this.clientToChange=el;
+    if(this.tname == 'ordini')
       this.clientToChange=el
   }
 

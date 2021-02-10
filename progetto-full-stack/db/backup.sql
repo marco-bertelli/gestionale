@@ -122,7 +122,8 @@ DROP TABLE IF EXISTS `categorie`;
 CREATE TABLE `categorie` (
   `id` int(11) NOT NULL,
   `descrizione` varchar(64) NOT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  KEY `test` (`descrizione`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -160,7 +161,7 @@ CREATE TABLE `prodotti` (
 
 LOCK TABLES `prodotti` WRITE;
 /*!40000 ALTER TABLE `prodotti` DISABLE KEYS */;
-INSERT INTO `prodotti` VALUES (1,'EA230','cambiatoasdasd','sis','3',22.7),(2,'EA239','prod2','prodotto secondario','1',20);
+INSERT INTO `prodotti` VALUES (1,'EA230','cambiatoasdasd','sis','1',22.7),(2,'EA239','prod2','prodotto secondario','1',20);
 /*!40000 ALTER TABLE `prodotti` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -228,3 +229,23 @@ LOCK TABLES `citta` WRITE;
 INSERT INTO `citta` VALUES (1,'Bergamo','BG'),(2,'Brescia','BS'),(3,'Sondrio','SO');
 /*!40000 ALTER TABLE `citta` ENABLE KEYS */;
 UNLOCK TABLES;
+DROP TABLE IF EXISTS `ordini`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `ordini` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `ordine` varchar(32) NOT NULL,
+  `data` date NOT NULL,
+  `cliente` int(11) NOT NULL,
+  `totale` double NOT NULL,
+  PRIMARY KEY (`id`)
+  /*ADD CONSTRAINT `ordini_clienti_id_foreign` FOREIGN KEY (`cliente`) REFERENCES clienti(`id`) ON DELETE CASCADE;*/
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+LOCK TABLES `ordini` WRITE;
+/*!40000 ALTER TABLE `ordini` DISABLE KEYS */;
+INSERT INTO `ordini` VALUES (1,'AB123','2020-02-04',2,167.4),(2,'AC123','2020-02-01',1,114.7);
+/*!40000 ALTER TABLE `ordini` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
