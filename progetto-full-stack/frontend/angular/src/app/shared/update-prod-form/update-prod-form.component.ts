@@ -39,7 +39,7 @@ export class UpdateProdFormComponent implements OnInit {
       this.category=res;
     });
     
-    console.log(this.search_param)
+    
 
     this.campi.forEach((res: string)=> {
       this.form.addControl(
@@ -61,7 +61,8 @@ ngOnChanges(changes: SimpleChanges) {
   });
     
 }
-change(){console.log(this.form.value)
+change(){
+  
   this.submitEvent.emit(this.form.value)
 }
 

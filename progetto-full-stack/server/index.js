@@ -21,9 +21,11 @@ app.listen(process.env.ANGULAR_APP_SERVER_PORT, () => {
 });
 
 
-app.get('/getProdotti', (req, res) => {
+app.get('/getTable', (req, res) => {
 
-  pool.query(`select * from prodotti`, (err, results) => {
+  let table = req.query.table;
+
+  pool.query("select * from "+table, (err, results) => {
     if (err) {
       return res.send(err);
     } else {
@@ -32,11 +34,13 @@ app.get('/getProdotti', (req, res) => {
   });
 });
 
-app.get('/getTable', (req, res) => {
+app.get('/getSingolo', (req, res) => {
 
   let table = req.query.table;
 
-  pool.query("select * from "+table, (err, results) => {
+  let codice = req.query.codice;
+
+  pool.query("select * from "+table+" WHERE codice ='"+codice+"'", (err, results) => {
     if (err) {
       return res.send(err);
     } else {
@@ -119,7 +123,7 @@ app.put('/change', (req, res) => {
 
   for(var key in req.body) {
     if(req.body.hasOwnProperty(key)){
-      campi.push(key);
+      if(key!='DocLine') campi.push(key);
     }
   }
 
@@ -127,7 +131,7 @@ app.put('/change', (req, res) => {
 
   for(var key in req.body) {
     if(req.body.hasOwnProperty(key)){
-      valori.push(req.body[key]);
+      if(key!='DocLine')  valori.push(req.body[key]);
     }
   }
 
@@ -140,6 +144,24 @@ app.put('/change', (req, res) => {
     else str = str + campi[i]+" ='"+valori[i]+"', ";
   }
 
+  if(req.body.hasOwnProperty("DocLine") ){
+    pool.query("SELECT * FROM "+table+" where DocLine='"+req.body.DocLine+"'", (err, results) => {
+      if (results.length==0) { 
+        res.send("attenzione non è possibile cambiare il DocLine");
+      } 
+      else {
+        pool.query("UPDATE "+table+" SET "+str+" WHERE DocLine = "+req.body.DocLine+"", (err, results) => {
+          if (err) {
+            return res.send(err);
+          } else {
+            return res.send(results);
+          }
+        });
+        
+      }
+    });
+  }
+  else{
   //riconosce se c'è il codice o meno 
   
   if(req.body.hasOwnProperty("codice") ){
@@ -182,7 +204,7 @@ else{
     //da aggiungere in caso non abbia controlli
   }
   
-}
+}}
 
 });
 

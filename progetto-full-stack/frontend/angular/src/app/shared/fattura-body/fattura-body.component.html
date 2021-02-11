@@ -33,8 +33,8 @@
 
     
   <div mdbModal #frame="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-fluid" role="document">
-      <div class="modal-content">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content modal-sm">
         <div class="modal-header">
           <button type="button" class="close pull-right" aria-label="Close" (click)="frame.hide()">
             <span aria-hidden="true">×</span>
@@ -46,10 +46,7 @@
           <section class="sample-app-content" *ngIf="tname!='DocMaster'">
             <app-update-prod-form [search_table]="search_table" [campi]="headElements" [search_param]="search_param" [prodotto]="prodToChange" (submitEvent)="change($event)"></app-update-prod-form>
           </section>
-          <!--update specifico per form-->
-          <section class="sample-app-content" *ngIf="tname=='DocMaster'">
-            <app-update-fatture-form  *ngIf="prodToChange" [campi]="headElements" [search_param]="search_param" [prodotto]="prodToChange" (submitEvent)="change($event)"></app-update-fatture-form>
-          </section>
+          
         </div>
       </div>
     </div>
@@ -71,3 +68,4 @@
         </div>
     </div >
 </div >
+
