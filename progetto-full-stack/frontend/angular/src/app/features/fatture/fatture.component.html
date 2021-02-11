@@ -1,0 +1,5 @@
+<main>
+    <div class="container" *ngIf="fatture">
+        <app-table-sort [elements]="fatture" tname="DocMaster" [headElements]="['Customer', 'DocDate', 'codice', 'DocumentType', 'PaymentCondition','PriceList']" (changeEvent)="loadProd()"></app-table-sort>
+    </div>
+</main>
