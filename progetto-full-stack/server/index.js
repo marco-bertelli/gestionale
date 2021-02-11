@@ -2,6 +2,8 @@ const cors = require('cors');
 const express = require('express');
 const mysql = require('mysql');
 
+var get = require('./get');
+
 const app = express();
 
 const pool = mysql.createPool({
@@ -20,19 +22,8 @@ app.listen(process.env.ANGULAR_APP_SERVER_PORT, () => {
   console.log(`App server now listening on port ${process.env.REACT_APP_SERVER_PORT}`);
 });
 
+app.get('/getTable',get.getTable);
 
-app.get('/getTable', (req, res) => {
-
-  let table = req.query.table;
-
-  pool.query("select * from "+table, (err, results) => {
-    if (err) {
-      return res.send(err);
-    } else {
-      return res.send(results);
-    }
-  });
-});
 
 app.get('/getSingolo', (req, res) => {
 
