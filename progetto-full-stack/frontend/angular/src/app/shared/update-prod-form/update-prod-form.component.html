@@ -30,7 +30,7 @@
                 <h4 class="modal-title w-100" id="myModalLabel">{{search_param | titlecase}}</h4>
             </div>
             <div class="modal-body">
-              <app-table (categoryEvent)="changeCategory($event)" (updateEvent)="Update()" [tname]="search_table" *ngIf="category" [elements]="category" [searchOption]="'?table='+search_table+'&addCamp=id'" [headElements]="['id','descrizione']"></app-table>
+              <app-table (categoryEvent)="changeCategory($event)" (click)="basicModal.hide()" (updateEvent)="Update()" [tname]="search_table" *ngIf="category" [elements]="category" [searchOption]="'?table='+search_table+'&addCamp=id'" [headElements]="['id','descrizione']"></app-table>
             </div>
         </div>
     </div >

@@ -1,5 +1,6 @@
 import { AfterViewInit, ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { MdbTableDirective, MdbTablePaginationComponent, ToastService } from 'ng-uikit-pro-standard';
 import { CallService } from 'src/app/core/calls/call.service';
 
@@ -45,7 +46,7 @@ export class TableSortComponent implements OnInit,AfterViewInit{
     "password": new FormControl("", Validators.required),
 });
 
-  constructor(private cdRef: ChangeDetectorRef,private call:CallService,private toast: ToastService) {  }
+  constructor(private cdRef: ChangeDetectorRef,private call:CallService,private toast: ToastService, private router:Router) {  }
 
   ngOnInit() {
     console.log(this.elements)
@@ -77,10 +78,11 @@ export class TableSortComponent implements OnInit,AfterViewInit{
     this.call.updateProd(element,this.tname).subscribe(res=>{
       //mettere gestione di notifica
       console.log(res)
-      if(res.affectedRows==1)  this.toast.success('Modifica avvenuta con successo!');
+      if(res.affectedRows==1) this.toast.success('Modifica avvenuta con successo!');
       else this.toast.error('errore interno '+ res);
 
-      this.changeEvent.emit();
+      window.location.reload();
+
     });
 
   }

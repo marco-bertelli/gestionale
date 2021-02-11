@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output, SimpleChanges } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { CallService } from 'src/app/core/calls/call.service';
 
 @Component({
@@ -31,7 +32,7 @@ export class UpdateProdFormComponent implements OnInit {
 
 });
 
-  constructor(private http:CallService) { }
+  constructor(private http:CallService, private router:Router) { }
 
   ngOnInit(): void {
 

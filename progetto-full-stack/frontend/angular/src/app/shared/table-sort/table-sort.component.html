@@ -39,7 +39,7 @@
         <button type="button" class="close pull-right" aria-label="Close" (click)="frame.hide()">
           <span aria-hidden="true">×</span>
         </button>
-        <h4 class="modal-title w-100" id="myModalLabel">Modifica {{tname}}</h4>
+        <h4 class="modal-title w-100" id="myModalLabel" (click)="frame.hide()">Modifica {{tname}}</h4>
       </div>
       <div class="modal-body">
         <section class="sample-app-content">
@@ -61,7 +61,7 @@
               <h4 class="modal-title w-100" id="myModalLabel">Inserisci</h4>
           </div>
           <div class="modal-body">
-            <app-insert-form [campi]="headElements" [tname]="tname" (submitEvent)="insert($event)"></app-insert-form>
+            <app-insert-form [campi]="headElements" [tname]="tname" (submitEvent)="insert($event)" (click)="basicModal.hide()"></app-insert-form>
           </div>
       </div>
   </div >
