@@ -67,7 +67,6 @@ export class TableSortComponent implements OnInit,AfterViewInit{
   delete(el:string){
  
     this.call.deleteCall(el,this.tname).subscribe(res=>{
-     
       this.update();
     });
     
@@ -95,7 +94,6 @@ export class TableSortComponent implements OnInit,AfterViewInit{
   insert(event:string){
     console.log("eseguo insert")
     this.call.insertCall(event,this.tname).subscribe(res=>{
-      console.log(res)
       this.update();
     });
   }

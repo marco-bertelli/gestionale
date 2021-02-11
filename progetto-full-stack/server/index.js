@@ -189,14 +189,23 @@ else{
 app.post('/delete', (req, res) => {
 
   let table = req.query.table;
-
-  pool.query("DELETE FROM "+table+" WHERE id="+req.body.id, (err, results) => {
+if(req.body.hasOwnProperty("id")){
+    pool.query("DELETE FROM "+table+" WHERE id="+req.body.id, (err, results) => {
+      if (err) {
+        return res.send(err);
+      } else {
+        return res.send(results);
+      }
+    });
+}else{
+  pool.query("DELETE FROM "+table+" WHERE codice='"+req.body.codice+"'", (err, results) => {
     if (err) {
       return res.send(err);
     } else {
       return res.send(results);
     }
   });
+}
 });
 
 
