@@ -1,11 +1,13 @@
-<table mdbTable #tableEl="mdbTable" class="z-depth-1 table-striped table-hover table-sm">
+<table mdbTable #tableEl="mdbTable" class="z-depth-1 table-striped table-hover table-sm align-middle">
     <thead>
     <tr>
         <th *ngFor="let head of headElements; let i = index" aria-controls="tableSortExample" scope="col" [mdbTableSort]="elements" [sortBy]="headElements[i]">{{head | titlecase}}
             <mdb-icon fas icon="sort"></mdb-icon>
-        <th><a mdbBtn (click)="basicModal.show()" [floating]="true" size="xs" gradient="blue" mdbWavesEffect>
-          <mdb-icon fas icon="plus" class="fa-xs"></mdb-icon>
-        </a></th>
+        <th><div class="theader">
+          <a mdbBtn (click)="basicModal.show()" size="sm" class="btn-light" mdbWavesEffect>
+            <mdb-icon fas icon="plus" class="fa-md"></mdb-icon>
+          </a>
+        </div></th>
     </tr>
     </thead>
     <tbody>
@@ -20,10 +22,10 @@
       </td>
     </tr>
     </tbody>
-    <tfoot class="grey lighten-5 w-100">
+    <tfoot class="grey lighten-5 fixed">
     <tr>
-      <td colspan="7">
-        <mdb-table-pagination [tableEl]="tableEl" [searchDataSource]="elements"></mdb-table-pagination>
+      <td id="footsize" colspan="7">
+        <mdb-table-pagination [tableEl]="tableEl" [searchDataSource]="elements" class="foot"></mdb-table-pagination>
       </td>
     </tr>
     </tfoot>
