@@ -24,4 +24,8 @@ export class CallService {
   deleteCall(body:any,table:string){
     return this.http.postCall("/delete?table="+table,body);
   }
+
+  getSingolo(table:string,codice:string){
+    return this.http.getCall("/getSingolo?table="+table+"&codice="+codice);
+  }
 }

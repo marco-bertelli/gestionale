@@ -33,18 +33,23 @@
 
 
 <div mdbModal #frame="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
+  <div class="modal-dialog modal-fluid" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close pull-right" aria-label="Close" (click)="frame.hide()">
           <span aria-hidden="true">×</span>
         </button>
-        <h4 class="modal-title w-100" id="myModalLabel" (click)="frame.hide()">Modifica {{tname}}</h4>
+        <h4 class="modal-title w-100" id="myModalLabel">Modifica {{tname}}</h4>
       </div>
       <div class="modal-body">
-        <section class="sample-app-content">
+        <!--update per qualsiasi cosa non sia una fattura-->
+        <section class="sample-app-content" *ngIf="tname!='DocMaster'">
           <app-update-prod-form [search_table]="search_table" [campi]="headElements" [search_param]="search_param" [prodotto]="prodToChange" (submitEvent)="change($event)"></app-update-prod-form>
-      </section>
+        </section>
+        <!--update specifico per form-->
+        <section class="sample-app-content" *ngIf="tname=='DocMaster'">
+          <app-update-fatture-form  *ngIf="prodToChange" [campi]="headElements" [search_param]="search_param" [prodotto]="prodToChange" (submitEvent)="change($event)"></app-update-fatture-form>
+        </section>
       </div>
     </div>
   </div>
@@ -61,7 +66,7 @@
               <h4 class="modal-title w-100" id="myModalLabel">Inserisci</h4>
           </div>
           <div class="modal-body">
-            <app-insert-form [campi]="headElements" [tname]="tname" (submitEvent)="insert($event)" (click)="basicModal.hide()"></app-insert-form>
+            <app-insert-form [campi]="headElements" [tname]="tname" (submitEvent)="insert($event)"></app-insert-form>
           </div>
       </div>
   </div >

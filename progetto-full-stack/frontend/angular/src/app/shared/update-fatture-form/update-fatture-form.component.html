@@ -1,0 +1,34 @@
+<mdb-tabset #staticTabs [buttonClass]="'md-tabs tabs-3'" [contentClass]="'card'">
+    <!--Panel 1-->
+    <mdb-tab heading="Testa">
+      <div class="row">
+        <div class="col-12">
+            <app-update-prod-form [search_table]="search_table" [campi]="campi" [search_param]="search_param" [prodotto]="prodotto" (submitEvent)="setheader($event)"></app-update-prod-form>
+        </div>
+      </div>
+    </mdb-tab>
+    <!--Panel 2-->
+    <mdb-tab heading="Body">
+      <div class="row">
+        <div class="col-12">
+            <main>
+                <div class="container" *ngIf="body">
+                    <app-fattura-body [elements]="body" tname="DocDetail" [headElements]="['DocLine','codice','Item','LineType','LineDescription','UnitOfMeasure']" (changeEvent)="loadBody()"></app-fattura-body>
+                </div>
+            </main>
+        </div>
+      </div>
+    </mdb-tab>
+    <!--Panel 3-->
+    <mdb-tab heading="Coda">
+      <div class="row">
+        <div class="col-12">
+          <br>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil odit magnam minima, soluta doloribus
+            reiciendis molestiae placeat unde eos molestias. Quisquam aperiam, pariatur. Tempora, placeat ratione
+            porro voluptate odit minima.</p>
+        </div>
+      </div>
+    </mdb-tab>
+  </mdb-tabset>
+  

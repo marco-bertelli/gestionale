@@ -1,15 +1,15 @@
+
 import { AfterViewInit, ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MdbTableDirective, MdbTablePaginationComponent, ToastService } from 'ng-uikit-pro-standard';
 import { CallService } from 'src/app/core/calls/call.service';
 
-
 @Component({
-  selector: 'app-table-sort',
-  templateUrl: './table-sort.component.html',
-  styleUrls: ['./table-sort.component.scss']
+  selector: 'app-fattura-body',
+  templateUrl: './fattura-body.component.html',
+  styleUrls: ['./fattura-body.component.scss']
 })
-export class TableSortComponent implements OnInit,AfterViewInit{
+export class FatturaBodyComponent implements OnInit {
 
   @ViewChild(MdbTablePaginationComponent, { static: true })
   mdbTablePagination!: MdbTablePaginationComponent;
@@ -49,7 +49,7 @@ export class TableSortComponent implements OnInit,AfterViewInit{
 
   ngOnInit() {
     console.log(this.elements)
-
+   
 
     this.mdbTable.setDataSource(this.elements);
     this.elements = this.mdbTable.getDataSource();
@@ -65,11 +65,11 @@ export class TableSortComponent implements OnInit,AfterViewInit{
     this.cdRef.detectChanges();
   }
   delete(el:string){
-
+ 
     this.call.deleteCall(el,this.tname).subscribe(res=>{
       this.update();
     });
-
+    
   }
   change(element:string){
     console.log(element)
@@ -78,10 +78,10 @@ export class TableSortComponent implements OnInit,AfterViewInit{
       console.log(res)
       if(res.affectedRows==1)  this.toast.success('prodotto modificato');
       else this.toast.error('errore interno '+ res);
-
+     
       this.changeEvent.emit();
     });
-
+    
   }
   changeP(el:string){
     this.prodToChange=el;
@@ -97,6 +97,5 @@ export class TableSortComponent implements OnInit,AfterViewInit{
       this.update();
     });
   }
-
 
 }

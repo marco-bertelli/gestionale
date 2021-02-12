@@ -62,11 +62,11 @@ DROP TABLE IF EXISTS `DocMaster`;
 CREATE TABLE `DocMaster` (
   `Customer` varchar(6) NOT NULL,
   `DocDate` date NOT NULL,
-  `DocId` varchar(10) NOT NULL,
+  `codice` varchar(10) NOT NULL,
   `DocumentType` char(3) NOT NULL,
   `PaymentCondition` varchar(6) NOT NULL,
   `PriceList` varchar(6) NOT NULL,
-  PRIMARY KEY (`DocId`)
+  PRIMARY KEY (`codice`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -76,7 +76,7 @@ CREATE TABLE `DocMaster` (
 
 LOCK TABLES `DocMaster` WRITE;
 /*!40000 ALTER TABLE `DocMaster` DISABLE KEYS */;
-INSERT INTO `DocMaster` VALUES ('000002','2021-01-18','21/000001','FAT','CONT','MENO10'),('000003','2021-01-20','21/000002','DDT','RIBA','MENO20'),('000004','2021-01-21','21/000003','FAT','ASS','STAND'),('000001','2021-01-22','21/000004','DDT','BON','STAND');
+INSERT INTO `DocMaster` VALUES ('000002','2021-01-18','000001','SIS','CONT','MENO10'),('000003','2021-01-20','21/000002','DDT','RIBA','MENO20'),('000004','2021-01-21','21/000003','FAT','ASS','STAND'),('000001','2021-01-22','21/000004','DDT','BON','STAND');
 /*!40000 ALTER TABLE `DocMaster` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -204,7 +204,7 @@ CREATE TABLE `ordini` (
   `cliente` int(11) NOT NULL,
   `totale` double NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -213,7 +213,7 @@ CREATE TABLE `ordini` (
 
 LOCK TABLES `ordini` WRITE;
 /*!40000 ALTER TABLE `ordini` DISABLE KEYS */;
-INSERT INTO `ordini` VALUES (1,'AB123','2020-02-04',12,167.4),(2,'AC123','2020-02-01',1,114.7);
+INSERT INTO `ordini` VALUES (1,'AB124','2020-02-04',3,167.5);
 /*!40000 ALTER TABLE `ordini` ENABLE KEYS */;
 UNLOCK TABLES;
 

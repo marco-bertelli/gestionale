@@ -62,7 +62,8 @@ ngOnChanges(changes: SimpleChanges) {
   });
 
 }
-change(){console.log(this.form.value)
+change(){
+
   this.submitEvent.emit(this.form.value)
 }
 

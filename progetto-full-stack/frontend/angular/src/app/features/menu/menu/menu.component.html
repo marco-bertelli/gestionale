@@ -17,37 +17,12 @@
             <mdb-accordion [multiple]="false" aria-multiselectable="false">
 
               <!-- Simple link -->
-              <mdb-accordion-item class="no-collase">
+              <mdb-accordion-item class="no-collase" *ngFor="let item of voci">
                 <mdb-accordion-item-head mdbWavesEffect>
-                  <a routerLink="/home"><mdb-icon far icon="hand-pointer"></mdb-icon> Dashboard</a>
+                  <a [routerLink]="'/'+item"><mdb-icon far icon="hand-pointer"></mdb-icon>{{item}}</a>
                 </mdb-accordion-item-head>
                 <mdb-accordion-item-body></mdb-accordion-item-body>
               </mdb-accordion-item>
-
-              <!-- Simple link -->
-              <mdb-accordion-item class="no-collase">
-                <mdb-accordion-item-head mdbWavesEffect>
-                    <a routerLink="/articoli"><mdb-icon  fas icon="database"></mdb-icon> Articoli</a>
-                </mdb-accordion-item-head>
-                <mdb-accordion-item-body></mdb-accordion-item-body>
-              </mdb-accordion-item>
-
-               <!-- Simple link -->
-               <mdb-accordion-item class="no-collase">
-                <mdb-accordion-item-head mdbWavesEffect>
-                    <a routerLink="/clienti"><mdb-icon fas icon="user"></mdb-icon> Clienti</a>
-                </mdb-accordion-item-head>
-                <mdb-accordion-item-body></mdb-accordion-item-body>
-              </mdb-accordion-item>
-
-               <!-- Simple link -->
-               <mdb-accordion-item class="no-collase">
-                <mdb-accordion-item-head mdbWavesEffect>
-                    <a routerLink="/ordini"><mdb-icon fas icon="box-open"></mdb-icon> Ordini</a>
-                </mdb-accordion-item-head>
-                <mdb-accordion-item-body></mdb-accordion-item-body>
-              </mdb-accordion-item>
-
 
 
             </mdb-accordion>
