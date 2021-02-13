@@ -46,6 +46,15 @@ export class UpdateFattureFormComponent implements OnInit {
     })
   }
 
+  updateBody(event:any){
+    console.log(event)
+    for (let index = 0; index < this.body.length; index++) {
+      if(this.body[index].DocLine===event.DocLine) this.body[index]=event;
+      
+    }
+    console.log(this.body)
+  }
+
   setheader(event:string){
     this.header=event;
     this.staticTabs.setActiveTab(2);

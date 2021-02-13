@@ -25,20 +25,8 @@ app.listen(process.env.ANGULAR_APP_SERVER_PORT, () => {
 app.get('/getTable',get.getTable);
 
 
-app.get('/getSingolo', (req, res) => {
+app.get('/getSingolo',get.getSingolo);
 
-  let table = req.query.table;
-
-  let codice = req.query.codice;
-
-  pool.query("select * from "+table+" WHERE codice ='"+codice+"'", (err, results) => {
-    if (err) {
-      return res.send(err);
-    } else {
-      return res.send(results);
-    }
-  });
-});
 
 app.post('/insert', (req, res) => {
 

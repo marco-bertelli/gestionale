@@ -26,12 +26,13 @@ export class UpdateProdFormComponent implements OnInit {
 
   category:any;
 
-
   form = new FormGroup({
     
 });
 
-  constructor(private http:CallService) { }
+  constructor(private http:CallService) {
+
+   }
 
   ngOnInit(): void {
 
@@ -47,6 +48,10 @@ export class UpdateProdFormComponent implements OnInit {
         new FormControl()
       );
     });
+
+
+      
+  
     
   }
 
@@ -58,8 +63,23 @@ ngOnChanges(changes: SimpleChanges) {
       res,
       new FormControl(this.prodotto[res], Validators.required)
     );
-  });
-    
+
+    this.form.controls[res].valueChanges.subscribe(val=>{
+      this.form.setControl(
+        "NetPrice",
+        new FormControl(this.form.get("Qty")?.value*this.form.get("UnitAmount")?.value, Validators.required)
+      );
+      this.form.setControl(
+        "DiscountAmount",
+        new FormControl((this.form.get("NetPrice")?.value*this.form.get("DiscountFormula")?.value)/100, Validators.required)
+      );
+      this.form.setControl(
+        "TaxableAmount",
+        new FormControl(this.form.get("NetPrice")?.value-this.form.get("DiscountAmount")?.value, Validators.required)
+      );
+     
+    })
+  }); 
 }
 change(){
   

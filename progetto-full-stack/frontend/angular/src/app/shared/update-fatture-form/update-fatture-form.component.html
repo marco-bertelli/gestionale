@@ -13,7 +13,7 @@
         <div class="col-12">
             <main>
                 <div class="container" *ngIf="body">
-                    <app-fattura-body [elements]="body" tname="DocDetail" [headElements]="['DocLine','codice','Item','LineType','LineDescription','UnitOfMeasure']" (changeEvent)="loadBody()"></app-fattura-body>
+                    <app-fattura-body [elements]="body" tname="DocDetail" [headElements]="['DocLine','codice','Item','LineType','LineDescription','UnitOfMeasure','Qty','UnitAmount','DiscountFormula','NetPrice','DiscountAmount','TaxableAmount','TaxCode','AmountOfTaxes','TotalAmount']" (changeEvent)="updateBody($event)"></app-fattura-body>
                 </div>
             </main>
         </div>

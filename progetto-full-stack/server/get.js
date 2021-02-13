@@ -15,6 +15,8 @@ const pool = mysql.createPool({
 
 app.use(cors());
 app.use(bodyParser.json());
+
+
 exports.getTable = function(req, res, next){
     let table = req.query.table;
       
@@ -25,6 +27,20 @@ exports.getTable = function(req, res, next){
             return res.send(results);
           }
         });
+};
+
+exports.getSingolo = function(req, res, next){
+  let table = req.query.table;
+
+  let codice = req.query.codice;
+
+  pool.query("select * from "+table+" WHERE codice ='"+codice+"'", (err, results) => {
+    if (err) {
+      return res.send(err);
+    } else {
+      return res.send(results);
+    }
+  });
 };
       
       
