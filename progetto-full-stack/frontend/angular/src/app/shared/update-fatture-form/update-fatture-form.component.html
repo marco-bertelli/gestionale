@@ -23,10 +23,7 @@
     <mdb-tab heading="Coda">
       <div class="row">
         <div class="col-12">
-          <br>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil odit magnam minima, soluta doloribus
-            reiciendis molestiae placeat unde eos molestias. Quisquam aperiam, pariatur. Tempora, placeat ratione
-            porro voluptate odit minima.</p>
+          <app-update-fatture-coda *ngIf="coda.Codice" [search_table]="search_table" [campi]="campiCoda" [search_param]="search_param" [prodotto]="getCoda()" (submitEvent)="setheader($event)"></app-update-fatture-coda>
         </div>
       </div>
     </mdb-tab>

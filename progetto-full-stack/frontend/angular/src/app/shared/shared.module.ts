@@ -13,8 +13,9 @@ import { TableComponent } from './table/table.component';
 import { InsertFormComponent } from './insert-form/insert-form.component';
 import { UpdateFattureFormComponent } from './update-fatture-form/update-fatture-form.component';
 import { FatturaBodyComponent } from './fattura-body/fattura-body.component';
+import { UpdateFattureCodaComponent } from './update-fatture-coda/update-fatture-coda.component';
 @NgModule({
-  declarations: [TableSortComponent, UpdateProdFormComponent, TableComponent, InsertFormComponent, UpdateFattureFormComponent, FatturaBodyComponent],
+  declarations: [TableSortComponent, UpdateProdFormComponent, TableComponent, InsertFormComponent, UpdateFattureFormComponent, FatturaBodyComponent, UpdateFattureCodaComponent],
   imports: [
     CommonModule,
     MDBBootstrapModulesPro.forRoot(),
@@ -34,7 +35,8 @@ import { FatturaBodyComponent } from './fattura-body/fattura-body.component';
     TableComponent,
     InsertFormComponent,
     UpdateFattureFormComponent,
-    FatturaBodyComponent
+    FatturaBodyComponent,
+    UpdateFattureCodaComponent
     
   ]
 })

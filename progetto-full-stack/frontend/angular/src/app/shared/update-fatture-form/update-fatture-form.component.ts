@@ -35,14 +35,40 @@ export class UpdateFattureFormComponent implements OnInit {
 
   body:any;
 
+  coda:any={
+    "Codice":"",
+    "GoodsAmount":0,
+    "ServiceAmount":0,
+    "RowsDiscount":0,
+    "SummaryDiscount":0,
+    "SummuryDiscountAmount":0,
+    "TotalDiscount":0,
+  };
+
+  campiCoda=[
+    "Codice",
+    "GoodsAmount",
+    "ServiceAmount",
+    "RowsDiscount",
+    "SummaryDiscount",
+    "SummuryDiscountAmount",
+    "TotalDiscount",
+    "TotalTaxableAmount"
+  ]
+
     
   ngOnInit(): void {
-    this.loadBody();
+   this.loadBody();
+
+   this.coda = Object.assign({}, this.coda);
+    
   }
 
   loadBody(){
     this.call.getSingolo("DocDetail",this.prodotto.codice).subscribe(res=>{
       this.body=res;
+      this.createCoda(this.body);
+
     })
   }
 
@@ -52,14 +78,41 @@ export class UpdateFattureFormComponent implements OnInit {
       if(this.body[index].DocLine===event.DocLine) this.body[index]=event;
       
     }
-    console.log(this.body)
+    this.createCoda(this.body)
+
   }
 
   setheader(event:string){
     this.header=event;
     this.staticTabs.setActiveTab(2);
-    console.log(this.header)
+  
   }
+
+  createCoda(body:any){
+    this.coda={
+      "Codice":"",
+      "GoodsAmount":0,
+      "ServiceAmount":0,
+      "RowsDiscount":0,
+      "SummaryDiscount":0,
+      "SummuryDiscountAmount":0,
+      "TotalDiscount":0,
+    };
+    this.coda.Codice=this.prodotto.codice;
+    for (let index = 0; index < this.body.length; index++) {
+      if(this.body[index].LineType==="M") this.coda.GoodsAmount+=body[index].NetPrice;
+      else this.coda.ServiceAmount+=body[index].NetPrice;
+      this.coda.RowsDiscount+=body[index].DiscountAmount;
+    }
+   
+  }
+
+  getCoda(){
+      //soluzione momentanea per input
+      return {...this.coda}
+  
+  }
+
 
 
 }

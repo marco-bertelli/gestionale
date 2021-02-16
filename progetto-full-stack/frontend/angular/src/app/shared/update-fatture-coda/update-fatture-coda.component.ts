@@ -1,13 +1,14 @@
-import { Component, EventEmitter, Input, OnInit, Output, SimpleChanges } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output, SimpleChanges } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { CallService } from 'src/app/core/calls/call.service';
 
+
 @Component({
-  selector: 'app-update-prod-form',
-  templateUrl: './update-prod-form.component.html',
-  styleUrls: ['./update-prod-form.component.scss']
+  selector: 'app-update-fatture-coda',
+  templateUrl: './update-fatture-coda.component.html',
+  styleUrls: ['./update-fatture-coda.component.scss']
 })
-export class UpdateProdFormComponent implements OnInit {
+export class UpdateFattureCodaComponent implements OnInit {
 
   @Input()
   prodotto:any;
@@ -50,15 +51,15 @@ export class UpdateProdFormComponent implements OnInit {
     });
   }
 
-ngOnChanges(changes: SimpleChanges) {
-
+ngOnChanges() {
+  
   this.campi.forEach((res: string)=> {
     //console.log(this.prodotto[res])
     this.form.setControl(
       res,
       new FormControl(this.prodotto[res], Validators.required)
     );
-    if(this.prodotto.NetPrice){
+
     this.form.controls[res].valueChanges.subscribe(val=>{
       this.form.setControl(
         "NetPrice",
@@ -84,7 +85,6 @@ ngOnChanges(changes: SimpleChanges) {
       );
      
     })
-  }
   }); 
 }
 change(){
@@ -106,7 +106,5 @@ changeCategory(id:number){
     );
   
 }
-
-
 
 }
