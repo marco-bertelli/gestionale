@@ -2,7 +2,7 @@
     <thead>
     <tr>
         <th *ngFor="let head of headElements; let i = index" aria-controls="tableSortExample" scope="col" [mdbTableSort]="elements" [sortBy]="headElements[i]">{{head | titlecase}}
-            <mdb-icon fas icon="sort"></mdb-icon>
+            <mdb-icon fas icon="sort" id="icon-sort"></mdb-icon>
         <th>
           <div id="addIcon">
             <a mdbBtn (click)="basicModal.show()" size="sm" id="add">
@@ -24,15 +24,11 @@
       </td>
     </tr>
     </tbody>
-    <tfoot class="grey lighten-5 w-100">
-    <tr>
-      <td colspan="7">
-        <div id="footer-label">
-          <mdb-table-pagination [tableEl]="tableEl" [searchDataSource]="elements"></mdb-table-pagination>
-        </div>
-      </td>
-    </tr>
-    </tfoot>
+    <div id="footer-label">
+     <mdb-table-pagination [tableEl]="tableEl" [searchDataSource]="elements"></mdb-table-pagination>
+    </div>
+
+
 
 
   </table>

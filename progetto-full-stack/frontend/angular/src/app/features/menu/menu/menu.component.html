@@ -3,19 +3,19 @@
 
     <!-- Sidebar navigation -->
     <mdb-side-nav #sidenav class="sn-bg-5" [fixed]="false">
-  
+
       <mdb-navbar-brand>
         <!--logo da metterne in caso-->
         <!--/. Logo -->
       </mdb-navbar-brand>
-  
+
       <links>
-        
+
         <!-- Side navigation links -->
         <li>
           <ul class="collapsible collapsible-accordion">
             <mdb-accordion [multiple]="false" aria-multiselectable="false">
-  
+
               <!-- Simple link -->
               <mdb-accordion-item class="no-collase" *ngFor="let item of voci">
                 <mdb-accordion-item-head mdbWavesEffect>
@@ -23,8 +23,8 @@
                 </mdb-accordion-item-head>
                 <mdb-accordion-item-body></mdb-accordion-item-body>
               </mdb-accordion-item>
-  
-  
+
+
             </mdb-accordion>
           </ul>
         </li>
@@ -33,11 +33,11 @@
       <div class="sidenav-bg mask-strong"></div>
     </mdb-side-nav>
     <!--/. Sidebar navigation -->
-  
+
     <!-- Navbar -->
     <mdb-navbar SideClass="navbar fixed-top navbar-toggleable-md navbar-expand-lg scrolling-navbar double-nav"
                 [containerInside]="false">
-  
+
       <navlinks class="navbar-container">
         <!-- SideNav slide-out button -->
         <div>
@@ -47,7 +47,7 @@
         </div>
         <!--/. SideNav slide-out button -->
       </navlinks>
-  
+
       <mdb-navbar-brand>
         <!-- Breadcrumb-->
         <div class="breadcrumbs breadcrumbs-hidden-nav breadcrumb-dn mr-auto">
@@ -55,7 +55,7 @@
         </div>
         <!--/. Breadcrumb-->
       </mdb-navbar-brand>
-  
+
       <navlinks>
         <ul class="nav navbar-nav nav-flex-icons ml-auto ie-double-nav ie-hidden-double-nav">
           <li class="nav-item">
@@ -90,8 +90,7 @@
       </navlinks>
     </mdb-navbar>
     <!--/. Navbar -->
-  
+
   </header>
   <!--/.Double navigation-->
-  
-  
+

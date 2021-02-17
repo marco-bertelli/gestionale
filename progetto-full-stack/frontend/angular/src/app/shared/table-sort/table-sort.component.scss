@@ -8,9 +8,8 @@
   color: rgb(56, 56, 56);
 }
 #add:hover {
-  background-color: whitesmoke;
-  color: rgb(0, 0, 0);
-  box-shadow: 1px 1px 3px rgb(77, 77, 77);
+  background-color: rgb(255, 255, 255);
+  color: rgb(56, 56, 56);
 }
 th {
   background-color: rgb(56, 56, 56);
@@ -28,6 +27,21 @@ th {
   color: rgb(77, 77, 77);
 }
 #footer-label {
-  margin-top: -10px;
-  margin-bottom: -26px;
+  // margin-top: -10px;
+  // margin-bottom: -26px;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 1rem;
+  background-color: #efefef;
+  text-align: center;
 }
+#icon-sort {
+  cursor: pointer;
+  color: rgb(143, 143, 143);
+}
+tfoot {
+  background-color: none;
+}
+
