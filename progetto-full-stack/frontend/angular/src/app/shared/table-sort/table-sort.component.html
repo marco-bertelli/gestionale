@@ -15,10 +15,10 @@
     <tbody>
     <tr *ngFor="let el of elements; let i = index">
 
-        <ng-container *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i <= mdbTablePagination.lastItemIndex"
+        <ng-container *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex"
             scope="row" ><td *ngFor="let attr of headElements">{{el[attr]}}</td></ng-container>
 
-      <td *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i <=mdbTablePagination.lastItemIndex">
+      <td *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex">
         <button mdbBtn id="right-button" type="button" color="warning" size="sm" (click)="frame.show()" (click)="changeP(el)"><i class="fas fa-edit"></i></button>
         <button mdbBtn id="right-button" type="button" color="danger"  size="sm" (click)="delete(el)"><i class="fas fa-trash-alt"></i></button>
       </td>

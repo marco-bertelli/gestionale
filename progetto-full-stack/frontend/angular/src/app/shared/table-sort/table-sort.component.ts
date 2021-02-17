@@ -64,6 +64,7 @@ export class TableSortComponent implements OnInit,AfterViewInit{
     this.mdbTablePagination.calculateLastItemIndex();
     this.cdRef.detectChanges();
   }
+
   delete(el:string){
 
     this.call.deleteCall(el,this.tname).subscribe(res=>{
@@ -89,6 +90,7 @@ export class TableSortComponent implements OnInit,AfterViewInit{
 
   update(){
     this.changeEvent.emit()
+    window.location.reload();
   }
 
   insert(event:string){
