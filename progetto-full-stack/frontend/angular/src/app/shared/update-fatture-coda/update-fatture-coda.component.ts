@@ -41,51 +41,33 @@ export class UpdateFattureCodaComponent implements OnInit {
       this.category=res;
     });
     
-    
-
     this.campi.forEach((res: string)=> {
       this.form.addControl(
         res,
         new FormControl()
       );
     });
+
   }
 
 ngOnChanges() {
   
   this.campi.forEach((res: string)=> {
     //console.log(this.prodotto[res])
-    this.form.setControl(
+    this.form.addControl(
       res,
       new FormControl(this.prodotto[res], Validators.required)
     );
 
-    this.form.controls[res].valueChanges.subscribe(val=>{
+   this.form.controls[res].valueChanges.subscribe(val=>{
       this.form.setControl(
-        "NetPrice",
-        new FormControl(this.form.get("Qty")?.value*this.form.get("UnitAmount")?.value, Validators.required)
-      );
-      this.form.setControl(
-        "DiscountAmount",
-        new FormControl((this.form.get("NetPrice")?.value*this.form.get("DiscountFormula")?.value)/100, Validators.required)
-      );
-      this.form.setControl(
-        "TaxableAmount",
-        new FormControl(this.form.get("NetPrice")?.value-this.form.get("DiscountAmount")?.value, Validators.required)
+        "SummaryDiscountAmount",
+        new FormControl(this.form.get("SummaryDiscount")?.value*(this.form.get("GoodsAmount")?.value+this.form.get("ServiceAmount")?.value)/100, Validators.required)
       );
 
-      this.form.setControl(
-        "AmountOfTaxes",
-        new FormControl((this.form.get("TaxableAmount")?.value*this.form.get("TaxCode")?.value)/100, Validators.required)
-      );
-
-      this.form.setControl(
-        "TotalAmount",
-        new FormControl(this.form.get("TaxableAmount")?.value+this.form.get("AmountOfTaxes")?.value, Validators.required)
-      );
-     
     })
   }); 
+  
 }
 change(){
   
