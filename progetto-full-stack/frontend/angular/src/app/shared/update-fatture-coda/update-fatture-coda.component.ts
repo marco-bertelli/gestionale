@@ -52,9 +52,7 @@ export class UpdateFattureCodaComponent implements OnInit {
 
 ngOnChanges() {
 
-  /*this.form.patchValue({
-    GoodsAmount: this.prodotto["GoodsAmount"]
- });*/
+ 
 
   this.campi.forEach((res: string)=> {
     //console.log(this.prodotto[res])
@@ -64,7 +62,11 @@ ngOnChanges() {
     );
   });
 
-
+  this.form.patchValue({
+    GoodsAmount: this.prodotto["GoodsAmount"],
+    ServiceAmount: this.prodotto["ServiceAmount"],
+    RowsDiscount:this.prodotto["RowsDiscount"]
+  });
   
   this.campi.forEach((res: string)=> {
     //console.log(this.prodotto[res])
