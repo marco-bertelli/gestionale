@@ -19,15 +19,17 @@
             scope="row" ><td *ngFor="let attr of headElements">{{el[attr]}}</td></ng-container>
 
       <td *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i <=mdbTablePagination.lastItemIndex">
-        <button mdbBtn id="right-button" type="button" color="warning" size="sm" (click)="frame.show()" (click)="changeP(el)">Modifica</button>
-        <button mdbBtn id="right-button" type="button" color="danger"  size="sm" (click)="delete(el)">Elimina</button>
+        <button mdbBtn id="right-button" type="button" color="warning" size="sm" (click)="frame.show()" (click)="changeP(el)"><i class="fas fa-edit"></i></button>
+        <button mdbBtn id="right-button" type="button" color="danger"  size="sm" (click)="delete(el)"><i class="fas fa-trash-alt"></i></button>
       </td>
     </tr>
     </tbody>
     <tfoot class="grey lighten-5 w-100">
     <tr>
       <td colspan="7">
-        <mdb-table-pagination [tableEl]="tableEl" [searchDataSource]="elements"></mdb-table-pagination>
+        <div id="footer-label">
+          <mdb-table-pagination [tableEl]="tableEl" [searchDataSource]="elements"></mdb-table-pagination>
+        </div>
       </td>
     </tr>
     </tfoot>
