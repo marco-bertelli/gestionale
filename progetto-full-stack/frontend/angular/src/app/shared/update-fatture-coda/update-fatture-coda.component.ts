@@ -51,6 +51,14 @@ export class UpdateFattureCodaComponent implements OnInit {
   }
 
 ngOnChanges() {
+
+  this.campi.forEach((res: string)=> {
+    //console.log(this.prodotto[res])
+    this.form.addControl(
+      res,
+      new FormControl(this.prodotto[res], Validators.required),
+    );
+  });
   
   this.campi.forEach((res: string)=> {
     //console.log(this.prodotto[res])
@@ -63,6 +71,21 @@ ngOnChanges() {
       this.form.setControl(
         "SummaryDiscountAmount",
         new FormControl(this.form.get("SummaryDiscount")?.value*(this.form.get("GoodsAmount")?.value+this.form.get("ServiceAmount")?.value)/100, Validators.required)
+      );
+
+      this.form.setControl(
+        "TotalDiscount",
+        new FormControl(this.form.get("RowsDiscount")?.value+this.form.get("SummaryDiscountAmount")?.value, Validators.required)
+      );
+
+      this.form.setControl(
+        "TotalTaxableAmount",
+        new FormControl((this.form.get("GoodsAmount")?.value+this.form.get("ServiceAmount")?.value)-this.form.get("TotalDiscount")?.value, Validators.required)
+      );
+
+      this.form.setControl(
+        "FinalAmount",
+        new FormControl((this.form.get("TotalTaxableAmount")?.value+this.form.get("TotalTaxesAmount")?.value), Validators.required)
       );
 
     })

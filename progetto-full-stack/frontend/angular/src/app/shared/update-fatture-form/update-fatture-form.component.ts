@@ -43,6 +43,9 @@ export class UpdateFattureFormComponent implements OnInit {
     "SummaryDiscount":0,
     "SummaryDiscountAmount":0,
     "TotalDiscount":0,
+    "TotalTaxableAmount":0,
+    "TotalTaxesAmount":0,
+    "FinalAmount":0
   };
 
   campiCoda=[
@@ -53,7 +56,9 @@ export class UpdateFattureFormComponent implements OnInit {
     "SummaryDiscount",
     "SummaryDiscountAmount",
     "TotalDiscount",
-    "TotalTaxableAmount"
+    "TotalTaxableAmount",
+    "TotalTaxesAmount",
+    "FinalAmount"
   ]
 
     
@@ -95,17 +100,25 @@ export class UpdateFattureFormComponent implements OnInit {
       "GoodsAmount":0,
       "ServiceAmount":0,
       "RowsDiscount":0,
-      "SummaryDiscount":0,
+      "SummaryDiscount":"",
       "SummuryDiscountAmount":0,
       "TotalDiscount":0,
+      "TotalTaxableAmount":0,
+      "TotalTaxesAmount":0
     };
     //setta il codice
     this.coda.Codice=this.prodotto.codice;
     //riempie i vari valori
     for (let index = 0; index < this.body.length; index++) {
+      //totale merci o servizi
       if(this.body[index].LineType==="M") this.coda.GoodsAmount+=body[index].NetPrice;
       else this.coda.ServiceAmount+=body[index].NetPrice;
+
       this.coda.RowsDiscount+=body[index].DiscountAmount;
+
+      this.coda.TotalDiscount+=body[index].DiscountAmount;
+
+      this.coda.TotalTaxesAmount+=body[index].AmountOfTaxes;
     }
    
   }
