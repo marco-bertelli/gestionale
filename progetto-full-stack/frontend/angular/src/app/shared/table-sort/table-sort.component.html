@@ -1,22 +1,26 @@
-<table mdbTable #tableEl="mdbTable" class="z-depth-1">
+<table mdbTable #tableEl="mdbTable" class="z-depth-1 table-sm table-striped">
     <thead>
     <tr>
         <th *ngFor="let head of headElements; let i = index" aria-controls="tableSortExample" scope="col" [mdbTableSort]="elements" [sortBy]="headElements[i]">{{head | titlecase}}
             <mdb-icon fas icon="sort"></mdb-icon>
-        <th><a mdbBtn (click)="basicModal.show()" [floating]="true" size="sm" gradient="blue" mdbWavesEffect>
-          <mdb-icon fas icon="plus-circle"></mdb-icon>
-        </a></th>
+        <th>
+          <div id="addIcon">
+            <a mdbBtn (click)="basicModal.show()" size="sm" id="add">
+              <mdb-icon fas icon="plus"></mdb-icon>
+            </a>
+          </div>
+        </th>
     </tr>
     </thead>
     <tbody>
     <tr *ngFor="let el of elements; let i = index">
-      
+
         <ng-container *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i <= mdbTablePagination.lastItemIndex"
             scope="row" ><td *ngFor="let attr of headElements">{{el[attr]}}</td></ng-container>
-      
+
       <td *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i <=mdbTablePagination.lastItemIndex">
-        <button mdbBtn type="button" color="warning" [rounded]="true" size="sm" (click)="frame.show()" (click)="changeP(el)" mdbWavesEffect>Modifica</button>
-        <button mdbBtn type="button" color="danger" [rounded]="true" size="sm" (click)="delete(el)" mdbWavesEffect>Elimina</button>
+        <button mdbBtn id="right-button" type="button" color="warning" size="sm" (click)="frame.show()" (click)="changeP(el)">Modifica</button>
+        <button mdbBtn id="right-button" type="button" color="danger"  size="sm" (click)="delete(el)">Elimina</button>
       </td>
     </tr>
     </tbody>
@@ -28,10 +32,10 @@
     </tr>
     </tfoot>
 
-    
+
   </table>
 
-    
+
   <div mdbModal #frame="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
       <div class="modal-content">

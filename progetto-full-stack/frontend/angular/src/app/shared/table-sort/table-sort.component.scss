@@ -1,1 +1,28 @@
 .modal .modal-full-height { min-height: 2000px !important; }
+#addIcon {
+  position: absolute;
+  top: 87px;
+}
+#add {
+  background-color: rgb(206, 206, 206);
+  color: rgb(56, 56, 56);
+}
+#add:hover {
+  background-color: whitesmoke;
+  color: rgb(0, 0, 0);
+  box-shadow: 1px 1px 3px rgb(77, 77, 77);
+}
+th {
+  background-color: rgb(56, 56, 56);
+  color: whitesmoke;
+
+}
+
+#right-button {
+  margin-top: -4px;
+  margin-bottom: -4px;
+  box-shadow: none;
+}
+#right-button:hover {
+  box-shadow: 1px 1px 3px rgb(77, 77, 77);
+}
