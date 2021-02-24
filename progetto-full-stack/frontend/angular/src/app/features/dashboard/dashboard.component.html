@@ -1,19 +1,23 @@
 <main>
-  <!-- <div>
-    <div style="display: block">
-      <canvas mdbChart
-          [chartType]="chartType"
-          [datasets]="chartDatasets"
-          [labels]="chartLabels"
-          [colors]="chartColors"
-          [options]="chartOptions"
-          [legend]="true"
-          (chartHover)="chartHovered($event)"
-          (chartClick)="chartClicked($event)">
-      </canvas>
-    </div>
-  </div> -->
-  <app-bar-chart>
+  <div class="container">
 
-  </app-bar-chart>
+    <!-- ROW 1 -->
+    <div class="row">
+      <div class="col">
+        <app-bar-chart>  </app-bar-chart>
+      </div>
+      <div class="col">
+        <app-pie-chart>  </app-pie-chart>
+       </div>
+    </div>
+
+    <!-- ROW 2 -->
+    <div class="row">
+      <div class="col">
+        <app-line-chart>  </app-line-chart>
+      </div>
+    </div>
+
+  </div>
+
 </main>

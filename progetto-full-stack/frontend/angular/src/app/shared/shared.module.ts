@@ -15,8 +15,21 @@ import { InsertFormComponent } from './insert-form/insert-form.component';
 import { UpdateFattureFormComponent } from './update-fatture-form/update-fatture-form.component';
 import { FatturaBodyComponent } from './fattura-body/fattura-body.component';
 import { BarChartComponent } from './bar-chart/bar-chart.component';
+import { PieChartComponent } from './pie-chart/pie-chart.component';
+import { LineChartComponent } from './line-chart/line-chart.component';
+
 @NgModule({
-  declarations: [TableSortComponent, UpdateProdFormComponent, TableComponent, InsertFormComponent, UpdateFattureFormComponent, FatturaBodyComponent, BarChartComponent],
+  declarations: [
+    TableSortComponent,
+    UpdateProdFormComponent,
+    TableComponent,
+    InsertFormComponent,
+    UpdateFattureFormComponent,
+    FatturaBodyComponent,
+    BarChartComponent,
+    PieChartComponent,
+    LineChartComponent
+  ],
   imports: [
     CommonModule,
     MDBBootstrapModulesPro.forRoot(),
@@ -36,7 +49,9 @@ import { BarChartComponent } from './bar-chart/bar-chart.component';
     InsertFormComponent,
     UpdateFattureFormComponent,
     FatturaBodyComponent,
-    BarChartComponent
+    BarChartComponent,
+    PieChartComponent,
+    LineChartComponent
   ],
   providers: [MDBSpinningPreloader],
 })
