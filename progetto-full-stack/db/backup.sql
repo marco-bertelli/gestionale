@@ -309,3 +309,5 @@ LOCK TABLES `citta` WRITE;
 INSERT INTO `citta` VALUES (1,'Bergamo','BG'),(2,'Brescia','BS'),(3,'Sondrio','SO');
 /*!40000 ALTER TABLE `citta` ENABLE KEYS */;
 UNLOCK TABLES;
+
+-- creare dati per provare i grafici (inserire dati nel db e fare query)
