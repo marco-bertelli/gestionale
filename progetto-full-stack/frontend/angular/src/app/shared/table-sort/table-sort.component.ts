@@ -10,7 +10,7 @@ import { CallService } from 'src/app/core/calls/call.service';
   styleUrls: ['./table-sort.component.scss']
 })
 export class TableSortComponent implements OnInit,AfterViewInit{
-  
+
   @ViewChild(MdbTablePaginationComponent, { static: true })
   mdbTablePagination!: MdbTablePaginationComponent;
   @ViewChild(MdbTableDirective, { static: true })
@@ -49,7 +49,7 @@ export class TableSortComponent implements OnInit,AfterViewInit{
 
   ngOnInit() {
     console.log(this.elements)
-   
+
 
     this.mdbTable.setDataSource(this.elements);
     this.elements = this.mdbTable.getDataSource();
@@ -58,18 +58,19 @@ export class TableSortComponent implements OnInit,AfterViewInit{
   }
 
   ngAfterViewInit() {
-    this.mdbTablePagination.setMaxVisibleItemsNumberTo(5);
+    this.mdbTablePagination.setMaxVisibleItemsNumberTo(2);
 
     this.mdbTablePagination.calculateFirstItemIndex();
     this.mdbTablePagination.calculateLastItemIndex();
     this.cdRef.detectChanges();
   }
+
   delete(el:string){
- 
+
     this.call.deleteCall(el,this.tname).subscribe(res=>{
       this.update();
     });
-    
+
   }
   change(element:string){
     console.log(element)
@@ -78,10 +79,10 @@ export class TableSortComponent implements OnInit,AfterViewInit{
       console.log(res)
       if(res.affectedRows==1)  this.toast.success('prodotto modificato');
       else this.toast.error('errore interno '+ res);
-     
+
       this.changeEvent.emit();
     });
-    
+
   }
   changeP(el:string){
     this.prodToChange=el;
@@ -89,6 +90,7 @@ export class TableSortComponent implements OnInit,AfterViewInit{
 
   update(){
     this.changeEvent.emit()
+    window.location.reload();
   }
 
   insert(event:string){
@@ -98,5 +100,5 @@ export class TableSortComponent implements OnInit,AfterViewInit{
     });
   }
 
- 
+
 }
