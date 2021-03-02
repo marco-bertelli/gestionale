@@ -8,10 +8,9 @@ export class CallService {
 
   constructor(private http: HttpcomminicationsService) { }
 
-  public updateProd(prod:string,tname:string){
+  updateProd(prod:string,tname:string){
     return this.http.putCall("/change?table="+tname,prod);
   }
-
   getTable(tname:string){
     return this.http.getCall("/getTable?table="+tname);
   }
@@ -24,8 +23,22 @@ export class CallService {
   deleteCall(body:any,table:string){
     return this.http.postCall("/delete?table="+table,body);
   }
-
   getSingolo(table:string,codice:string){
     return this.http.getCall("/getSingolo?table="+table+"&codice="+codice);
   }
+
+  //DASHBOARD
+  getCostumerRagioneSociale(){
+    return this.http.getCall("/getCostumerRagioneSociale");
+  }
+  getNumDocCustomer(codCustomer:string){
+    return this.http.getCall("/getNumDocCustomer?codCustomer="+codCustomer)
+  }
+  getTotalAmountMonthYear(month:number, year:number){
+    return this.http.getCall("/getTotalAmountYearMonth?year="+year+"&month="+month)
+  }
+
+
+  //select costumer con maggior numero di fatture
+
 }

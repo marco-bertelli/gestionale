@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CallService } from 'src/app/core/calls/call.service';
 
 @Component({
   selector: 'app-bar-chart',
@@ -7,49 +8,56 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BarChartComponent implements OnInit {
 
-  constructor() { }
+  constructor(private http:CallService){}
 
-  ngOnInit(): void {
+  bCol:String = 'rgba(43, 43, 44, 0.63)';
+  bgCol1: String = 'rgba(54, 162, 235, 0.2)';
+  bgCol2: String = 'rgba(145, 145, 145, 0.58)';
+
+  currentYear: number=new Date().getFullYear();
+  lastYear:number= this.currentYear-1;
+
+  dataRes = [];
+
+
+  createChartDataSets(year: number){
+    let chartData: Number[] = []
+    for (let month = 0; month <= 12; month++) {
+      this.http.getTotalAmountMonthYear(month,year).subscribe(res=>{
+        this.dataRes = res;
+        this.dataRes.forEach(element =>{
+          chartData[month] = JSON.parse(JSON.stringify(element)).Tot;
+        })
+      })
+    }
+
+    return chartData;
   }
+
+
+  ngOnInit(): void {}
+
   public chartType: string = 'bar';
 
   public chartDatasets: Array<any> = [
-    { data: [65, 59, 80, 81, 56, 55, 40, 22, 33, 44, 12], label: 'My First dataset' }
+    { data: this.createChartDataSets(this.currentYear), label: 'Current year' },
+    { data: this.createChartDataSets(this.lastYear), label: 'Last year' }
   ];
 
   public chartLabels: Array<any> = ['Gennaio', 'Febbraio', 'Marzo', 'Aprile', 'Maggio', 'Giugno', 'Luglio', 'Agosto', 'Settembre','Ottobre', 'Novembre', 'Dicembre'];
 
+
+
   public chartColors: Array<any> = [
-    {
-      backgroundColor: [
-        'rgba(255, 99, 132, 0.2)',    //gennaio
-        'rgba(54, 162, 235, 0.2)',    //febbraio
-        'rgba(255, 206, 86, 0.2)',    //marzo
-        'rgba(75, 192, 192, 0.2)',    //aprile
-        'rgba(153, 102, 255, 0.2)',   //maggio
-        'rgba(255, 159, 64, 0.2)',    //giugno
-        'rgba(255, 99, 132, 0.2)',    //luglio
-        'rgba(54, 162, 235, 0.2)',    //agosto
-        'rgba(255, 206, 86, 0.2)',    //settembre
-        'rgba(75, 192, 192, 0.2)',    //ottobre
-        'rgba(153, 102, 255, 0.2)',   //novembre
-        'rgba(255, 159, 64, 0.2)',    //dicembre
-      ],
-      borderColor: [
-        'rgba(255,99,132,1)',         //gennaio
-        'rgba(54, 162, 235, 1)',      //febbraio
-        'rgba(255, 206, 86, 1)',      //marzo
-        'rgba(75, 192, 192, 1)',      //aprile
-        'rgba(153, 102, 255, 1)',     //maggio
-        'rgba(255, 159, 64, 1)' ,     //giugno
-        'rgba(255,99,132,1)',         //luglio
-        'rgba(54, 162, 235, 1)',      //agosto
-        'rgba(255, 206, 86, 1)',      //settembre
-        'rgba(75, 192, 192, 1)',      //ottobre
-        'rgba(153, 102, 255, 1)',     //novembre
-        'rgba(255, 159, 64, 1)'       //dicembre
-      ],
-      borderWidth: 2,
+    { //THIS YEARS
+      backgroundColor: [ 'rgba(54, 162, 235, 0.2)', 'rgba(54, 162, 235, 0.2)', 'rgba(54, 162, 235, 0.2)', 'rgba(54, 162, 235, 0.2)', 'rgba(54, 162, 235, 0.2)', 'rgba(54, 162, 235, 0.2)', 'rgba(54, 162, 235, 0.2)', 'rgba(54, 162, 235, 0.2)', 'rgba(54, 162, 235, 0.2)', 'rgba(54, 162, 235, 0.2)', 'rgba(54, 162, 235, 0.2)', 'rgba(54, 162, 235, 0.2)'],
+      borderColor: [ this.bCol, this.bCol, this.bCol, this.bCol, this.bCol, this.bCol, this.bCol,this.bCol, this.bCol,this.bCol, this.bCol, this.bCol ],
+      borderWidth: 1,
+    },
+    { //LAST YEARS
+      backgroundColor: [ 'rgba(145, 145, 145, 0.58)', 'rgba(145, 145, 145, 0.58)', 'rgba(145, 145, 145, 0.58)', 'rgba(145, 145, 145, 0.58)', 'rgba(145, 145, 145, 0.58)', 'rgba(145, 145, 145, 0.58)', 'rgba(145, 145, 145, 0.58)', 'rgba(145, 145, 145, 0.58)', 'rgba(145, 145, 145, 0.58)', 'rgba(145, 145, 145, 0.58)', 'rgba(145, 145, 145, 0.58)', 'rgba(145, 145, 145, 0.58)'],
+      borderColor: [ this.bCol, this.bCol, this.bCol, this.bCol, this.bCol, this.bCol, this.bCol,this.bCol, this.bCol,this.bCol, this.bCol, this.bCol ],
+      borderWidth: 1,
     }
   ];
 

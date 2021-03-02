@@ -243,5 +243,43 @@ app.get('/search', (req, res) => {
 });
 
 
-// alter table per fare il full text - non credo si possa sull'id (PROVO CON IL LIKE)
-// EASY QUERY CON IL LIKE E SOLO UN PARAMETRO--> SELECT * FROM categorie WHERE id LIKE '%1%' or descrizione LIKE '%1%'
+// ---------------------------------------------------------------------------------- DASHBOARD QUERY ---------------------------------------------------------------------------------- //
+
+app.get('/getCostumerRagioneSociale', (req, res) => {
+  pool.query("SELECT ragione_sociale,codice FROM clienti", (err, results) => {
+    if (err) {
+      return res.send(err);
+    } else {
+      return res.send(results);
+    }
+  });
+});
+
+//ritorna il numero di fatture per il cliente (accetta come paramentro il codice cliente)
+app.get('/getNumDocCustomer', (req, res) => {
+  let codCustomer = req.query.codCustomer;
+  
+  pool.query("SELECT COUNT(Customer) as numDoc FROM DocMaster WHERE Customer LIKE " + codCustomer, (err, results) => {
+    if (err) {
+      return res.send(err);
+    } else {
+      return res.send(results);
+    }
+  });
+});
+
+//ritorna totalAmount del mese e dell'anno passato come parametro della query
+app.get('/getTotalAmountYearMonth', (req, res) => {
+  let year = req.query.year;
+  let month = req.query.month;
+  
+  pool.query("SELECT SUM(TotalAmount)as Tot FROM DocDetail INNER JOIN DocMaster ON DocDetail.DocId = DocMaster.codice WHERE YEAR(DocDate)=" + year +" AND MONTH(DocDate)=" +month, (err, results) => {
+    if (err) {
+      return res.send(err);
+    } else {
+      return res.send(results);
+    }
+  });
+});
+
+
