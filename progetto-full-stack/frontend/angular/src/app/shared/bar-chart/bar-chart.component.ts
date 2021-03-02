@@ -22,15 +22,15 @@ export class BarChartComponent implements OnInit {
 
   createChartDataSets(year: number){
     let chartData: Number[] = []
-    for (let month = 0; month <= 12; month++) {
+    for (let month = 1; month <= 12; month++) {
       this.http.getTotalAmountMonthYear(month,year).subscribe(res=>{
         this.dataRes = res;
         this.dataRes.forEach(element =>{
-          chartData[month] = JSON.parse(JSON.stringify(element)).Tot;
+          chartData[month-1] = JSON.parse(JSON.stringify(element)).Tot;
         })
       })
     }
-
+    console.log(chartData)
     return chartData;
   }
 
