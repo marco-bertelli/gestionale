@@ -283,3 +283,55 @@ app.get('/getTotalAmountYearMonth', (req, res) => {
 });
 
 
+//ritorna il numeto totale delle fatture
+app.get('/getTotNumDoc', (req, res) => {  
+  pool.query("SELECT COUNT(*) as numDocTot FROM `DocMaster` ", (err, results) => {
+    if (err) {
+      return res.send(err);
+    } else {
+      return res.send(results);
+    }
+  });
+});
+
+//ritorna il numeto totale delle fatture del mese 
+app.get('/getTotNumDocCurrentMonth', (req, res) => { 
+  let currentMonth = req.query.currentMonth;
+  let currentYear = req.query.currentYear;
+  
+  pool.query("SELECT COUNT(*) as numDocTotCurrentMonth FROM `DocMaster` " +
+             "WHERE MONTH(DocDate) = " + currentMonth + " AND YEAR(DocDate) = " + currentYear, (err, results) => {
+    if (err) {
+      return res.send(err);
+    } else {
+      return res.send(results);
+    }
+  });
+});
+
+
+//ritorna il fatturato totale
+app.get('/getTotAmount', (req, res) => { 
+   pool.query("SELECT SUM(TotalAmount) totAmount FROM DocDetail INNER JOIN DocMaster ON DocDetail.DocId = DocMaster.codice" ,(err, results) => {
+    if (err) {
+      return res.send(err);
+    } else {
+      return res.send(results);
+    }
+  });
+});
+
+//ritorna il fatturato del mese corrente
+app.get('/getTotAmountCurrentMonth', (req, res) => { 
+  let currentMonth = req.query.currentMonth;
+  let currentYear = req.query.currentYear;
+  
+  pool.query("SELECT SUM(totalAmount) as totAmountCurrentMonth FROM DocDetail INNER JOIN DocMaster ON DocDetail.DocId = DocMaster.codice " +
+             "WHERE MONTH(DocDate) = " + currentMonth + " AND YEAR(DocDate) = " + currentYear, (err, results) => {
+    if (err) {
+      return res.send(err);
+    } else {
+      return res.send(results);
+    }
+  });
+});

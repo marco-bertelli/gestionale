@@ -32,10 +32,23 @@ export class CallService {
     return this.http.getCall("/getCostumerRagioneSociale");
   }
   getNumDocCustomer(codCustomer:string){
-    return this.http.getCall("/getNumDocCustomer?codCustomer="+codCustomer)
+    return this.http.getCall("/getNumDocCustomer?codCustomer="+codCustomer);
   }
   getTotalAmountMonthYear(month:number, year:number){
-    return this.http.getCall("/getTotalAmountYearMonth?year="+year+"&month="+month)
+    return this.http.getCall("/getTotalAmountYearMonth?year="+year+"&month="+month);
+  }
+
+  getTotNumDoc(){
+    return this.http.getCall("/getTotNumDoc");
+  }
+  getTotNumDocCurrentMonth(currentMonth:number, currentYear:number){
+    return this.http.getCall("/getTotNumDocCurrentMonth?currentMonth="+currentMonth+"&currentYear="+currentYear);
+  }
+  getTotAmount(){
+    return this.http.getCall("/getTotAmount");
+  }
+  getTotAmountCurrentMonth(currentMonth:number, currentYear:number){
+    return this.http.getCall("/getTotAmountCurrentMonth?currentMonth="+currentMonth+"&currentYear="+currentYear);
   }
 
 
