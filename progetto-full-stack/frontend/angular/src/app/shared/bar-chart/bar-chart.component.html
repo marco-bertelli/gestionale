@@ -1,7 +1,7 @@
 
-  <ng-container >
+  <ng-container *ngIf="chartData1">
     <div style="display: block" >
-      <canvas mdbChart *ngIf="[chartDatasets]"
+      <canvas mdbChart
         [chartType]="chartType"
         [datasets]="chartDatasets"
         [labels]="chartLabels"

@@ -19,6 +19,9 @@ export class BarChartComponent implements OnInit {
 
   dataRes = [];
 
+  chartData1: Number[] = []
+  chartData2: Number[] = []
+
 
   createChartDataSets(year: number){
     let chartData: Number[] = []
@@ -34,14 +37,45 @@ export class BarChartComponent implements OnInit {
     return chartData;
   }
 
+  createChartDataSets1(year: number){
+    for (let month = 1; month <= 12; month++) {
+      this.http.getTotalAmountMonthYear(month,year).subscribe(res=>{
+        this.dataRes = res;
+        this.dataRes.forEach(element =>{
+          this.chartData1[month-1] = JSON.parse(JSON.stringify(element)).Tot;
+        })
+      })
+    }
+  }
 
-  ngOnInit(): void {}
+  createChartDataSets2(year: number){
+    for (let month = 1; month <= 12; month++) {
+      this.http.getTotalAmountMonthYear(month,year).subscribe(res=>{
+        this.dataRes = res;
+        this.dataRes.forEach(element =>{
+          this.chartData2[month-1] = JSON.parse(JSON.stringify(element)).Tot;
+        })
+      })
+    }
+  }
+
+  get(){
+    console.log(this.chartData1)
+  }
+
+  ngOnInit(): void {
+    this.createChartDataSets1(this.currentYear);
+    this.createChartDataSets2(this.lastYear);
+
+
+
+  }
 
   public chartType: string = 'bar';
 
   public chartDatasets: Array<any> = [
-    { data: this.createChartDataSets(this.currentYear), label: 'Current year' },
-    { data: this.createChartDataSets(this.lastYear), label: 'Last year' }
+    { data: this.chartData1, label: 'Current year' },
+    { data: this.chartData2, label: 'Last year' }
   ];
 
   public chartLabels: Array<any> = ['Gennaio', 'Febbraio', 'Marzo', 'Aprile', 'Maggio', 'Giugno', 'Luglio', 'Agosto', 'Settembre','Ottobre', 'Novembre', 'Dicembre'];

@@ -29,21 +29,18 @@ export class SquaresDashboardComponent implements OnInit {
   getTotNumDoc(){
     this.http.getTotNumDoc().subscribe( res=> {
       this.totNumDoc = JSON.parse(JSON.stringify(res[0])).numDocTot;
-      // console.log("Tot totNumDoc: "+ this.totNumDoc);
     })
   }
 
   getTotNumDocCurrentMonth(currentMonth: number, currentYear: number){
     this.http.getTotNumDocCurrentMonth(currentMonth, currentYear).subscribe( res => {
       this.totNumDocCurrentMonth = JSON.parse(JSON.stringify(res[0])).numDocTotCurrentMonth;
-      console.log("Tot amount: "+ this.totAmount);
     })
   }
 
   getTotAmount(){
     this.http.getTotAmount().subscribe( res=> {
       this.totAmount = JSON.parse(JSON.stringify(res[0])).totAmount;
-      console.log("Tot amount: "+ this.totAmount);
     })
   }
 
