@@ -1,17 +1,19 @@
 
-  <ng-container *ngIf="chartData1">
-    <div style="display: block" >
-      <canvas mdbChart
-        [chartType]="chartType"
-        [datasets]="chartDatasets"
-        [labels]="chartLabels"
-        [colors]="chartColors"
-        [options]="chartOptions"
-        [legend]="true"
-        (chartHover)="chartHovered($event)"
-        (chartClick)="chartClicked($event)"
-        height="200">
-        </canvas>
-     </div>
+  <ng-container *ngIf="chartData1.length == 12">
+    <ng-container *ngIf="chartData2.length == 12">
+      <div style="display: block" >
+        <canvas mdbChart
+          [chartType]="chartType"
+          [datasets]="chartDatasets"
+          [labels]="chartLabels"
+          [colors]="chartColors"
+          [options]="chartOptions"
+          [legend]="true"
+          (chartHover)="chartHovered($event)"
+          (chartClick)="chartClicked($event)"
+          height="200">
+          </canvas>
+       </div>
+    </ng-container>
   </ng-container>
 

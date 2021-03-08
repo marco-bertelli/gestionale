@@ -18,11 +18,10 @@ export class PieChartComponent implements OnInit {
   dataList: String[] = [];
   chartData: Number[] = []
 
-  public chartLabels: Array<String> = [];
-  public customerCode: Array<String> = [];
+  chartLabels: String[] = [];
+  customerCode: String[] = [];
 
-
-
+  i = 0;
   ngOnInit(): void {
     this.http.getCostumerRagioneSociale().subscribe(res=>{
       this.data = res;
@@ -32,11 +31,11 @@ export class PieChartComponent implements OnInit {
   }
 
   createChartLabels(){
-    var i = 0;
+
     this.data.forEach(element => {
-      this.chartLabels[i] = JSON.parse(JSON.stringify(element)).ragione_sociale;
-      this.customerCode[i] = JSON.parse(JSON.stringify(element)).codice;
-      i++
+      this.chartLabels[this.i] = JSON.parse(JSON.stringify(element)).ragione_sociale;
+      this.customerCode[this.i] = JSON.parse(JSON.stringify(element)).codice;
+      this.i++
     })
   }
 
