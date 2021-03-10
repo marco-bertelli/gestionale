@@ -28,4 +28,8 @@ export class CallService {
   getSingolo(table:string,codice:string){
     return this.http.getCall("/getSingolo?table="+table+"&codice="+codice);
   }
+
+  getUser(table:string,username:string, password:string){
+    return this.http.getCall("/getUser?table="+table+"&username="+username+"&password="+password);
+  }
 }

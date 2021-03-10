@@ -14,6 +14,6 @@ export class AppComponent {
 
   constructor(private router: Router, location: Location){
           this.link=location.path();
-          console.log(this.link);
+          //console.log(this.link);
     }
 }
