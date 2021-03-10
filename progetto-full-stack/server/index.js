@@ -272,7 +272,7 @@ app.get('/getNumDocCustomer', (req, res) => {
 app.get('/getTotalAmountCustomer', (req, res) => {
   let codCustomer = req.query.codCustomer;
   
-  pool.query("SELECT SUM(TotalAmount) as totalAmountCustomer FROM DocDetail INNER JOIN DocMaster ON DocDetail.DocId = DocMaster.codice  WHERE Customer LIKE " + codCustomer, (err, results) => {
+  pool.query("SELECT SUM(TaxableAmount) as totalAmountCustomer FROM DocDetail INNER JOIN DocMaster ON DocDetail.DocId = DocMaster.codice  WHERE Customer LIKE " + codCustomer, (err, results) => {
     if (err) {
       return res.send(err);
     } else {
@@ -286,7 +286,7 @@ app.get('/getTotalAmountYearMonth', (req, res) => {
   let year = req.query.year;
   let month = req.query.month;
   
-  pool.query("SELECT SUM(TotalAmount)as Tot FROM DocDetail INNER JOIN DocMaster ON DocDetail.DocId = DocMaster.codice WHERE YEAR(DocDate)=" + year +" AND MONTH(DocDate)=" +month, (err, results) => {
+  pool.query("SELECT SUM(TaxableAmount)as Tot FROM DocDetail INNER JOIN DocMaster ON DocDetail.DocId = DocMaster.codice WHERE YEAR(DocDate)=" + year +" AND MONTH(DocDate)=" +month, (err, results) => {
     if (err) {
       return res.send(err);
     } else {
@@ -325,7 +325,7 @@ app.get('/getTotNumDocCurrentMonth', (req, res) => {
 
 //ritorna il fatturato totale
 app.get('/getTotAmount', (req, res) => { 
-   pool.query("SELECT SUM(TotalAmount) totAmount FROM DocDetail INNER JOIN DocMaster ON DocDetail.DocId = DocMaster.codice" ,(err, results) => {
+   pool.query("SELECT SUM(TaxableAmount) totAmount FROM DocDetail INNER JOIN DocMaster ON DocDetail.DocId = DocMaster.codice" ,(err, results) => {
     if (err) {
       return res.send(err);
     } else {
@@ -339,7 +339,7 @@ app.get('/getTotAmountCurrentMonth', (req, res) => {
   let currentMonth = req.query.currentMonth;
   let currentYear = req.query.currentYear;
   
-  pool.query("SELECT SUM(totalAmount) as totAmountCurrentMonth FROM DocDetail INNER JOIN DocMaster ON DocDetail.DocId = DocMaster.codice " +
+  pool.query("SELECT SUM(TaxableAmount) as totAmountCurrentMonth FROM DocDetail INNER JOIN DocMaster ON DocDetail.DocId = DocMaster.codice " +
              "WHERE MONTH(DocDate) = " + currentMonth + " AND YEAR(DocDate) = " + currentYear, (err, results) => {
     if (err) {
       return res.send(err);

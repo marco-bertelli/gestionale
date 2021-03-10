@@ -1,16 +1,19 @@
-<ng-container *ngIf="chartLabels.length == i">
-  <ng-container *ngIf="chartData.length == chartLabels.length">
-    <div style="display: block">
-      <canvas mdbChart
-        [chartType]="chartType"
-        [datasets]="chartDatasets"
-        [labels]="chartLabels"
-        [colors]="chartColors"
-        [options]="chartOptions"
-        [legend]="true"
-        (chartHover)="chartHovered($event)"
-        (chartClick)="chartClicked($event)">
-      </canvas>
-    </div>
+<div class="container">
+  <ng-container *ngIf="chartLabels.length == i">
+    <ng-container *ngIf="chartData.length == chartLabels.length">
+      <div style="display: block">
+        <canvas mdbChart
+          [chartType]="chartType"
+          [datasets]="chartDatasets"
+          [labels]="chartLabels"
+          [colors]="chartColors"
+          [options]="chartOptions"
+          [legend]="true"
+          (chartHover)="chartHovered($event)"
+          (chartClick)="chartClicked($event)">
+        </canvas>
+      </div>
+    </ng-container>
   </ng-container>
-</ng-container>
+
+</div>

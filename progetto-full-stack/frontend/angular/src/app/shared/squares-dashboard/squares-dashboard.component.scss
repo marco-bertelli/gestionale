@@ -51,6 +51,10 @@ h6 {
     line-height: 1.7;
 }
 
+.container{
+  margin-bottom: 10%;
+}
+
 .rgba-gradient {
     background: -moz-linear-gradient(45deg, rgba(42, 27, 161, 0.7), rgba(29, 210, 177, 0.7) 100%);
     background: -webkit-linear-gradient(45deg, rgba(42, 27, 161, 0.7), rgba(29, 210, 177, 0.7) 100%);
@@ -91,7 +95,7 @@ h6 {
     width: 40%;
     max-width: 900px;
     margin: 3em;
-    text-align: center;
+    // text-align: center;
 }
 
 
@@ -99,8 +103,8 @@ h6 {
 
 .badge {
     margin: 1em;
-    width: 240px;
-    height: 165px;
+    width: 500px;
+    height: 200px;
     border-radius: 5%;
     display: inline-block;
     top: 0;
@@ -116,7 +120,7 @@ h6 {
     height: 20px;
     color: white;
     position: absolute;
-    margin: 15px 16px auto;
+    margin: 30px 16px auto;
     z-index: 10;
     border-radius: 30%;
     //outline: none;
@@ -131,8 +135,8 @@ h6 {
     h1 {
         font-size: 15pt;
         font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-        margin-top: 25px;
-        margin-left: 5px;
+        margin-top: 35px;
+        margin-left: 10%;
     }
 }
 
@@ -142,7 +146,7 @@ h6 {
     height: 20px;
     color: white;
     position: absolute;
-    margin: 15px 16px auto;
+    margin: 30px 16px auto;
     z-index: 10;
     border-radius: 30%;
     //outline: none;
@@ -157,7 +161,7 @@ h6 {
     h1 {
         font-size: 15pt;
         font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-        margin-top: 25px;
+        margin-top: 35px;
         margin-left: 20px;
     }
 }
@@ -168,7 +172,7 @@ h6 {
     height: 20px;
     color: white;
     position: absolute;
-    margin: 15px 16px auto;
+    margin: 30px 16px auto;
     z-index: 10;
     border-radius: 30%;
     //box-shadow: 8px 8px 8px 2px rgba(0, 0, 0, 0.23);
@@ -182,7 +186,7 @@ h6 {
     h1 {
         font-size: 15pt;
         font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-        margin-top: 25px;
+        margin-top: 35px;
         margin-left: 30px;
     }
 }
@@ -193,7 +197,7 @@ h6 {
     height: 20px;
     color: white;
     position: absolute;
-    margin: 15px 16px auto;
+    margin: 30px 16px auto;
     z-index: 10;
     border-radius: 30%;
     //box-shadow: 8px 8px 8px 2px rgba(0, 0, 0, 0.23);
@@ -207,7 +211,7 @@ h6 {
     h1 {
         font-size: 15pt;
         font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-        margin-top: 25px;
+        margin-top: 35px;
         margin-left: 30px;
     }
 }
@@ -218,7 +222,7 @@ h6 {
     height: 20px;
     color: white;
     position: absolute;
-    margin: 15px 16px auto;
+    margin: 30px 16px auto;
     z-index: 10;
     border-radius: 30%;
     //box-shadow: 8px 8px 8px 2px rgba(0, 0, 0, 0.23);
@@ -232,7 +236,7 @@ h6 {
     h1 {
         font-size: 15pt;
         font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-        margin-top: 25px;
+        margin-top: 35px;
         margin-left: 26px;
     }
 }
@@ -251,8 +255,8 @@ h6 {
 }
 
 .gold {
-    background: gold;
-    color: gold;
+    background: skyblue;
+    color: skyblue;
 }
 
 .red {

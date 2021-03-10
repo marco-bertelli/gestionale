@@ -16,7 +16,7 @@ export class PieChartComponent implements OnInit {
   data1 = [];
 
   dataList: String[] = [];
-  chartData: Number[] = []
+  chartData: String[] = []
 
   chartLabels: String[] = [];
   customerCode: String[] = [];
@@ -44,7 +44,7 @@ export class PieChartComponent implements OnInit {
       this.http.getTotalAmountCustomer("'"+this.customerCode[index].toString()+"'").subscribe(res => {
         this.data1 = res;
         this.data1.forEach(element => {
-        this.chartData[index]=JSON.parse(JSON.stringify(element)).totalAmountCustomer;
+        this.chartData[index]= JSON.parse(JSON.stringify(element)).totalAmountCustomer;
        });
       })
     }
