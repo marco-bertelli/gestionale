@@ -34,10 +34,12 @@ export class CallService {
   getNumDocCustomer(codCustomer:string){
     return this.http.getCall("/getNumDocCustomer?codCustomer="+codCustomer);
   }
+  getTotalAmountCustomer(codCustomer:string){
+    return this.http.getCall("/getTotalAmountCustomer?codCustomer="+codCustomer);
+  }
   getTotalAmountMonthYear(month:number, year:number){
     return this.http.getCall("/getTotalAmountYearMonth?year="+year+"&month="+month);
   }
-
   getTotNumDoc(){
     return this.http.getCall("/getTotNumDoc");
   }

@@ -268,6 +268,19 @@ app.get('/getNumDocCustomer', (req, res) => {
   });
 });
 
+//ritorna il totalAmount delle fatture per il cliente (accetta come paramentro il codice cliente)
+app.get('/getTotalAmountCustomer', (req, res) => {
+  let codCustomer = req.query.codCustomer;
+  
+  pool.query("SELECT SUM(TotalAmount) as totalAmountCustomer FROM DocDetail INNER JOIN DocMaster ON DocDetail.DocId = DocMaster.codice  WHERE Customer LIKE " + codCustomer, (err, results) => {
+    if (err) {
+      return res.send(err);
+    } else {
+      return res.send(results);
+    }
+  });
+});
+
 //ritorna totalAmount del mese e dell'anno passato come parametro della query
 app.get('/getTotalAmountYearMonth', (req, res) => {
   let year = req.query.year;

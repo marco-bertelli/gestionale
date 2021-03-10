@@ -41,10 +41,10 @@ export class PieChartComponent implements OnInit {
 
   createChartDatasets(){
     for (let index = 0; index < this.customerCode.length; index++) {
-      this.http.getNumDocCustomer("'"+this.customerCode[index].toString()+"'").subscribe(res => {
-       this.data1 = res;
-       this.data1.forEach(element => {
-        this.chartData[index]=JSON.parse(JSON.stringify(element)).numDoc;
+      this.http.getTotalAmountCustomer("'"+this.customerCode[index].toString()+"'").subscribe(res => {
+        this.data1 = res;
+        this.data1.forEach(element => {
+        this.chartData[index]=JSON.parse(JSON.stringify(element)).totalAmountCustomer;
        });
       })
     }
