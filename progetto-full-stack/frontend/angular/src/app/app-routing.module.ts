@@ -8,7 +8,8 @@ const routes: Routes = [
   { path: 'clienti', loadChildren: () => import('./features/clienti/clienti.module').then(m => m.ClientiModule) },
   { path: 'ordini', loadChildren: () => import('./features/ordini/ordini.module').then(m => m.OrdiniModule) },
   { path: 'fatture', loadChildren: () => import('./features/fatture/fatture.module').then(m => m.FattureModule) },
-  { path: 'dashboard', loadChildren: () => import('./features/dashboard/dashboard.module').then(m => m.DashboardModule) }
+  { path: 'dashboard', loadChildren: () => import('./features/dashboard/dashboard.module').then(m => m.DashboardModule) },
+  { path: 'login', loadChildren: () => import('./features/login/login.module').then(m => m.LoginModule) }
 
 ];
 

@@ -228,17 +228,17 @@ app.get('/search', (req, res) => {
 
   let table = req.query.table;
 
-  let string= req.query.string;
+  let string = req.query.string;
   //non solo fulltext ma anche su un campo aggiuntivo *da migliorare con un array di campi*
   let addCamp = req.query.addCamp;
 
-  
-  pool.query("SELECT * FROM "+table+" WHERE id LIKE '%'"+string+"'%' or descrizione LIKE '%'"+string+"'%'", (err, results) => {
-    if (err) {
-      return res.send(err);
-    } else {
-      return res.send(results);
-    }
+
+  pool.query("SELECT * FROM " + table + " WHERE MATCH(descrizione) AGAINST('" + string + "') || " + addCamp + " = " + string + ";", (err, results) => {
+      if (err) {
+          return res.send(err);
+      } else {
+          return res.send(results);
+      }
   });
 });
 
