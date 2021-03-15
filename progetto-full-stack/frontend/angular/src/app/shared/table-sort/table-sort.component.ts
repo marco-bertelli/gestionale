@@ -50,9 +50,6 @@ export class TableSortComponent implements OnInit,AfterViewInit{
 
   ngOnInit() {
     console.log(this.elements);
-    //this.elements[0].data=formatDate(this.elements[0].data, 'yyyy-MM-dd', 'en-US');
-    
-    console.log(this.elements[0].data);
     if(this.elements.length>0 && (this.elements[0].data!=null || this.elements[0].DocDate!=null)){
       this.elements.forEach((element:any) => {
         if(element.data!=null)
@@ -87,10 +84,11 @@ export class TableSortComponent implements OnInit,AfterViewInit{
     this.call.updateProd(element,this.tname).subscribe(res=>{
       //mettere gestione di notifica
       console.log(res)
-      if(res.affectedRows==1)  this.toast.success('prodotto modificato');
+      if(res.affectedRows==1)  this.toast.success(this.tname + ' modificato');
       else this.toast.error('errore interno '+ res);
 
       this.changeEvent.emit();
+      
     });
 
   }

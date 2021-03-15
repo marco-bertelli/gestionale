@@ -1,26 +1,29 @@
 <form [formGroup]="form" (ngSubmit)="change()">
 
-  <div class="md-form" *ngFor="let param of campi">
-    <ng-container *ngIf="param==search_param"><p>{{search_param | titlecase}}: <a mdbBtn (click)="basicModal.show()" [floating]="true" size="sm" gradient="blue" mdbWavesEffect>
-      <mdb-icon fas icon="search"></mdb-icon>
-    </a></p></ng-container>
-    <input type="text" class="form-control" id="basicExample" [formControlName]="param" mdbInput>
-    <label *ngIf="param!=search_param" for="basicExample">{{param  | titlecase}}:</label>
+    <div class="md-form" *ngFor="let param of campi">
+        <ng-container *ngIf="param==search_param">
+            <p>{{search_param | titlecase}}:
+                <a mdbBtn (click)="basicModal.show()" [floating]="true" size="sm" gradient="blue" mdbWavesEffect>
+                    <mdb-icon fas icon="search"></mdb-icon>
+                </a>
+            </p>
+        </ng-container>
+        <input type="text" class="form-control" id="basicExample" [formControlName]="param" mdbInput>
+        <label *ngIf="param!=search_param" for="basicExample">{{param  | titlecase}}:</label>
 
- </div>
+    </div>
 
-      <p>
-          <button mdbBtn type="sumbit" color="primary" [disabled]="!form.valid" mdbWavesEffect>
+    <p>
+        <button mdbBtn type="sumbit" color="primary" [disabled]="!form.valid" mdbWavesEffect>
             <mdb-icon fas icon="magic" class="mr-1"></mdb-icon>Modifica
           </button>
-      </p>
-  </form>
+    </p>
+</form>
 
 
 
 
-<div mdbModal #basicModal="mdbModal" class="modal right" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel"
- [config]='{backdrop: false, ignoreBackdropClick: true}' aria-hidden="true">
+<div mdbModal #basicModal="mdbModal" class="modal right" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel" [config]='{backdrop: false, ignoreBackdropClick: true}' aria-hidden="true">
     <div class="modal-dialog modal-md" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -30,8 +33,13 @@
                 <h4 class="modal-title w-100" id="myModalLabel">{{search_param | titlecase}}</h4>
             </div>
             <div class="modal-body">
-              <app-table (categoryEvent)="changeCategory($event)" (click)="basicModal.hide()" (updateEvent)="Update()" [tname]="search_table" *ngIf="category" [elements]="category" [searchOption]="'?table='+search_table+'&addCamp=id'" [headElements]="['id','descrizione']"></app-table>
+                <ng-container *ngIf="search_table=='clienti'">
+                    <app-table (categoryEvent)="changeCategory($event)" (click)="basicModal.hide()" (updateEvent)="Update()" [tname]="search_table" *ngIf="category" [elements]="category" [searchOption]="'?table='+search_table+'&addCamp=id'" [headElements]="['id','ragione_sociale']"></app-table>
+                </ng-container>
+                <ng-container *ngIf="search_table!='clienti'">
+                    <app-table (categoryEvent)="changeCategory($event)" (click)="basicModal.hide()" (updateEvent)="Update()" [tname]="search_table" *ngIf="category" [elements]="category" [searchOption]="'?table='+search_table+'&addCamp=id'" [headElements]="['id','descrizione']"></app-table>
+                </ng-container>
             </div>
         </div>
-    </div >
-</div >
+    </div>
+</div>
