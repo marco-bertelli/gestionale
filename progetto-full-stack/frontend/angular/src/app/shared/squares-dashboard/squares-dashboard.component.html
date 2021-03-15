@@ -1,0 +1,28 @@
+<main>
+  <div class="container">
+    <article class="badge orange">
+      <div class="roundedDashboard">
+          <i class="fas fa-briefcase"></i>
+          <h1>N° Fatture: {{totNumDoc}} </h1>
+      </div>
+  </article>
+  <article class="badge green">
+      <div class="roundedArticoli">
+          <i class="fas fa-briefcase"></i>
+          <h1>Totale Fatture: {{totAmount | currency:'EUR':true}} </h1>
+      </div>
+  </article>
+  <article class="badge blue">
+      <div class="roundedClienti">
+          <i class="fas fa-chart-line"></i>
+          <h1>N° fatture mese corrente: {{totNumDocCurrentMonth}} </h1>
+      </div>
+  </article>
+  <article class="badge gold">
+      <div class="roundedOrdini">
+          <i class="fas fa-chart-line"></i>
+          <h1>Totale fatture mese corrente: {{totAmountCurrentMonth | currency:'EUR':true}} </h1>
+      </div>
+  </article>
+  </div>
+</main>

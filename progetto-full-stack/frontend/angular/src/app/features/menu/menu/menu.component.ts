@@ -9,7 +9,7 @@ export class MenuComponent implements OnInit {
 
   constructor() { }
 
-  voci=['home','articoli','clienti','ordini','fatture']
+  voci=['dashboard','articoli','clienti','ordini','fatture']
 
   ngOnInit(): void {
   }

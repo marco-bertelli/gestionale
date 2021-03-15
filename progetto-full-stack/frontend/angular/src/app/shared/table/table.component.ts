@@ -41,7 +41,7 @@ export class TableComponent implements OnInit {
   constructor(private cdRef: ChangeDetectorRef,private call:CallService,private toast: ToastService) { }
 
   ngOnInit() {
-    
+
    this.initIndex();
   }
 
@@ -59,8 +59,8 @@ export class TableComponent implements OnInit {
       console.log(res)
       this.updateEvent.emit();
     });
-    
-    
+
+
   }
   changeP(el:string){
     this.prodToChange=el;

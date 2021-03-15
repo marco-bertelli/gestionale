@@ -1,5 +1,6 @@
-import { Component, EventEmitter, Input, OnInit, Output, SimpleChanges } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 import { CallService } from 'src/app/core/calls/call.service';
 
 @Component({
@@ -20,10 +21,9 @@ export class InsertFormComponent implements OnInit {
   @Input()
   tname:any;
 
-
   form = new FormGroup({});
 
-  constructor(private http:CallService) { }
+  constructor(private router:Router) { }
 
   ngOnInit(): void {
 
@@ -33,22 +33,12 @@ export class InsertFormComponent implements OnInit {
         new FormControl()
       );
     });
-    
+
   }
 
-  
-
-ngOnChanges(changes: SimpleChanges) {}
-
-change(){
+  change(){
     this.submitEvent.emit(this.form.value)
-}
-
-loadProd(){
-
-}
-
-
+  }
 
 
 }

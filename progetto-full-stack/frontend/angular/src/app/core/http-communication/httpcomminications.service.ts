@@ -23,7 +23,7 @@ export class HttpcomminicationsService {
     headers: new HttpHeaders({
       'Content-Type': 'application/json'
     })
-  }  
+  }
 
   // HttpClient API get() method => Fetch employees list
   getCall(endpoint:string): Observable<any> {
@@ -57,7 +57,7 @@ export class HttpcomminicationsService {
       retry(1),
       catchError(this.handleError)
     )
-  }  
+  }
 
   /* da implementare post ecc
   createEmployee(employee): Observable<Employee> {
@@ -66,7 +66,7 @@ export class HttpcomminicationsService {
       retry(1),
       catchError(this.handleError)
     )
-  }  
+  }
 
   // HttpClient API put() method => Update employee
   updateEmployee(id, employee): Observable<Employee> {
@@ -86,10 +86,10 @@ export class HttpcomminicationsService {
     )
   }
 */
-  // Error handling 
+  // Error handling
   handleError(error: { error: { message: string,text:string }; status: any; message: any; }) {
      let errorMessage = '';
-     
+
      if(error.error instanceof ErrorEvent) {
        // Get client-side error
        errorMessage = error.error.message;

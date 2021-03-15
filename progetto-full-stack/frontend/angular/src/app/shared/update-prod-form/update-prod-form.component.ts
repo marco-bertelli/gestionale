@@ -1,6 +1,8 @@
 import { Component, EventEmitter, Input, OnInit, Output, SimpleChanges } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { CallService } from 'src/app/core/calls/call.service';
+import { ToastService } from 'ng-uikit-pro-standard';
 
 @Component({
   selector: 'app-update-prod-form',
@@ -27,20 +29,19 @@ export class UpdateProdFormComponent implements OnInit {
   category:any;
 
   form = new FormGroup({
-    
+
 });
 
-  constructor(private http:CallService) {
-
-   }
+  constructor(private http:CallService, private router:Router, private toast: ToastService) { }
 
   ngOnInit(): void {
 
     this.http.getTable(this.search_table).subscribe(res=>{
       this.category=res;
     });
-    
-    
+
+    console.log(this.search_param)
+
 
     this.campi.forEach((res: string)=> {
       this.form.addControl(
@@ -82,29 +83,30 @@ ngOnChanges(changes: SimpleChanges) {
         "TotalAmount",
         new FormControl(this.form.get("TaxableAmount")?.value+this.form.get("AmountOfTaxes")?.value, Validators.required)
       );
-     
+
     })
   }
-  }); 
+  });
 }
 change(){
-  
-  this.submitEvent.emit(this.form.value)
+  this.submitEvent.emit(this.form.value);
+  location.reload();
 }
 
 Update(){
   this.http.getTable(this.search_table).subscribe(res=>{
     this.category=res;
   })
+
 }
 
 changeCategory(id:number){
- 
+
     this.form.setControl(
       this.search_param,
       new FormControl(id,Validators.required)
     );
-  
+
 }
 
 

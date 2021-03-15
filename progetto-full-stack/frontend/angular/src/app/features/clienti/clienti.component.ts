@@ -20,7 +20,7 @@ export class ClientiComponent implements OnInit {
     this.http.getTable("clienti").subscribe(res=>{
       this.clienti=res;
     })
-   
+
   }
 
 }
