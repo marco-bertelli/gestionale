@@ -1,44 +1,45 @@
 <div class="container">
-  <div class="row">
-    <div class="col-md-10 mx-auto">
-      <form class="form-inline md-form mr-auto mb-4">
-        <input class="form-control mr-sm-1" type="text" #textS placeholder="Search" aria-label="Search">
-        <button mdbBtn size="sm" gradient="aqua" [rounded]="true" class="my-0 waves-light" mdbWavesEffect (click)="search(textS.value)">Search</button>
-      </form>
+    <div class="row">
+        <div class="col-md-10 mx-auto">
+            <form class="form-inline md-form mr-auto mb-4">
+                <input class="form-control mr-sm-1" type="text" #textS placeholder="Search" aria-label="Search">
+                <button mdbBtn size="sm" gradient="aqua" [rounded]="true" class="my-0 waves-light" mdbWavesEffect (click)="search(textS.value)">Search</button>
+            </form>
+        </div>
+        <div class="col-md-2 mt-3">
+            <a mdbBtn (click)="basicModal.show()" [floating]="true" size="sm" gradient="blue" mdbWavesEffect>
+                <mdb-icon fas icon="plus-circle"></mdb-icon>
+            </a>
+        </div>
     </div>
-    <div class="col-md-2 mt-3">
-      <a mdbBtn (click)="basicModal.show()" [floating]="true" size="sm" gradient="blue" mdbWavesEffect>
-        <mdb-icon fas icon="plus-circle"></mdb-icon>
-      </a>
-    </div>
-  </div>
-<table mdbTable #tableEl="mdbTable" class="z-depth-1">
-    <thead>
-    <tr>
-        <th *ngFor="let head of headElements; let i = index" aria-controls="tableSortExample" scope="col" [mdbTableSort]="elements" [sortBy]="headElements[i]">{{head | titlecase}}
-            <mdb-icon fas icon="sort"></mdb-icon> </th>
-       
-    </tr>
-    </thead>
-    <tbody>
-    <tr class="w-100" *ngFor="let el of elements; let i = index">
-      <ng-container *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i <= mdbTablePagination.lastItemIndex"
-          scope="row" ><td (click)="sendCategory(el[attr])" *ngFor="let attr of headElements">{{el[attr]}}</td></ng-container>
-    </tr>
-    </tbody>
-    <tfoot class="grey lighten-5 w-100">
-    <tr>
-      <td colspan="6">
-        <mdb-table-pagination [tableEl]="tableEl" [searchDataSource]="elements"></mdb-table-pagination>
-      </td>
-    </tr>
-    
-    </tfoot>
-  </table>
+    <table mdbTable #tableEl="mdbTable" class="z-depth-1">
+        <thead>
+            <tr>
+                <th *ngFor="let head of headElements; let i = index" aria-controls="tableSortExample" scope="col" [mdbTableSort]="elements" [sortBy]="headElements[i]">{{head | titlecase}}
+                    <mdb-icon fas icon="sort"></mdb-icon>
+                </th>
+
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="w-100" *ngFor="let el of elements; let i = index">
+                <ng-container *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i <= mdbTablePagination.lastItemIndex" scope="row">
+                    <td (click)="sendCategory(el[attr])" *ngFor="let attr of headElements">{{el[attr]}}</td>
+                </ng-container>
+            </tr>
+        </tbody>
+        <tfoot class="grey lighten-5 w-100">
+            <tr>
+                <td colspan="6">
+                    <mdb-table-pagination [tableEl]="tableEl" [searchDataSource]="elements"></mdb-table-pagination>
+                </td>
+            </tr>
+
+        </tfoot>
+    </table>
 </div>
 
-<div mdbModal #basicModal="mdbModal" class="modal right" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel"
- [config]='{backdrop: false, ignoreBackdropClick: true}' aria-hidden="true">
+<div mdbModal #basicModal="mdbModal" class="modal right" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel" [config]='{backdrop: false, ignoreBackdropClick: true}' aria-hidden="true">
     <div class="modal-dialog modal-md" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -48,8 +49,8 @@
                 <h4 class="modal-title w-100" id="myModalLabel">Inserisci</h4>
             </div>
             <div class="modal-body">
-              <app-insert-form [campi]="headElements" [tname]="tname" (submitEvent)="change($event)"></app-insert-form>
+                <app-insert-form [campi]="headElements" [tname]="tname" (submitEvent)="change($event)"></app-insert-form>
             </div>
         </div>
-    </div >
-</div >
+    </div>
+</div>

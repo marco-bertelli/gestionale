@@ -21,12 +21,11 @@ export class LoginComponent implements OnInit {
   login(username : string, password : string){
     console.log("Sono in login")
     this.call.getUser("utenti",username,password).subscribe(res=>{
+      console.log("FAtto chiamata")
       if(res.length==1)  {
-        this.par = "OK"
+        this.router.navigateByUrl('/dashboard');
       }
-
-
-      if(this.par == "OK") this.router.navigateByUrl('/dashboard?login=true');
+      //else window.alert("sbagliato")
       else this.toast.error('Utente non trovato , riprovare');
     });
   }

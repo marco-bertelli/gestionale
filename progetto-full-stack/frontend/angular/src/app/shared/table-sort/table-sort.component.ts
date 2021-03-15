@@ -2,6 +2,7 @@ import { AfterViewInit, ChangeDetectorRef, Component, EventEmitter, Input, OnIni
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MdbTableDirective, MdbTablePaginationComponent, ToastService } from 'ng-uikit-pro-standard';
 import { CallService } from 'src/app/core/calls/call.service';
+import { formatDate} from '@angular/common';
 
 
 @Component({
@@ -48,8 +49,18 @@ export class TableSortComponent implements OnInit,AfterViewInit{
   constructor(private cdRef: ChangeDetectorRef,private call:CallService,private toast: ToastService) {  }
 
   ngOnInit() {
-    console.log(this.elements)
-
+    console.log(this.elements);
+    //this.elements[0].data=formatDate(this.elements[0].data, 'yyyy-MM-dd', 'en-US');
+    
+    console.log(this.elements[0].data);
+    if(this.elements.length>0 && (this.elements[0].data!=null || this.elements[0].DocDate!=null)){
+      this.elements.forEach((element:any) => {
+        if(element.data!=null)
+          element.data=formatDate(element.data, 'yyyy-MM-dd', 'en-US');
+        else 
+          element.DocDate=formatDate(element.DocDate, 'yyyy-MM-dd', 'en-US');
+      });
+    }
 
     this.mdbTable.setDataSource(this.elements);
     this.elements = this.mdbTable.getDataSource();
