@@ -23,10 +23,7 @@ app.listen(process.env.ANGULAR_APP_SERVER_PORT, () => {
 });
 
 app.get('/getTable', get.getTable);
-
 app.get('/getUser', get.getUser);
-
-
 app.get('/getSingolo',get.getSingolo);
 
 
@@ -203,7 +200,65 @@ app.post('/delete', (req, res) => {
     }
 });
 
-
+app.put('/update', (req, res) => {
+ 
+    let table = req.query.table;
+  
+    let campi="";
+  
+    for(var key in req.body) {
+      if(req.body.hasOwnProperty(key)){
+        campi+=key+",";
+      }
+    }
+  
+    campi=campi.slice(0, -1);
+  
+    let valori ="";
+  
+    for(var key in req.body) {
+      if(req.body.hasOwnProperty(key)){
+        valori+="'"+req.body[key]+"',";
+      }
+    }
+  
+    valori=valori.slice(0, -1);
+    //riconosce se c'è il codice o meno 
+    
+    if(req.body.hasOwnProperty("codice") ){
+    pool.query("SELECT * FROM "+table+" where codice='"+req.body.codice+"'", (err, results) => {
+      if (results.length!=0) { 
+        pool.query("UPDATE " +table+"SET  ("+campi+") = ("+valori+")", (err, results) => {
+          if (err) {
+            return res.send(err);
+          } else {
+            return res.send(results);
+          }
+        });
+      } 
+      
+    });
+  }
+  //in caso non ci sia controlla l'id 
+  else{
+    if(req.body.hasOwnProperty("id")){
+      pool.query("SELECT * FROM "+table+" where id='"+req.body.id+"'", (err, results) => {
+        if (results.length!=0) { 
+          pool.query("UPDATE "+table+" SET ("+campi+") = ("+valori+")", (err, results) => {
+            if (err) {
+              return res.send(err);
+            } else {
+              return res.send(results);
+            }
+          });
+        } 
+       
+      });
+    }
+    
+    
+  }
+  });
 
 
 app.get('/search', (req, res) => {

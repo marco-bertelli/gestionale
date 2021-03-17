@@ -20,6 +20,9 @@ export class CallService {
   insertCall(body:any,table:string){
     return this.http.postCall("/insert?table="+table,body);
   }
+  updateCall(body:any,table:string){
+    return this.http.putCall("/update?table="+table,body);
+  }
   deleteCall(body:any,table:string){
     return this.http.postCall("/delete?table="+table,body);
   }

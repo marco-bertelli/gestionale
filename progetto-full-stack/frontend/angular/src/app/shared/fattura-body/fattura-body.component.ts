@@ -48,19 +48,19 @@ export class FatturaBodyComponent implements OnInit {
   }
 
   ngAfterViewInit() {
-   
+
   }
-  
+
   delete(el:string){
- 
+
     this.call.deleteCall(el,this.tname).subscribe(res=>{
       this.update();
     });
-    
+
   }
   change(element:string){
     console.log(element)
-  
+
       this.changeEvent.emit(element);
 
   }

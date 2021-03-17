@@ -18,8 +18,8 @@ app.use(bodyParser.json());
 
 
 exports.getTable = function(req, res, next) {
+    
     let table = req.query.table;
-
     pool.query("select * from " + table, (err, results) => {
         if (err) {
             return res.send(err);
@@ -30,10 +30,9 @@ exports.getTable = function(req, res, next) {
 };
 
 exports.getSingolo = function(req, res, next) {
+
     let table = req.query.table;
-
     let codice = req.query.codice;
-
     pool.query("select * from " + table + " WHERE codice ='" + codice + "'", (err, results) => {
         if (err) {
             return res.send(err);
@@ -44,11 +43,10 @@ exports.getSingolo = function(req, res, next) {
 };
       
 exports.getUser = function(req, res, next) {
+   
     let table = req.query.table;
-
     let username = req.query.username;
     let password = req.query.password;
-
     pool.query("select * from " + table + " WHERE username ='" + username + "' AND password ='" + password + "'", (err, results) => {
         if (err) {
             return res.send(err);
