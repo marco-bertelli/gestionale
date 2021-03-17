@@ -10,7 +10,8 @@ import { environment } from 'src/environments/environment';
 })
 export class HttpcomminicationsService {
 
-  apiURL = 'http://localhost:8000';
+  // apiURL = 'http://localhost:8000';
+  apiURL = 'http://35.156.177.72:8000';
 
   constructor(private http: HttpClient,private toast: ToastService) { }
 
