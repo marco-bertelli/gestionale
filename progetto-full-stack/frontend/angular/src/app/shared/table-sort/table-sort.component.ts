@@ -2,7 +2,6 @@ import { AfterViewInit, ChangeDetectorRef, Component, EventEmitter, Input, OnIni
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MdbTableDirective, MdbTablePaginationComponent, ToastService } from 'ng-uikit-pro-standard';
 import { CallService } from 'src/app/core/calls/call.service';
-import { formatDate} from '@angular/common';
 
 
 @Component({
@@ -49,15 +48,8 @@ export class TableSortComponent implements OnInit,AfterViewInit{
   constructor(private cdRef: ChangeDetectorRef,private call:CallService,private toast: ToastService) {  }
 
   ngOnInit() {
-    console.log(this.elements);
-    if(this.elements.length>0 && (this.elements[0].data!=null || this.elements[0].DocDate!=null)){
-      this.elements.forEach((element:any) => {
-        if(element.data!=null)
-          element.data=formatDate(element.data, 'yyyy-MM-dd', 'en-US');
-        else
-          element.DocDate=formatDate(element.DocDate, 'yyyy-MM-dd', 'en-US');
-      });
-    }
+    console.log(this.elements)
+
 
     this.mdbTable.setDataSource(this.elements);
     this.elements = this.mdbTable.getDataSource();
@@ -85,11 +77,10 @@ export class TableSortComponent implements OnInit,AfterViewInit{
     this.call.updateProd(element,this.tname).subscribe(res=>{
       //mettere gestione di notifica
       console.log(res)
-      if(res.affectedRows==1)  this.toast.success(this.tname + ' modificato');
+      if(res.affectedRows==1)  this.toast.success('prodotto modificato');
       else this.toast.error('errore interno '+ res);
 
       this.changeEvent.emit();
-
     });
 
   }

@@ -1,14 +1,15 @@
+
 import { Component, EventEmitter, Input, OnInit, Output, SimpleChanges, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { TabsetComponent } from 'ng-uikit-pro-standard';
 import { CallService } from 'src/app/core/calls/call.service';
 
 @Component({
-  selector: 'app-update-fatture-form',
-  templateUrl: './update-fatture-form.component.html',
-  styleUrls: ['./update-fatture-form.component.scss']
+  selector: 'app-insert-fatture',
+  templateUrl: './insert-fatture.component.html',
+  styleUrls: ['./insert-fatture.component.scss']
 })
-export class UpdateFattureFormComponent implements OnInit {
+export class InsertFattureComponent implements OnInit {
 
   constructor(private call:CallService){}
 
@@ -33,7 +34,7 @@ export class UpdateFattureFormComponent implements OnInit {
   //recupero le varie parti della fattura
   header:any;
 
-  body:any;
+  body:Array<any> = [];
 
   coda:any={
     "Codice":"",
@@ -63,21 +64,11 @@ export class UpdateFattureFormComponent implements OnInit {
 
 
   ngOnInit(): void {
-   this.loadBody();
 
    this.coda = Object.assign({}, this.coda);
 
   }
 
-  loadBody(){
-    console.log(this.prodotto.codice)
-    this.call.getSingolo("DocDetail",this.prodotto.Customer).subscribe(res=>{
-      console.log(res)
-      this.body=res;
-      this.createCoda(this.body);
-
-    })
-  }
 
   updateBody(event:any){
     console.log(event)
@@ -89,13 +80,34 @@ export class UpdateFattureFormComponent implements OnInit {
 
   }
 
+  insertBody(event:any){
+    console.log(event)
+    this.body.push(event);
+    this.createCoda(this.body);
+  }
+
+
+  delete(event:any){
+
+    //Removing body riga
+    this.body.forEach((element,index)=>{
+    if(element.DocLine==event.DocLine) this.body.splice(index,1);
+    });
+    //si usa slice per non lasciare lo spazio vuoto
+
+   this.createCoda(this.body);
+  }
+
   setheader(event:any){
     this.header=event;
+    this.createCoda(this.body);
     this.staticTabs.setActiveTab(2);
+
 
   }
 
   createCoda(body:any){
+    console.log(this.prodotto)
     //azzera la coda
     this.coda={
       "Codice":"",
@@ -108,8 +120,9 @@ export class UpdateFattureFormComponent implements OnInit {
       "TotalTaxableAmount":0,
       "TotalTaxesAmount":0
     };
+
     //setta il codice
-    this.coda.Codice=this.prodotto.codice;
+    this.prodotto ? this.coda.Codice=this.prodotto.codice : this.coda.Codice=this.header.codice;
     //riempie i vari valori
     for (let index = 0; index < this.body.length; index++) {
       //totale merci o servizi
@@ -130,6 +143,17 @@ export class UpdateFattureFormComponent implements OnInit {
       return {...this.coda}
   }
 
+  save(event:any){
+    this.coda=event;
 
+    const fattura={
+      "header":this.header,
+      "body":this.body,
+      "coda":this.coda
+    }
 
+    this.call.insertFattura(fattura).subscribe(res=>{
+      console.log(res)
+    })
+  }
 }

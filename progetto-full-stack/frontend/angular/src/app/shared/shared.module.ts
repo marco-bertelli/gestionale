@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MDBBootstrapModulesPro } from 'ng-uikit-pro-standard';
-import { DropdownModule, MDBSpinningPreloader } from 'ng-uikit-pro-standard';
 
 
 import { RouterModule } from '@angular/router';
@@ -15,12 +14,11 @@ import { InsertFormComponent } from './insert-form/insert-form.component';
 import { UpdateFattureFormComponent } from './update-fatture-form/update-fatture-form.component';
 import { FatturaBodyComponent } from './fattura-body/fattura-body.component';
 import { UpdateFattureCodaComponent } from './update-fatture-coda/update-fatture-coda.component';
-import { BarChartComponent } from './bar-chart/bar-chart.component';
+import { InsertFattureComponent } from './insert-fatture/insert-fatture.component';
 import { PieChartComponent } from './pie-chart/pie-chart.component';
 import { LineChartComponent } from './line-chart/line-chart.component';
+import { BarChartComponent } from './bar-chart/bar-chart.component';
 import { SquaresDashboardComponent } from './squares-dashboard/squares-dashboard.component';
-
-
 @NgModule({
   declarations: [
     TableSortComponent,
@@ -29,19 +27,21 @@ import { SquaresDashboardComponent } from './squares-dashboard/squares-dashboard
     InsertFormComponent,
     UpdateFattureFormComponent,
     FatturaBodyComponent,
-    BarChartComponent,
+    UpdateFattureCodaComponent,
+    InsertFattureComponent,
     PieChartComponent,
     LineChartComponent,
-    UpdateFattureCodaComponent,
+    BarChartComponent,
     SquaresDashboardComponent
   ],
   imports: [
     CommonModule,
     MDBBootstrapModulesPro.forRoot(),
-    DropdownModule.forRoot(),
     RouterModule,
     FormsModule,
     ReactiveFormsModule,
+
+
   ],
   exports:[
     MDBBootstrapModulesPro,
@@ -55,11 +55,11 @@ import { SquaresDashboardComponent } from './squares-dashboard/squares-dashboard
     UpdateFattureFormComponent,
     FatturaBodyComponent,
     UpdateFattureCodaComponent,
-    BarChartComponent,
+    InsertFormComponent,
     PieChartComponent,
     LineChartComponent,
+    BarChartComponent,
     SquaresDashboardComponent
-  ],
-  providers: [MDBSpinningPreloader],
+  ]
 })
 export class SharedModule { }

@@ -59,6 +59,10 @@ export class CallService {
     return this.http.getCall("/getTotAmountCurrentMonth?currentMonth="+currentMonth+"&currentYear="+currentYear);
   }
 
+  //FATTURE
+  insertFattura(body:any){
+    return this.http.postCall("/insertFattura",body);
+  }
 
 
 }

@@ -222,11 +222,11 @@ CREATE TABLE `citta` (
 
 LOCK TABLES `citta` WRITE;
 /*!40000 ALTER TABLE `citta` DISABLE KEYS */;
-INSERT INTO `citta` VALUES  (1,'Bergamo'),
-                            (2,'Brescia'),
-                            (3,'Padova'),
-                            (4,'Verona'),
-                            (5,'Milano');
+INSERT INTO `citta` VALUES  (1,'BG'),
+                            (2,'BS'),
+                            (3,'PD'),
+                            (4,'VE'),
+                            (5,'MI');
 /*!40000 ALTER TABLE `citta` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -336,30 +336,6 @@ INSERT INTO `clienti` VALUES  (1,'000001','azienda1','Vilminore di Scalve','BG')
 UNLOCK TABLES;
 
 
---
--- Table structure for table `citta`
---
-
-DROP TABLE IF EXISTS `citta`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `citta` (
-  `id` int(11) NOT NULL,
-  `descrizione` varchar(64) NOT NULL,
-  `sigla` varchar(2) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `citta`
---
-
-LOCK TABLES `citta` WRITE;
-/*!40000 ALTER TABLE `citta` DISABLE KEYS */;
-INSERT INTO `citta` VALUES (1,'Bergamo','BG'),(2,'Brescia','BS'),(3,'Sondrio','SO');
-/*!40000 ALTER TABLE `citta` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `utenti`

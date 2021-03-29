@@ -27,17 +27,21 @@ th {
   color: rgb(77, 77, 77);
 }
 #footer-label {
+  // margin-top: -10px;
+  // margin-bottom: -26px;
   position: absolute;
   right: 0;
   bottom: 0;
   left: 0;
   padding: 1rem;
-  background-color: #ffffff;
+  background-color: #efefef;
   text-align: center;
-  box-shadow: -1px 0px 8px rgb(163, 163, 163);
 }
 #icon-sort {
   cursor: pointer;
   color: rgb(143, 143, 143);
+}
+tfoot {
+  background-color: none;
 }
 

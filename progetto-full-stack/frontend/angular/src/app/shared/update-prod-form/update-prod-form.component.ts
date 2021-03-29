@@ -1,8 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output, SimpleChanges } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
 import { CallService } from 'src/app/core/calls/call.service';
-import { ToastService } from 'ng-uikit-pro-standard';
 
 @Component({
   selector: 'app-update-prod-form',
@@ -32,7 +30,9 @@ export class UpdateProdFormComponent implements OnInit {
 
 });
 
-  constructor(private http:CallService, private router:Router, private toast: ToastService) { }
+  constructor(private http:CallService) {
+
+   }
 
   ngOnInit(): void {
 
@@ -40,7 +40,6 @@ export class UpdateProdFormComponent implements OnInit {
       this.category=res;
     });
 
-    console.log(this.search_param)
 
 
     this.campi.forEach((res: string)=> {
@@ -89,15 +88,14 @@ ngOnChanges(changes: SimpleChanges) {
   });
 }
 change(){
-  this.submitEvent.emit(this.form.value);
-  location.reload();
+
+  this.submitEvent.emit(this.form.value)
 }
 
 Update(){
   this.http.getTable(this.search_table).subscribe(res=>{
     this.category=res;
   })
-
 }
 
 changeCategory(id:number){
