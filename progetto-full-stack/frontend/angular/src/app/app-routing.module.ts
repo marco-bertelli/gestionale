@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 const routes: Routes = [
-  { path: '',   redirectTo: '/login', pathMatch: 'full' },
   { path: 'articoli', loadChildren: () => import('./features/articoli/articoli.module').then(m => m.ArticoliModule) },
   { path: 'clienti', loadChildren: () => import('./features/clienti/clienti.module').then(m => m.ClientiModule) },
   { path: 'ordini', loadChildren: () => import('./features/ordini/ordini.module').then(m => m.OrdiniModule) },

@@ -60,6 +60,5 @@ export class CallService {
   }
 
 
-  //select costumer con maggior numero di fatture
 
 }
